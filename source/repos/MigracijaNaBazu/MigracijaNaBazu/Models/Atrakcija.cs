@@ -16,8 +16,6 @@ namespace MigracijaNaBazu.Models
         public string OpisAtrakcije { get; set; }
         public VrstaAtrakcije VrstaAtrakcije { get; set; }
 
-        public List<Recenzija> Recenzije { get; set; } = new List<Recenzija>();
-
         public Atrakcija() { }
 
         public string GetDetaljneInformacije()
@@ -25,12 +23,5 @@ namespace MigracijaNaBazu.Models
             return NazivAtrakcije + " - " + OpisAtrakcije;
         }
 
-        public double ProsjecnaOcjena()
-        {
-            if (Recenzije == null || Recenzije.Count == 0)
-                return 0;
-
-            return Recenzije.Average(r => r.Ocjena);
-        }
     }
 }

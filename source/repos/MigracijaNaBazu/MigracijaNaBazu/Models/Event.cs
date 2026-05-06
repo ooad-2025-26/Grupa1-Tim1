@@ -32,9 +32,5 @@ namespace MigracijaNaBazu.Models
             return NazivEventa + " - " + OpisEventa;
         }
 
-        public double ProsjecnaOcjena()
-        {
-            return 0;
-        }
     }
 }

@@ -4,6 +4,7 @@
     {
         HISTORIJSKA,
         VJERSKA,
-        KULTURNA
+        KULTURNA,
+        PRIRODNA
     }
 }
