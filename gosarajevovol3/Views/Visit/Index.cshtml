@@ -1,0 +1,63 @@
+﻿@model List<gosarajevovol3.Models.Attraction>
+
+@{
+    ViewData["Title"] = "Visit";
+    var aktFiltar = ViewBag.ActiveType as string;
+}
+
+<link rel="stylesheet" href="~/css/visit.css" />
+
+<div class="carousel-wrapper">
+    <button class="carousel-btn left" onclick="promijeniSlajd(-1)">&#8249;</button>
+
+    @foreach (var atrakcija in Model)
+    {
+        <div class="slajd" data-vrsta="@atrakcija.AttractionType">
+            <img src="@atrakcija.PhotoUrl" alt="@atrakcija.AttractionName" />
+            <div class="slajd-tekst">
+                <h1>@atrakcija.AttractionName</h1>
+                <p>@atrakcija.AttractionDescription</p>
+            </div>
+        </div>
+    }
+
+    <button class="carousel-btn right" onclick="promijeniSlajd(1)">&#8250;</button>
+
+    <div class="filteri">
+        <a href="@(aktFiltar == "Historical" ? "/Visit" : "/Visit?type=Historical")"
+           class="filter-btn @(aktFiltar == "Historical" ? "aktivan" : "")">
+            Historical attractions
+        </a>
+        <a href="@(aktFiltar == "Religious" ? "/Visit" : "/Visit?type=Religious")"
+           class="filter-btn @(aktFiltar == "Religious" ? "aktivan" : "")">
+            Religious attractions
+        </a>
+        <a href="@(aktFiltar == "Nature" ? "/Visit" : "/Visit?type=Nature")"
+           class="filter-btn @(aktFiltar == "Nature" ? "aktivan" : "")">
+            Nature attractions
+        </a>
+        <a href="@(aktFiltar == "Monument" ? "/Visit" : "/Visit?type=Monument")"
+           class="filter-btn @(aktFiltar == "Monument" ? "aktivan" : "")">
+            Monuments
+        </a>
+    </div>
+</div>
+
+<script>
+    let trenutniSlajd = 0;
+    const slajdovi = document.querySelectorAll('.slajd');
+
+    function prikaziSlajd(index) {
+        slajdovi.forEach(s => s.style.display = 'none');
+        slajdovi[index].style.display = 'block';
+    }
+
+    function promijeniSlajd(smjer) {
+        trenutniSlajd += smjer;
+        if (trenutniSlajd < 0) trenutniSlajd = slajdovi.length - 1;
+        if (trenutniSlajd >= slajdovi.length) trenutniSlajd = 0;
+        prikaziSlajd(trenutniSlajd);
+    }
+
+    prikaziSlajd(trenutniSlajd);
+</script>
