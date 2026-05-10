@@ -19,4 +19,96 @@ html {
 
 body {
   margin-bottom: 60px;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.text-darkred {
+  color: #780000 !important;
+}
+
+.text-darkblue {
+  color: #003049 !important;
+}
+.text-lighterblue {
+  color: #013a63 !important;
+}
+.text-darkestblue {
+  color: #04070a !important;
+}
+.text-lighterred {
+  color: #c1121f !important;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.navbar-brand {
+  padding-right: 8rem !important;
+}
+
+.nav-link {
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  color: #003049 !important;
+  transition: color 0.15s ease-in-out,
+              background-color 0.15s ease-in-out,
+              border-color 0.15s ease-in-out,
+              border-radius 0.15s ease-in-out;
+}
+
+.nav-link:hover {
+  background-color: rgba(0, 47, 86, 0.3);
+  color: #002F56 !important;
+  text-decoration: none;
+  border-radius: 1.35rem;
+  border-color: rgba(0, 47, 86, 0.3);
+}
+.smart-button {
+  background-color: #002F56 ;
+  color: #fff !important;
+  text-decoration: none;
+  border-radius: 1.35rem;
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+.smart-button:hover {
+  background-color: rgba(0, 47, 86, 0.3);
+  color: #002F56 !important;
+  text-decoration: none;
+  border-radius: 1.35rem;
+}
+
+.log-ikonica {
+  color: #fff !important;
+  background-color: #780000 !important;
+  border-radius: 1.35rem !important;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+.log-ikonica:hover {
+  background-color: rgba(120, 0, 0, 0.3) !important;
+  color: #780000 !important;
+  text-decoration: none;
+  border-radius: 1.35rem !important;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: transparent !important;
+}
+.navbar-toggler {
+  border-color: rgba(0, 47, 86,0.5) !important;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background-color: rgba(255, 255, 255, 0.9); 
+    padding: 1rem;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
 }
