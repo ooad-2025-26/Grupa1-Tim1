@@ -1,10 +1,11 @@
-namespace gosarajevovol2.Models.Enums;
+namespace gosarajevovol3.Models.Enums;
 
 public enum HospitalityType
 {
     Restaurant,
-    Bar,
     Cafe,
-    Club,
-    Other
+    Bars,
+    Shopping,
+    Cinemas,
+    Museums
 }

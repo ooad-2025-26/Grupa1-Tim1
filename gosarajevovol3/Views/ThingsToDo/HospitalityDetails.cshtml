@@ -1,0 +1,307 @@
+﻿@model gosarajevovol3.Models.Hospitality
+
+@{
+    ViewData["Title"] = Model.HospitalityName;
+}
+
+<style>
+    .details-page {
+        margin-top: 85px;
+        padding-bottom: 50px;
+    }
+
+    .details-header {
+        background-color: #9bb8c6;
+        color: white;
+        padding: 18px 26px;
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 45px;
+    }
+
+        .details-header a {
+            color: white;
+            text-decoration: none;
+        }
+
+            .details-header a:hover {
+                text-decoration: underline;
+            }
+
+    .details-content {
+        display: grid;
+        grid-template-columns: 38% 62%;
+        gap: 38px;
+        align-items: start;
+    }
+
+    .details-image {
+        width: 100%;
+        height: 430px;
+        object-fit: cover;
+    }
+
+    .details-title {
+        font-size: 54px;
+        font-weight: 900;
+        color: black;
+        margin-bottom: 4px;
+        line-height: 1.05;
+    }
+
+    .stars {
+        font-size: 36px;
+        color: #ffc400;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .empty-star {
+        color: black;
+    }
+
+    .details-address {
+        font-size: 18px;
+        font-style: italic;
+        margin-bottom: 26px;
+    }
+
+    .details-description {
+        font-size: 17px;
+        margin-bottom: 24px;
+        color: #222;
+    }
+
+    .details-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .reviews-button {
+        background-color: #005f7f;
+        color: white;
+        border: none;
+        border-radius: 22px;
+        padding: 8px 28px;
+        font-weight: 800;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .reviews-button:hover {
+            color: white;
+            background-color: #004d66;
+        }
+
+    .leave-review-button {
+        background-color: #d71920;
+        color: white;
+        border: none;
+        border-radius: 22px;
+        padding: 8px 20px;
+        font-weight: 800;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+        .leave-review-button:hover {
+            color: white;
+            background-color: #b9141a;
+        }
+
+    .review-card {
+        background-color: #9bb8c6;
+        border-radius: 14px;
+        padding: 12px 16px;
+        margin-bottom: 10px;
+        color: black;
+        position: relative;
+        min-height: 72px;
+    }
+
+    .review-username {
+        font-weight: 800;
+        margin-bottom: 3px;
+    }
+
+    .review-comment {
+        font-size: 16px;
+    }
+
+    .review-stars {
+        position: absolute;
+        right: 18px;
+        bottom: 8px;
+        font-size: 27px;
+        color: #005f7f;
+        letter-spacing: 1px;
+    }
+
+    .review-empty-star {
+        color: black;
+    }
+
+    .filled-star {
+        color: #ffc400;
+    }
+
+    .filled-star-small {
+        color: #005f7f;
+    }
+
+    .empty-star-small {
+        color: black;
+    }
+
+    .no-rating {
+        font-size: 20px;
+        color: #777;
+        font-style: italic;
+    }
+
+    .no-reviews {
+        color: #777;
+        font-size: 17px;
+        font-style: italic;
+        margin-top: 15px;
+    }
+
+    .review-date {
+        font-size: 13px;
+        color: #333;
+        margin-top: 3px;
+        font-style: italic;
+    }
+
+    @@media (max-width: 992px) {
+        .details-content {
+            grid-template-columns: 1fr;
+        }
+
+        .details-title {
+            font-size: 38px;
+        }
+
+        .details-image {
+            height: 330px;
+        }
+    }
+</style>
+
+<div class="details-page">
+
+    <div class="details-header">
+        <a asp-action="Index">Things To Do</a> &lt;
+        <a asp-action="Hospitality" asp-route-type="@Model.HospitalityType">@Model.HospitalityType</a> &lt;
+        @Model.HospitalityName
+    </div>
+
+    <div class="container">
+        <div class="details-content">
+
+            <div>
+                @if (!string.IsNullOrEmpty(Model.PhotoUrl))
+                {
+                    <img src="@Model.PhotoUrl"
+                         alt="@Model.HospitalityName"
+                         class="details-image" />
+                }
+                else
+                {
+                    <div class="details-image d-flex align-items-center justify-content-center bg-light">
+                        <span class="text-muted">Nema slike</span>
+                    </div>
+                }
+            </div>
+
+            <div>
+                <h1 class="details-title">@Model.HospitalityName</h1>
+
+                @{
+                    var averageRating = Model.Reviews != null && Model.Reviews.Any()
+                        ? Math.Round(Model.Reviews.Average(r => r.Rating))
+                        : 0;
+                }
+
+                <div class="stars">
+                    @if (averageRating > 0)
+                    {
+                        for (int i = 1; i <= 5; i++)
+                        {
+                            if (i <= averageRating)
+                            {
+                                <span class="filled-star">★</span>
+                            }
+                            else
+                            {
+                                <span class="empty-star">☆</span>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <span class="no-rating">No rating yet</span>
+                    }
+                </div>
+
+                <p class="details-address">@Model.LocationAddress</p>
+
+                <p class="details-description">
+                    @Model.HospitalityDescription
+                </p>
+
+                <div class="details-actions">
+                    <a href="#reviews" class="reviews-button">Reviews</a>
+
+                    <a href="#" class="leave-review-button">
+                        +Leave/edit a review
+                    </a>
+                </div>
+
+                <div id="reviews">
+                    @if (Model.Reviews != null && Model.Reviews.Any())
+                    {
+                        foreach (var review in Model.Reviews.OrderByDescending(r => r.CreatedAt))
+                        {
+                            <div class="review-card">
+                                <div class="review-username">
+                                    @(review.RegisteredUser != null ? review.RegisteredUser.Username : "Anonymous user")
+                                </div>
+
+                                <div class="review-comment">
+                                    @review.Comment
+                                </div>
+
+                                <div class="review-date">
+                                    @review.CreatedAt.ToString("dd.MM.yyyy")
+                                </div>
+
+                                <div class="review-stars">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        if (i <= review.Rating)
+                                        {
+                                            <span class="filled-star-small">★</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="empty-star-small">☆</span>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="no-reviews">There are currently no reviews for this place.</p>
+                    }
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

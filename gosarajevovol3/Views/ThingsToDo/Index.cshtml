@@ -1,0 +1,162 @@
+﻿@using gosarajevovol3.Models
+@{
+    ViewData["Title"] = "Things To Do";
+    var restaurants = ViewBag.Restaurants as List<Hospitality> ?? new List<Hospitality>();
+    var cafes = ViewBag.Cafes as List<Hospitality> ?? new List<Hospitality>();
+    var bars = ViewBag.Bars as List<Hospitality> ?? new List<Hospitality>();
+    var shopping = ViewBag.Shopping as List<Hospitality> ?? new List<Hospitality>();
+    var cinemas = ViewBag.Cinemas as List<Hospitality> ?? new List<Hospitality>();
+    var museums = ViewBag.Museums as List<Hospitality> ?? new List<Hospitality>();
+}
+
+<style>
+    .things-page {
+        margin-top: 95px;
+        padding-bottom: 40px;
+    }
+
+    .category-card {
+        border-radius: 28px;
+        padding: 30px 24px;
+        height: 530px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .category-title {
+        font-weight: 800;
+        font-size: 30px;
+        margin-bottom: 36px;
+    }
+
+    .carousel {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .carousel-inner {
+        width: 100%;
+    }   
+
+    .card-content {
+        text-align: center;
+    }
+
+    .place-img {
+        width: 86%;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 4px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .place-info {
+        margin-top: 26px;
+        text-align: center;
+    }
+
+    .place-name {
+        display: block;
+        color: white;
+        font-weight: 800;
+        font-size: 22px;
+        text-decoration: none;
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+
+        .place-name:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+    .place-address {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .reviews-link {
+        color: white;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+        .reviews-link:hover {
+            color: white;
+        }
+
+    .custom-carousel-btn {
+        width: 10%;
+        opacity: 0.95;
+    }
+
+    .carousel-control-prev {
+        left: -8px;
+    }
+
+    .carousel-control-next {
+        right: -8px;
+    }
+
+    .empty-category {
+        min-height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+</style>
+
+<div class="container things-page">
+    <div class="row g-4">
+
+        @{
+            Html.RenderPartial("_CategoryCard", (object)null, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) {
+            { "Items", restaurants }, { "Title", "Restaurants" }, { "Type", "Restaurant" },
+            { "Color", "#7a9db5" }, { "CarouselId", "carouselRestaurant" }
+        });
+        }
+
+        @{
+            Html.RenderPartial("_CategoryCard", (object)null, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) {
+            { "Items", cafes }, { "Title", "Cafes" }, { "Type", "Cafe" },
+            { "Color", "#e8a598" }, { "CarouselId", "carouselCafe" }
+        });
+        }
+
+        @{
+            Html.RenderPartial("_CategoryCard", (object)null, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) {
+            { "Items", bars }, { "Title", "Bars & Clubs" }, { "Type", "Bars" },
+            { "Color", "#7a9db5" }, { "CarouselId", "carouselBars" }
+        });
+        }
+
+        @{
+            Html.RenderPartial("_CategoryCard", (object)null, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) {
+            { "Items", shopping }, { "Title", "Shopping" }, { "Type", "Shopping" },
+            { "Color", "#7a9db5" }, { "CarouselId", "carouselShopping" }
+        });
+        }
+
+        @{
+            Html.RenderPartial("_CategoryCard", (object)null, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) {
+            { "Items", cinemas }, { "Title", "Theatres & Cinemas" }, { "Type", "Cinemas" },
+            { "Color", "#e8a598" }, { "CarouselId", "carouselCinemas" }
+        });
+        }
+
+        @{
+            Html.RenderPartial("_CategoryCard", (object)null, new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) {
+            { "Items", museums }, { "Title", "Museums" }, { "Type", "Museums" },
+            { "Color", "#7a9db5" }, { "CarouselId", "carouselMuseums" }
+        });
+        }
+
+    </div>
+</div>

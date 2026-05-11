@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using gosarajevovol2.Models.Enums;
+using gosarajevovol3.Models.Enums;
 
 namespace gosarajevovol3.Models;
 

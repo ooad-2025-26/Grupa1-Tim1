@@ -1,0 +1,81 @@
+﻿@using gosarajevovol3.Models
+@{
+    var items = ViewData["Items"] as List<Hospitality> ?? new List<Hospitality>();
+    var title = ViewData["Title"] as string;
+    var type = ViewData["Type"] as string;
+    var color = ViewData["Color"] as string;
+    var carouselId = ViewData["CarouselId"] as string;
+}
+
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="category-card text-white" style="background-color: @color;">
+        <h3 class="category-title">@title</h3>
+
+        @if (items.Any())
+        {
+            <div id="@carouselId" class="carousel slide" data-bs-ride="false">
+                <div class="carousel-inner">
+                    @for (int i = 0; i < items.Count; i++)
+                    {
+                        <div class="carousel-item @(i == 0 ? "active" : "")">
+                            <div class="card-content">
+
+                                <a asp-controller="ThingsToDo"
+                                       asp-action="Hospitality"
+                                       asp-route-type="@type">
+                                    <img src="@items[i].PhotoUrl"
+                                         class="place-img"
+                                         alt="@items[i].HospitalityName" />
+                                </a>
+
+                                <div class="place-info">
+                                    <a asp-controller="ThingsToDo"
+                                           asp-action="Hospitality"
+                                           asp-route-type="@type"
+                                           class="place-name">
+                                        <em>@items[i].HospitalityName</em>
+                                    </a>
+
+                                    <p class="place-address">@items[i].LocationAddress</p>
+
+                                    <a asp-controller="ThingsToDo"
+                                           asp-action="HospitalityDetails"
+                                           asp-route-id="@items[i].Id"
+                                           class="reviews-link">
+                                        recenzije
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                @if (items.Count > 1)
+                {
+                    <button class="carousel-control-prev custom-carousel-btn" type="button"
+                            data-bs-target="#@carouselId" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+
+                    <button class="carousel-control-next custom-carousel-btn" type="button"
+                            data-bs-target="#@carouselId" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="empty-category">
+                <p>Nema objekata</p>
+                <a asp-controller="ThingsToDo"
+                       asp-action="Hospitality"
+                       asp-route-type="@type"
+                       class="reviews-link">
+                    Pogledaj sve →
+                </a>
+            </div>
+        }
+    </div>
+</div>
