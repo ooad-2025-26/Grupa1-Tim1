@@ -190,13 +190,6 @@
     background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), url("/images/bus.png");
 }
 
-.trolley-display {
-    background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), url("/images/trolley.png");
-}
-
-.other-display {
-    background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), url("/images/other.png");
-}
 
 .transport-display h1,
 .transport-main-title {
@@ -465,7 +458,7 @@
         .other-info-box a:hover {
             color: #9b0000;
         }
-*/
+
 /* SIMPLE INFO SECTIONS */
 
 .simple-info-section {
@@ -957,6 +950,7 @@
     background-position: center;
     margin-bottom: 18px;
 }
+
 
 .police-img {
     background-image: url("/images/police.png");
