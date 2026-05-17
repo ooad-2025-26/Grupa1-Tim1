@@ -1,9 +1,11 @@
 using gosarajevovol3.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace gosarajevovol3.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
     
@@ -23,6 +25,7 @@ public class ApplicationDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<User>().ToTable("Users");
 
         modelBuilder.Entity<SmartPlanner>()
             .HasOne(s => s.Preference)
