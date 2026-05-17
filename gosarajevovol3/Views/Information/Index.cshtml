@@ -1,0 +1,848 @@
+﻿@{
+    ViewData["Title"] = "Information";
+}
+
+<link rel="stylesheet" href="~/css/information.css" />
+
+<main class="information-page">
+
+    <section class="info-top-section">
+        <div class="info-box transport-box">
+            <h3>Modes Of Transport</h3>
+
+            <div class="transport-links-grid">
+                <a href="#" onclick="showSection(event, 'tram-section')">Tram</a>
+                <a href="#" onclick="showInfoSection(event, 'taxi-section')">Taxi</a>
+
+                <a href="#" onclick="showSection(event, 'bus-section')">Bus</a>
+                <a href="#" onclick="showInfoSection(event, 'rent-section')">Rent-a-car</a>
+
+                <a href="#" onclick="showSection(event, 'trolley-section')">Trolley</a>
+                <a href="#" onclick="showInfoSection(event, 'other-section')">Other</a>
+            </div>
+        </div>
+
+        <div class="info-box travel-box">
+            <h3>Travel Information</h3>
+
+            <a href="#" onclick="showInfoSection(event, 'emergency-section')">Emergency Contacts</a>
+            <a href="#" onclick="showInfoSection(event, 'healthcare-section')">Healthcare Information</a>
+            <a href="#" onclick="showInfoSection(event, 'useful-section')">Useful Information</a>
+        </div>
+
+        <div class="info-actions">
+            <a href="#" onclick="showInfoSection(event, 'tourist-info-section')" class="outline-btn blue-btn">
+                Tourist Info Center
+            </a>
+
+            <a href="#" onclick="showInfoSection(event, 'public-app-section')" class="outline-btn red-btn">
+                Public Transport App
+            </a>
+        </div>
+    </section>
+
+    <section class="info-feature-slider">
+        <button class="slider-arrow left-arrow">&#10094;</button>
+
+        <div class="slider-text">
+            <p>date</p>
+            <p>time</p>
+            <p>location</p>
+        </div>
+
+        <div class="slider-image"></div>
+
+        <button class="slider-arrow right-arrow">&#10095;</button>
+    </section>
+
+    <section id="tram-section" class="transport-display tram-display hidden-section">
+        <h1>Modes of Transportation</h1>
+
+        <div class="transport-pill red-pill">Tram</div>
+
+
+        <div class="routes-list">
+            <a href="/Information/Schedule?type=tram&line=bascarsija-zeljeznicka-stanica">
+                <span>[1]</span> Baščaršija - Željeznička stanica
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=zeljeznicka-stanica-bascarsija">
+                <span>[1]</span> Željeznička stanica - Baščaršija
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=bascarsija-cengic-vila">
+                <span>[2]</span> Baščaršija - Čengić Vila
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=cengic-vila-bascarsija">
+                <span>[2]</span> Čengić Vila - Baščaršija
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=bascarsija-ilidza">
+                <span>[3]</span> Baščaršija - Ilidža
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=ilidza-bascarsija">
+                <span>[3]</span> Ilidža - Baščaršija
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=zeljeznicka-stanica-ilidza">
+                <span>[4]</span> Željeznička stanica - Ilidža
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=ilidza-zeljeznicka-stanica">
+                <span>[4]</span> Ilidža - Željeznička stanica
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=bascarsija-nedzarici">
+                <span>[5]</span> Baščaršija - Nedžarići
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=nedzarici-bascarsija">
+                <span>[5]</span> Nedžarići - Baščaršija
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=skenderija-ilidza">
+                <span>[6]</span> Skenderija - Ilidža
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=ilidza-skenderija">
+                <span>[6]</span> Ilidža - Skenderija
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=skenderija-nedzarici">
+                <span>[7]</span> Skenderija - Nedžarići
+            </a>
+
+            <a href="/Information/Schedule?type=tram&line=nedzarici-skenderija">
+                <span>[7]</span> Nedžarići - Skenderija
+            </a>
+        </div>
+    </section>
+
+    <section id="bus-section" class="transport-display bus-display hidden-section">
+        <h1>Modes of Transportation</h1>
+
+        <div class="transport-pill blue-pill">Bus</div>
+
+        <div class="routes-list">
+            <a href="/Information/Schedule?type=bus&line=bascarsija-hrasnica">
+                <span>[B1]</span> Baščaršija - Hrasnica
+            </a>
+
+            <a href="/Information/Schedule?type=bus&line=vijecnica-dobrinja">
+                <span>[B2]</span> Vijećnica - Dobrinja
+            </a>
+
+            <a href="/Information/Schedule?type=bus&line=dom-armije-breza">
+                <span>[B3]</span> Dom Armije - Breza
+            </a>
+        </div>
+    </section>
+
+
+    <section id="trolley-section" class="transport-display trolley-display hidden-section">
+        <h1>Modes of Transportation</h1>
+
+        <div class="transport-pill blue-pill">Trolley</div>
+
+        <div class="routes-list">
+            <a href="/Information/Schedule?type=trolley&line=otoka-trg-austrije">
+                <span>[101]</span> Otoka - Trg Austrije
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=trg-austrije-otoka">
+                <span>[101]</span> Trg Austrije - Otoka
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=otoka-jezero">
+                <span>[102]</span> Otoka - Jezero
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=jezero-otoka">
+                <span>[102]</span> Jezero - Otoka
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=dobrinja-trg-austrije">
+                <span>[103]</span> Dobrinja - Trg Austrije
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=trg-austrije-dobrinja">
+                <span>[103]</span> Trg Austrije - Dobrinja
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=alipasino-polje-trg-austrije">
+                <span>[104]</span> Alipašino Polje - Trg Austrije
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=trg-austrije-alipasino-polje">
+                <span>[104]</span> Trg Austrije - Alipašino Polje
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=trg-austrije-vogosca">
+                <span>[105]</span> Trg Austrije - Vogošća
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=vogosca-trg-austrije">
+                <span>[105]</span> Vogošća - Trg Austrije
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=dobrinja-jezero">
+                <span>[107]</span> Dobrinja - Jezero
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=jezero-dobrinja">
+                <span>[107]</span> Jezero - Dobrinja
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=otoka-dobrinja">
+                <span>[108]</span> Otoka - Dobrinja
+            </a>
+
+            <a href="/Information/Schedule?type=trolley&line=dobrinja-otoka">
+                <span>[108]</span> Dobrinja - Otoka
+            </a>
+        </div>
+    </section>
+
+    <section id="taxi-section" class="transport-detail-section dynamic-info-section hidden-section">
+        <h1>Modes of Transportation</h1>
+
+        <div class="transport-pill transport-pill-red">Taxi</div>
+
+        <div class="taxi-card-grid">
+            <div class="taxi-card">
+                <h3>Sarajevo Taxi</h3>
+                <p>
+                    <a href="tel:1515">1515</a>
+                </p>
+                <p>
+                    <a href="https://wa.me/38761151515" target="_blank">Viber/WhatsApp: +387 61 15 15 15</a>
+                </p>
+            </div>
+
+            <div class="taxi-card">
+                <h3>Crveni Taxi</h3>
+                <p>
+                    <a href="tel:+38733760600">033 760 600</a>
+                </p>
+            </div>
+
+            <div class="taxi-card">
+                <h3>Žuti Taxi</h3>
+                <p>
+                    <a href="tel:+38733663555">033 663 555</a>
+                </p>
+            </div>
+
+            <div class="taxi-card">
+                <h3>Samir i Emir Taxi</h3>
+                <p>
+                    <a href="tel:+387331516">033 15 16</a>
+                </p>
+            </div>
+
+            <div class="taxi-card">
+                <h3>Paja Taxi</h3>
+                <p>
+                    <a href="tel:+387331522">033 15 22</a>
+                </p>
+            </div>
+
+            <div class="taxi-card">
+                <h3>Kale Taxi</h3>
+                <p>
+                    <a href="tel:+38733570900">033 570 900</a>
+                </p>
+            </div>
+
+            <div class="taxi-card">
+                <h3>Taxi 8</h3>
+                <p>
+                    <a href="tel:+38762828928">062 828 928</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="rent-section" class="transport-detail-section rent-section dynamic-info-section hidden-section">
+        <h1>Modes of Transportation</h1>
+
+        <div class="transport-pill blue-pill">Rent-a-car</div>
+
+        <div class="rent-card-grid">
+
+            <div class="rent-card">
+                <h3>Autorental - Rent a car</h3>
+                <p>📍 Zmaja od Bosne 4, Hotel Holiday, Sarajevo</p>
+                <p>
+                    📞 <a href="tel:+38761220000">+387 61 220 000</a> /
+                    <a href="tel:+38761101101">+387 61 101 101</a>
+                </p>
+                <p>🌐 <a href="https://autorental.ba/" target="_blank" rel="noopener noreferrer">autorental.ba</a></p>
+                <p>✉️ <a href="mailto:info@autorental.ba">info@autorental.ba</a></p>
+            </div>
+
+            <div class="rent-card">
+                <h3>Cito Car Rental</h3>
+                <p>📍 Međunarodni aerodrom Sarajevo, Kurta Schorka 36</p>
+                <p>📞 <a href="tel:+38762221717">+387 62 221 717</a></p>
+            </div>
+
+            <div class="rent-card">
+                <h3>Rent a Car Sarajevo - Adacars</h3>
+                <p>📍 Kasindolskih žrtava 2, Sarajevo</p>
+                <p>📞 <a href="tel:+38761243969">+387 61 243 969</a></p>
+                <p>🌐 <a href="https://adacars.ba/" target="_blank" rel="noopener noreferrer">adacars.ba</a></p>
+            </div>
+
+            <div class="rent-card">
+                <h3>Sarajevo Flamingo Rent a Car</h3>
+                <p>📍 Hrasnička cesta 44, Sarajevo</p>
+                <p>📞 <a href="tel:+38761806229">+387 61 806 229</a></p>
+            </div>
+
+            <div class="rent-card">
+                <h3>Trio Rent A Car</h3>
+                <p>📍 Međunarodni aerodrom Sarajevo, Kurta Schorka 36</p>
+                <p>📞 <a href="tel:+38765885383">+387 65 885 383</a></p>
+                <p>🌐 <a href="https://triorentacar.ba/" target="_blank" rel="noopener noreferrer">triorentacar.ba</a></p>
+            </div>
+
+            <div class="rent-card">
+                <h3>Rent-a-car Saf</h3>
+                <p>📍 Grbavička 8a, Sarajevo</p>
+                <p>📞 <a href="tel:+38761137847">+387 61 137 847</a></p>
+                <p>🌐 <a href="https://rentacarsaf.ba/" target="_blank" rel="noopener noreferrer">rentacarsaf.ba</a></p>
+            </div>
+
+            <div class="rent-card">
+                <h3>ABC Rent a Car & Airport Transfers Sarajevo</h3>
+                <p>📍 Munira Gavrankapetanovića 108, Sarajevo</p>
+                <p>📞 <a href="tel:+38762652954">+387 62 652 954</a></p>
+            </div>
+
+            <div class="rent-card">
+                <h3>Auto Rent Sarajevo</h3>
+                <p>📍 Ložionička 16, Mercator Family Center</p>
+                <p>📞 <a href="tel:+38762435000">+387 62 435 000</a></p>
+            </div>
+
+            <div class="rent-card">
+                <h3>Euro Rent a Car</h3>
+                <p>🌐 <a href="https://www.eurorentacar.ba/" target="_blank" rel="noopener noreferrer">eurorentacar.ba</a></p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="other-section" class="transport-display other-display hidden-section">
+        <h1>Modes of Transportation</h1>
+
+        <div class="transport-pill blue-pill">Other</div>
+
+        <div class="other-transport-content">
+
+            <div class="other-info-box">
+                <h2>NEXT BIKE</h2>
+
+                <p>
+                    Sarajevo offers the possibility of cycling around the city.
+                    You can rent a bike through the terminal, mobile app or smart card.
+                </p>
+
+                <p>
+                    Available locations include BB1, Alta Shopping Center, Importanne Center,
+                    Zmaja od Bosne 47, Novi Grad Municipality, Safet Zajko Center,
+                    Hotel Radon Plaza and Dobrinja.
+                </p>
+
+                <p>
+                    30 minutes free ride every day. After that, bicycle rental up to 60 minutes
+                    is charged 1.50 KM/h.
+                </p>
+
+                <a href="https://www.nextbike.ba" target="_blank" rel="noopener noreferrer">
+                    www.nextbike.ba
+                </a>
+            </div>
+
+            <div class="other-info-box">
+                <h2>Rent a scooter</h2>
+
+                <p>
+                    <strong>Beebee doo Sarajevo</strong><br />
+                    Ul. Branislava Nušića 16, Sarajevo
+                </p>
+
+                <p>
+                    BeeBee e-scooters are a simple way to get around the city while reducing
+                    noise and pollution.
+                </p>
+
+                <p>
+                    Price: 0.99 BAM for unlock + 0.20 BAM/min.
+                </p>
+
+                <a href="https://beebee.buzz/" target="_blank" rel="noopener noreferrer">
+                    beebee.buzz
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="tourist-info-section" class="tourist-center-section dynamic-info-section hidden-section">
+        <h1>Tourist Info Center</h1>
+
+        <div class="tourist-center-cards">
+
+            <div class="tourist-center-card">
+                <div class="tourist-card-title">
+                    <span>Go Sarajevo</span>
+                </div>
+
+                <p>
+                    Official tourist information, maps, recommendations and visitor guidance.
+                </p>
+
+                <div class="tourist-contact-row">
+                    <span>Email</span>
+                    <a href="mailto:info@gosarajevo.ba">info@gosarajevo.ba</a>
+                </div>
+
+                <div class="tourist-contact-row">
+                    <span>Website</span>
+                    <a href="https://www.gosarajevo.ba" target="_blank" rel="noopener noreferrer">
+                        www.gosarajevo.ba
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="healthcare-section" class="healthcare-section dynamic-info-section hidden-section">
+        <h1>Insurance and Health Care</h1>
+
+        <div class="healthcare-cards">
+
+            <div class="healthcare-card">
+                <div class="healthcare-card-title">
+                    <span>Police</span>
+                    <a href="tel:122" class="healthcare-number red-number">122</a>
+                </div>
+                <p>Emergency police assistance.</p>
+            </div>
+
+            <div class="healthcare-card">
+                <div class="healthcare-card-title">
+                    <span>Fire department</span>
+                    <a href="tel:123" class="healthcare-number blue-number">123</a>
+                </div>
+                <p>Fire and rescue emergencies.</p>
+            </div>
+
+            <div class="healthcare-card">
+                <div class="healthcare-card-title">
+                    <span>Emergency</span>
+                    <a href="tel:124" class="healthcare-number red-number">124</a>
+                </div>
+                <p>
+                    Additional number:
+                    <a href="tel:+38733611111">033/611-111</a>
+                </p>
+            </div>
+
+            <div class="healthcare-card">
+                <div class="healthcare-card-title">
+                    <span>Pediatric clinic</span>
+                    <a href="tel:+38733297000" class="healthcare-number blue-number">033/297-000</a>
+                </div>
+                <p>Pediatric medical assistance.</p>
+            </div>
+
+            <div class="healthcare-card">
+                <div class="healthcare-card-title">
+                    <span>Koševo Hospital</span>
+                    <a href="tel:+38733297000" class="healthcare-number blue-number">033 297 000</a>
+                </div>
+                <p>Hospital information and medical assistance.</p>
+            </div>
+
+            <div class="healthcare-card">
+                <div class="healthcare-card-title">
+                    <span>General Hospital</span>
+                    <a href="tel:+38733285100" class="healthcare-number blue-number">033 285 100</a>
+                </div>
+                <p>General hospital contact number.</p>
+            </div>
+
+            <div class="healthcare-card">
+                <div class="healthcare-card-title">
+                    <span>Kasindo Hospital</span>
+                    <a href="tel:+38757325300" class="healthcare-number blue-number">057 325 300</a>
+                </div>
+                <p>Hospital in East Sarajevo area.</p>
+            </div>
+
+            <div class="healthcare-card">
+                <div class="healthcare-card-title">
+                    <span>VIP Outpatient Unit</span>
+                    <a href="tel:+38733445522" class="healthcare-number red-number">+387 33 44 55 22</a>
+                </div>
+                <p>Contact point for citizens with foreign health insurance.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="useful-section" class="useful-section dynamic-info-section hidden-section">
+        <h1>Useful Information</h1>
+
+        <div class="useful-cards">
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Dialing code for B&H</span>
+                    <span class="useful-badge blue-number">+387</span>
+                </div>
+                <p>International dialing code for Bosnia and Herzegovina.</p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Dialing code for Sarajevo</span>
+                    <span class="useful-badge blue-number">(0)33</span>
+                </div>
+                <p>Local dialing code for Sarajevo.</p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Dialing code for East Sarajevo</span>
+                    <span class="useful-badge blue-number">(0)57</span>
+                </div>
+                <p>Local dialing code for East Sarajevo.</p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Airport</span>
+                    <a href="tel:+38733289100" class="useful-badge red-number">033 289 100</a>
+                </div>
+                <p>Sarajevo International Airport information.</p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Bus station</span>
+                    <a href="tel:+38733213100" class="useful-badge blue-number">033 213 100</a>
+                </div>
+                <p>Main bus station information.</p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Bus station Istočno Sarajevo</span>
+                    <a href="tel:+38757317377" class="useful-badge blue-number">057 317 377</a>
+                </div>
+                <p>East Sarajevo bus station information.</p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Railway station</span>
+                    <a href="tel:+38733655330" class="useful-badge blue-number">033 655 330</a>
+                </div>
+                <p>Railway station information.</p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Mountain Rescue Service</span>
+                    <a href="tel:+38762654456" class="useful-badge red-number">062 654 456</a>
+                </div>
+                <p>Additional number: <a href="tel:+38761299443">061 299 443</a></p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>BIHAMK</span>
+                    <a href="tel:1282" class="useful-badge red-number">1282</a>
+                </div>
+                <p>Road condition and road assistance. From abroad: <a href="tel:+38733282100">+387 33 282 100</a></p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Local phone numbers</span>
+                    <a href="tel:1182" class="useful-badge blue-number">1182</a>
+                </div>
+                <p>Information about local phone numbers.</p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>International numbers</span>
+                    <a href="tel:1201" class="useful-badge blue-number">1201</a>
+                </div>
+                <p>Information about international telephone numbers.</p>
+            </div>
+
+            <div class="useful-card">
+                <div class="useful-card-title">
+                    <span>Veterinary station</span>
+                    <a href="tel:+38733235333" class="useful-badge blue-number">033 235 333</a>
+                </div>
+                <p>Veterinary assistance and information.</p>
+            </div>
+
+        </div>
+
+        <h2 class="useful-subtitle">General Useful Information</h2>
+
+        <div class="general-useful-cards">
+
+            <div class="general-useful-card">
+                <h3>Visas</h3>
+                <p>
+                    Citizens of EU member states, Schengen Agreement countries, Andorra, Montenegro,
+                    Liechtenstein, Monaco, San Marino, Serbia, the Holy See and Switzerland can travel
+                    to Bosnia and Herzegovina with a travel document or a valid ID card.
+                </p>
+                <p>
+                    The minimum amount of money for foreigners traveling to Bosnia and Herzegovina is
+                    150.00 BAM for each day of intended stay.
+                </p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Working Hours</h3>
+                <p>
+                    Most public offices work Monday to Friday from 08:00 to 16:00.
+                    Banks are usually open until 18:00 on weekdays and until 13:00 on Saturdays.
+                </p>
+                <p>
+                    Stores usually stay open until 20:00, while shopping centres are usually open until 22:00.
+                </p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Official Language</h3>
+                <p>
+                    Bosnian, Croatian and Serbian are spoken in Sarajevo. Many people also understand
+                    basic communication in English and German.
+                </p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Time Zone</h3>
+                <p>Bosnia and Herzegovina and Sarajevo are in the Central European Time Zone, GMT +1.</p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Currency</h3>
+                <p>
+                    The official currency is the convertible mark, BAM. Bills of 10, 20, 50, 100 and
+                    200 BAM are in circulation, as well as coins of 1, 2 and 5 BAM.
+                </p>
+                <p>1 BAM has 100 convertible pfennigs.</p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Credit Cards</h3>
+                <p>
+                    Most stores and restaurants accept American Express, Diners, Mastercard and Visa.
+                    In many cafes, crafts, parking areas and city transport, cash payment is often needed.
+                </p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Tax Free Shopping</h3>
+                <p>
+                    Foreign nationals leaving Bosnia and Herzegovina are entitled to a VAT refund.
+                    The minimum invoice amount eligible for VAT refund is 100.00 BAM.
+                </p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Road Rules</h3>
+                <p>
+                    Permissible speeds are 60 km/h in settlements, 80 km/h outside settlements and
+                    120 km/h on highways. Winter driving rules apply from November to April.
+                </p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Coordinates</h3>
+                <p>Geographic coordinates of Sarajevo are 45°53’28’’ N and 18°25’50’’ E.</p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Climate</h3>
+                <p>
+                    Sarajevo has a moderate continental climate and four clearly distinguished seasons.
+                    The average annual temperature is 9.7°C.
+                </p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Population</h3>
+                <p>According to the 2013 Census, 503,109 inhabitants live in Sarajevo Canton.</p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Water Supply</h3>
+                <p>Tap water is safe to drink in Sarajevo.</p>
+            </div>
+
+            <div class="general-useful-card">
+                <h3>Phone and Internet</h3>
+                <p>
+                    Prepaid mobile cards, top-ups and mobile internet packages can be bought at
+                    newsstands and stores. Many hotels, restaurants and cafes offer free Wi-Fi.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="public-app-section" class="public-transport-section dynamic-info-section hidden-section">
+        <h1>Public Transport App</h1>
+
+        <div class="public-transport-cards">
+
+            <div class="public-transport-card">
+                <div class="public-transport-title">
+                    <span>Javni prevoz KS</span>
+                </div>
+
+                <p>
+                    Use the public transport website to check tram, trolleybus, bus and minibus lines,
+                    timetables and route information in Sarajevo Canton.
+                </p>
+
+                <div class="public-transport-actions">
+                    <a href="https://www.javniprevozks.ba/" target="_blank" rel="noopener noreferrer">
+                        Open website
+                    </a>
+
+                    <a href="https://www.javniprevozks.ba/account/timetable-public" target="_blank" rel="noopener noreferrer">
+                        View timetables
+                    </a>
+                </div>
+            </div>
+
+            <div class="public-transport-card">
+                <div class="public-transport-title">
+                    <span>How to use it</span>
+                </div>
+
+                <ol>
+                    <li>Open the public transport website.</li>
+                    <li>Choose the type of transport: tram, trolleybus, bus or minibus.</li>
+                    <li>Select the line and direction.</li>
+                    <li>Check departure times and days of operation.</li>
+                </ol>
+            </div>
+
+            <div class="public-transport-card">
+                <div class="public-transport-title">
+                    <span>Useful for visitors</span>
+                </div>
+
+                <p>
+                    The public transport app or website can help visitors find the nearest line,
+                    check schedules and plan movement around Sarajevo.
+                </p>
+
+                <p>
+                    For easier navigation, visitors can also use map applications together with
+                    public transport timetables.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    
+    <section id="emergency-section" class="emergency-section dynamic-info-section hidden-section">
+        <h1>Emergency Contacts</h1>
+
+        <div class="emergency-cards">
+            <div class="emergency-card">
+                <div class="emergency-card-title">
+                    <span>Police station</span>
+                    <a href="tel:122" class="emergency-number red-number">122</a>
+                </div>
+
+                <div class="image-placeholder police-img"></div>
+                <p class="emergency-address">Zmaja od Bosne 15, Sarajevo</p>
+            </div>
+
+            <div class="emergency-card">
+                <div class="emergency-card-title">
+                    <span>Fire station</span>
+                    <a href="tel:123" class="emergency-number blue-number">123</a>
+                </div>
+
+                <div class="image-placeholder fire-img"></div>
+                <p class="emergency-address">Fehima efendije Čurčića 1, Sarajevo 71000</p>
+            </div>
+
+            <div class="emergency-card">
+                <div class="emergency-card-title">
+                    <span>Ambulance</span>
+                    <a href="tel:124" class="emergency-number red-number">124</a>
+                </div>
+
+                <div class="image-placeholder ambulance-img"></div>
+                <p class="emergency-address">Kolodvorska 14, Džavida Haverića 6, Sarajevo 71000</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    function hideAllDynamicSections() {
+        document.querySelectorAll(".transport-display").forEach(section => {
+            section.classList.add("hidden-section");
+        });
+
+        document.querySelectorAll(".dynamic-info-section").forEach(section => {
+            section.classList.add("hidden-section");
+        });
+    }
+
+    function showSection(event, sectionId) {
+        event.preventDefault();
+        hideAllDynamicSections();
+
+        const selectedSection = document.getElementById(sectionId);
+
+        if (selectedSection) {
+            selectedSection.classList.remove("hidden-section");
+            selectedSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    }
+
+    function showInfoSection(event, sectionId) {
+        event.preventDefault();
+        hideAllDynamicSections();
+
+        const selectedSection = document.getElementById(sectionId);
+
+        if (selectedSection) {
+            selectedSection.classList.remove("hidden-section");
+            selectedSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    }
+</script>
