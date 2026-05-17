@@ -1,0 +1,1228 @@
+﻿/* INFORMATION PAGE BASE */
+
+.information-page {
+    background-color: #ffffff;
+    color: #111111;
+    padding-top: 90px;
+    font-family: inherit;
+}
+
+.hidden-section {
+    display: none !important;
+}
+
+/* TOP INFORMATION BOXES */
+
+.info-top-section {
+    display: grid;
+    grid-template-columns: 1.1fr 1.1fr 1fr;
+    gap: 44px;
+    padding: 30px 6% 25px;
+    align-items: center;
+}
+
+.info-box {
+    border-radius: 10px;
+    padding: 18px 24px;
+    min-height: 132px;
+}
+
+.transport-box {
+    background-color: #b7c8d2;
+}
+
+.travel-box {
+    background-color: #efc5cc;
+}
+
+.info-box h3 {
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.transport-box h3 {
+    color: #111111;
+}
+
+.travel-box h3 {
+    color: #7a1416;
+}
+
+.transport-links-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 45px;
+}
+
+.info-box a {
+    display: block;
+    color: #111111;
+    text-decoration: underline;
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.travel-box a {
+    color: #7a1416;
+    text-decoration: underline;
+}
+
+    .travel-box a:hover {
+        color: #b00020;
+    }
+
+.info-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+}
+
+.outline-btn {
+    width: 240px;
+    text-align: center;
+    padding: 9px 18px;
+    border-radius: 24px;
+    text-decoration: none;
+    font-weight: 800;
+    background-color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.blue-btn {
+    border: 2px solid #003b5c;
+    color: #003b5c;
+}
+
+.red-btn {
+    border: 2px solid #9b0000;
+    color: #9b0000;
+}
+
+/* TOP SLIDER */
+
+.info-feature-slider {
+    position: relative;
+    min-height: 175px;
+    background-color: #d6b0b3;
+    display: grid;
+    grid-template-columns: 1fr 330px;
+    align-items: center;
+    padding: 0 7%;
+    overflow: hidden;
+}
+
+.slider-text {
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 1.35;
+    font-weight: 400;
+    padding-left: 15px;
+    letter-spacing: 1px;
+}
+
+    .slider-text p {
+        margin: 0;
+    }
+
+.slider-image {
+    width: 330px;
+    height: 125px;
+    background-color: #dceff6;
+    background-image: url("/images/homenature.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    font-size: 64px;
+    line-height: 1;
+    cursor: pointer;
+    font-weight: 300;
+}
+
+.left-arrow {
+    left: 24px;
+}
+
+.right-arrow {
+    right: 24px;
+}
+
+/* TRAM / BUS / TROLLEY */
+
+.transport-display {
+    padding: 55px 3% 70px;
+    min-height: 430px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    scroll-margin-top: 120px;
+}
+
+    .transport-display::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-color: rgba(255, 255, 255, 0.20);
+    }
+
+    .transport-display > * {
+        position: relative;
+        z-index: 1;
+    }
+
+.tram-display {
+    background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), url("/images/tram.png");
+}
+
+.bus-display {
+    background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), url("/images/bus.png");
+}
+
+.trolley-display {
+    background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), url("/images/trolley.png");
+}
+
+.other-display {
+    background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), url("/images/other.png");
+}
+
+.transport-display h1,
+.transport-main-title {
+    font-size: 48px;
+    line-height: 1.05;
+    margin-bottom: 18px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: #111111;
+}
+
+.transport-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    min-width: 110px;
+    height: 62px;
+    padding: 0 34px;
+    border-radius: 999px;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 34px;
+    letter-spacing: 1px;
+}
+
+.red-pill,
+.transport-pill-red {
+    background-color: #b00000;
+}
+
+.blue-pill,
+.transport-pill-blue {
+    background-color: #003b5c;
+}
+
+.routes-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 90px;
+    max-width: 1250px;
+    margin-top: 12px;
+}
+
+    .routes-list a {
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        align-items: start;
+        color: #111111;
+        font-size: 18px;
+        font-weight: 800;
+        text-decoration: underline;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        border-radius: 0;
+        line-height: 1.35;
+        letter-spacing: 1px;
+    }
+
+        .routes-list a:hover {
+            color: #003b5c;
+            background-color: transparent;
+        }
+
+    .routes-list span {
+        font-weight: 500;
+    }
+
+/* TAXI SECTION */
+
+#taxi-section {
+    padding: 45px 6% 70px;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+    font-family: inherit;
+}
+
+    #taxi-section .transport-main-title {
+        font-size: 48px;
+        font-weight: 900;
+        color: #111111;
+        margin-bottom: 20px;
+        letter-spacing: 4px;
+        line-height: 1.05;
+    }
+
+.taxi-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+    gap: 28px;
+    align-items: stretch;
+    max-width: 1200px;
+}
+
+.taxi-card {
+    background: #ffffff;
+    border: 1px solid #d9dee5;
+    border-radius: 18px;
+    padding: 28px 26px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+}
+
+    .taxi-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+    }
+
+    .taxi-card h3 {
+        font-family: inherit;
+        font-size: 25px;
+        font-weight: 900;
+        color: #003b5c;
+        margin-bottom: 16px;
+        line-height: 1.25;
+        letter-spacing: 2px;
+    }
+
+    .taxi-card p {
+        margin: 10px 0;
+        font-family: inherit;
+        font-size: 18px;
+        font-weight: 500;
+        color: #1b1b1b;
+        line-height: 1.5;
+        letter-spacing: 1px;
+    }
+
+    .taxi-card a {
+        color: #111111;
+        text-decoration: underline;
+        font-family: inherit;
+        font-weight: 800;
+        word-break: break-word;
+    }
+
+        .taxi-card a:hover {
+            color: #003b5c;
+        }
+
+/* RENT A CAR SECTION */
+
+.rent-section {
+    padding: 45px 6% 70px;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+    font-family: inherit;
+}
+
+    .rent-section .transport-main-title {
+        font-size: 48px;
+        font-weight: 900;
+        color: #111111;
+        margin-bottom: 20px;
+        letter-spacing: 4px;
+        line-height: 1.05;
+    }
+
+.rent-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+    gap: 28px;
+    align-items: stretch;
+    max-width: 1250px;
+}
+
+.rent-card {
+    background: #ffffff;
+    border: 1px solid #d9dee5;
+    border-radius: 18px;
+    padding: 28px 26px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
+}
+
+    .rent-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+    }
+
+    .rent-card h3 {
+        font-family: inherit;
+        font-size: 24px;
+        font-weight: 900;
+        color: #003b5c;
+        margin-bottom: 16px;
+        line-height: 1.25;
+        letter-spacing: 2px;
+        text-decoration: none;
+    }
+
+    .rent-card p {
+        margin: 10px 0;
+        font-family: inherit;
+        font-size: 17px;
+        font-weight: 500;
+        color: #1b1b1b;
+        line-height: 1.5;
+        letter-spacing: 1px;
+    }
+
+    .rent-card a {
+        color: #111111;
+        text-decoration: underline;
+        font-family: inherit;
+        font-weight: 800;
+        word-break: break-word;
+    }
+
+        .rent-card a:hover {
+            color: #003b5c;
+        }
+
+/* OTHER */
+
+.other-display {
+    padding: 55px 3% 70px;
+    min-height: 520px;
+}
+
+.other-transport-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 42px;
+    max-width: 1200px;
+    margin-top: 10px;
+}
+
+.other-info-box {
+    background-color: rgba(255, 255, 255, 0.78);
+    border-radius: 16px;
+    padding: 28px 32px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+    border: 1px solid rgba(219, 227, 232, 0.9);
+}
+
+    .other-info-box h2 {
+        font-size: 30px;
+        font-weight: 900;
+        color: #111111;
+        margin-bottom: 18px;
+        letter-spacing: 2px;
+    }
+
+    .other-info-box p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #111111;
+        margin-bottom: 16px;
+        letter-spacing: 1px;
+    }
+
+    .other-info-box a {
+        display: inline-block;
+        color: #003b5c;
+        font-size: 18px;
+        font-weight: 900;
+        text-decoration: underline;
+        letter-spacing: 1px;
+        margin-top: 6px;
+    }
+
+        .other-info-box a:hover {
+            color: #9b0000;
+        }
+*/
+/* SIMPLE INFO SECTIONS */
+
+.simple-info-section {
+    padding: 50px 6%;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+    font-family: inherit;
+}
+
+    .simple-info-section h2 {
+        font-size: 42px;
+        margin-bottom: 14px;
+        color: #003b5c;
+        font-weight: 900;
+        letter-spacing: 3px;
+    }
+
+    .simple-info-section p {
+        font-size: 20px;
+        max-width: 900px;
+        line-height: 1.5;
+        letter-spacing: 1px;
+    }
+
+/* PUBLIC TRANSPORT APP */
+
+.public-transport-section {
+    padding: 0 0 70px;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+    font-family: inherit;
+}
+
+    .public-transport-section h1 {
+        background-color: #c999a0;
+        padding: 26px 3%;
+        font-size: 48px;
+        line-height: 1;
+        font-weight: 900;
+        color: #000000;
+        margin-bottom: 35px;
+        letter-spacing: 3px;
+    }
+
+.public-transport-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 34px;
+    padding: 0 5%;
+    align-items: stretch;
+}
+
+.public-transport-card {
+    background-color: #ffffff;
+    border: 1px solid #d9dee5;
+    border-radius: 18px;
+    padding: 30px 32px;
+    min-height: 250px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.public-transport-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+    font-size: 28px;
+    font-weight: 900;
+    color: #003b5c;
+    letter-spacing: 2px;
+}
+
+.public-transport-card p {
+    font-size: 18px;
+    line-height: 1.55;
+    color: #333333;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+
+.public-transport-card ol {
+    padding-left: 24px;
+    margin: 0;
+}
+
+.public-transport-card li {
+    font-size: 18px;
+    line-height: 1.65;
+    color: #333333;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.public-transport-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 22px;
+}
+
+    .public-transport-actions a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        min-width: 180px;
+        background-color: #003b5c;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 900;
+        padding: 11px 24px;
+        border-radius: 999px;
+        letter-spacing: 1px;
+    }
+
+        .public-transport-actions a:hover {
+            background-color: #005f7a;
+            color: #ffffff;
+        }
+
+/* TOURIST INFO CENTER */
+
+.tourist-center-section {
+    padding: 0 0 70px;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+    font-family: inherit;
+}
+
+    .tourist-center-section h1 {
+        background-color: #c999a0;
+        padding: 26px 3%;
+        font-size: 48px;
+        line-height: 1;
+        font-weight: 900;
+        color: #000000;
+        margin-bottom: 35px;
+        letter-spacing: 3px;
+    }
+
+.tourist-center-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+    gap: 34px;
+    padding: 0 5%;
+    max-width: 1200px;
+}
+
+.tourist-center-card {
+    background-color: #ffffff;
+    border: 1px solid #d9dee5;
+    border-radius: 18px;
+    padding: 30px 32px;
+    min-height: 230px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.tourist-card-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+    font-size: 30px;
+    font-weight: 900;
+    color: #000000;
+    letter-spacing: 3px;
+}
+
+.tourist-center-card p {
+    font-size: 18px;
+    line-height: 1.55;
+    color: #333333;
+    margin-bottom: 22px;
+    letter-spacing: 1px;
+}
+
+.tourist-contact-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+    .tourist-contact-row span {
+        font-weight: 900;
+        color: #003b5c;
+    }
+
+    .tourist-contact-row a {
+        color: #111111;
+        font-weight: 800;
+        text-decoration: underline;
+        word-break: break-word;
+    }
+
+        .tourist-contact-row a:hover {
+            color: #003b5c;
+        }
+
+/* INSURANCE AND HEALTH CARE */
+
+.healthcare-section {
+    padding: 0 0 60px;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+    font-family: inherit;
+}
+
+    .healthcare-section h1 {
+        background-color: #c999a0;
+        padding: 26px 3%;
+        font-size: 48px;
+        line-height: 1;
+        font-weight: 900;
+        color: #000000;
+        margin-bottom: 35px;
+        letter-spacing: 3px;
+    }
+
+.healthcare-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 34px;
+    padding: 0 5%;
+    align-items: stretch;
+}
+
+.healthcare-card {
+    background-color: #ffffff;
+    border: 1px solid #d9dee5;
+    border-radius: 18px;
+    padding: 28px 26px;
+    min-height: 150px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.healthcare-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    font-size: 26px;
+    font-weight: 900;
+    color: #000000;
+    letter-spacing: 2px;
+}
+
+.healthcare-number {
+    color: #ffffff;
+    padding: 8px 22px;
+    border-radius: 22px;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+    .healthcare-number:hover {
+        opacity: 0.85;
+        color: #ffffff;
+    }
+
+.healthcare-card p {
+    font-size: 18px;
+    line-height: 1.45;
+    color: #333333;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+    .healthcare-card p a {
+        color: #003b5c;
+        font-weight: 800;
+        text-decoration: underline;
+    }
+
+        .healthcare-card p a:hover {
+            color: #9b0000;
+        }
+
+/* USEFUL INFORMATION */
+
+.useful-section {
+    padding: 0 0 70px;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+    font-family: inherit;
+}
+
+    .useful-section h1 {
+        background-color: #c999a0;
+        padding: 26px 3%;
+        font-size: 48px;
+        line-height: 1;
+        font-weight: 900;
+        color: #000000;
+        margin-bottom: 35px;
+        letter-spacing: 3px;
+    }
+
+.useful-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 34px;
+    padding: 0 5%;
+    align-items: stretch;
+}
+
+.useful-card {
+    background-color: #ffffff;
+    border: 1px solid #d9dee5;
+    border-radius: 18px;
+    padding: 28px 26px;
+    min-height: 150px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.useful-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+    font-size: 24px;
+    font-weight: 900;
+    color: #000000;
+    letter-spacing: 2px;
+}
+
+.useful-badge {
+    color: #ffffff;
+    padding: 8px 22px;
+    border-radius: 22px;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+    .useful-badge:hover {
+        opacity: 0.85;
+        color: #ffffff;
+    }
+
+.useful-card p {
+    font-size: 18px;
+    line-height: 1.45;
+    color: #333333;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+    .useful-card p a {
+        color: #003b5c;
+        font-weight: 800;
+        text-decoration: underline;
+    }
+
+        .useful-card p a:hover {
+            color: #9b0000;
+        }
+
+.useful-subtitle {
+    font-size: 38px;
+    font-weight: 900;
+    color: #003b5c;
+    margin: 55px 5% 28px;
+    letter-spacing: 3px;
+}
+
+.general-useful-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    padding: 0 5%;
+    max-width: 1300px;
+}
+
+.general-useful-card {
+    background-color: #ffffff;
+    border: 1px solid #d9dee5;
+    border-radius: 18px;
+    padding: 28px 30px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+    .general-useful-card h3 {
+        font-size: 27px;
+        font-weight: 900;
+        color: #003b5c;
+        margin-bottom: 16px;
+        letter-spacing: 2px;
+    }
+
+    .general-useful-card p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #333333;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+    }
+
+/* EMERGENCY CONTACTS */
+
+.emergency-section {
+    padding: 0 0 60px;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+    font-family: inherit;
+}
+
+    .emergency-section h1 {
+        background-color: #c999a0;
+        padding: 26px 3%;
+        font-size: 48px;
+        line-height: 1;
+        font-weight: 900;
+        color: #000000;
+        margin-bottom: 35px;
+        letter-spacing: 3px;
+    }
+
+.emergency-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    padding: 0 5%;
+    align-items: start;
+}
+
+.emergency-card {
+    text-align: center;
+}
+
+.emergency-card-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    min-height: 65px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    color: #000000;
+    white-space: nowrap;
+    letter-spacing: 2px;
+}
+
+.emergency-number {
+    color: #ffffff;
+    padding: 8px 26px;
+    border-radius: 22px;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+    .emergency-number:hover {
+        opacity: 0.85;
+    }
+
+.red-number {
+    background-color: #b00020;
+}
+
+.blue-number {
+    background-color: #003b5c;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: 180px;
+    background-color: #e5e7eb;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 18px;
+}
+
+.police-img {
+    background-image: url("/images/police.png");
+}
+
+.fire-img {
+    background-image: url("/images/fire.png");
+}
+
+.ambulance-img {
+    background-image: url("/images/ambulance.png");
+}
+
+.emergency-address {
+    margin-top: 16px;
+    font-size: 24px;
+    color: #222222;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+/* SCHEDULE PAGE */
+
+.schedule-page {
+    background-color: #eef5f8;
+    min-height: 100vh;
+    padding: 120px 6% 60px;
+    font-family: inherit;
+}
+
+.schedule-header {
+    margin-bottom: 35px;
+}
+
+    .schedule-header h1 {
+        font-size: 46px;
+        color: #003b5c;
+        font-weight: 900;
+        margin-bottom: 8px;
+        letter-spacing: 3px;
+    }
+
+    .schedule-header p {
+        font-size: 22px;
+        color: #4b5563;
+        letter-spacing: 1px;
+    }
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #003b5c;
+    font-weight: 800;
+    text-decoration: underline;
+    letter-spacing: 1px;
+}
+
+.schedule-table-wrapper {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    max-width: 1000px;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .schedule-table thead {
+        background-color: #005f7a;
+        color: #ffffff;
+    }
+
+    .schedule-table th {
+        text-align: left;
+        padding: 18px 24px;
+        font-size: 18px;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .schedule-table td {
+        padding: 16px 24px;
+        font-size: 17px;
+        border-bottom: 1px solid #dbe3e8;
+        letter-spacing: 1px;
+    }
+
+    .schedule-table tbody tr:nth-child(even) {
+        background-color: #f3f7f9;
+    }
+
+.schedule-not-found {
+    padding: 120px 6%;
+}
+
+    .schedule-not-found h1 {
+        font-size: 48px;
+        color: #003b5c;
+        margin-bottom: 15px;
+        font-weight: 900;
+        letter-spacing: 3px;
+    }
+
+    .schedule-not-found p {
+        font-size: 22px;
+        color: #4b5563;
+        letter-spacing: 1px;
+    }
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+    .taxi-card-grid,
+    .rent-card-grid,
+    .healthcare-cards,
+    .useful-cards,
+    .public-transport-cards {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+    }
+
+    .routes-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px 55px;
+    }
+
+    .general-useful-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .info-top-section,
+    .info-feature-slider,
+    .emergency-cards,
+    .other-transport-content,
+    .tourist-center-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .transport-display h1,
+    .transport-main-title,
+    #taxi-section .transport-main-title,
+    .rent-section .transport-main-title,
+    .emergency-section h1,
+    .schedule-header h1,
+    .schedule-not-found h1,
+    .healthcare-section h1,
+    .useful-section h1,
+    .tourist-center-section h1,
+    .public-transport-section h1 {
+        font-size: 36px;
+    }
+
+    .info-actions {
+        align-items: flex-start;
+    }
+
+    .slider-image {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .emergency-card-title {
+        justify-content: center;
+        font-size: 24px;
+        white-space: normal;
+    }
+
+    .routes-list {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+        .routes-list a {
+            grid-template-columns: 60px 1fr;
+            font-size: 16px;
+        }
+
+    .schedule-page {
+        padding: 100px 4% 40px;
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+        padding: 14px 12px;
+        font-size: 15px;
+    }
+
+    #taxi-section,
+    .rent-section {
+        padding: 35px 5% 50px;
+    }
+
+    .taxi-card-grid,
+    .rent-card-grid,
+    .healthcare-cards,
+    .useful-cards,
+    .public-transport-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .taxi-card h3,
+    .rent-card h3 {
+        font-size: 22px;
+    }
+
+    .taxi-card p,
+    .rent-card p {
+        font-size: 16px;
+    }
+
+    .transport-pill {
+        min-width: 95px;
+        height: 54px;
+        font-size: 16px;
+        padding: 0 24px;
+    }
+
+    .other-info-box,
+    .tourist-center-card,
+    .public-transport-card,
+    .healthcare-card,
+    .useful-card,
+    .general-useful-card {
+        padding: 22px;
+    }
+
+        .other-info-box h2,
+        .tourist-card-title,
+        .public-transport-title,
+        .healthcare-card-title,
+        .useful-card-title {
+            font-size: 24px;
+        }
+
+        .other-info-box p,
+        .other-info-box a,
+        .tourist-center-card p,
+        .tourist-contact-row,
+        .public-transport-card p,
+        .public-transport-card li,
+        .healthcare-card p,
+        .useful-card p,
+        .general-useful-card p {
+            font-size: 16px;
+        }
+
+    .tourist-contact-row {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .useful-subtitle {
+        font-size: 30px;
+    }
+
+    .general-useful-card h3 {
+        font-size: 23px;
+    }
+
+    .healthcare-number,
+    .useful-badge {
+        font-size: 18px;
+    }
+}

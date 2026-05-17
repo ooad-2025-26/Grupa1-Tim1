@@ -1,0 +1,506 @@
+﻿@{
+    ViewData["Title"] = "Schedule";
+
+    var type = ViewBag.Type as string ?? "";
+    var line = ViewBag.Line as string ?? "";
+    var key = $"{type}-{line}";
+
+    var schedules = new Dictionary<string, ScheduleData>
+    {
+        {
+            "tram-bascarsija-zeljeznicka-stanica",
+            new ScheduleData
+            {
+                Title = "Tram [1]: Baščaršija - Željeznička stanica",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "22:12", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:20", "22:32", 36, "Subota"))
+                    .Concat(MakeRows("07:20", "21:44", 36, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-zeljeznicka-stanica-bascarsija",
+            new ScheduleData
+            {
+                Title = "Tram [1]: Željeznička stanica - Baščaršija",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "22:30", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:00", "22:12", 36, "Subota"))
+                    .Concat(MakeRows("07:00", "22:00", 36, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-bascarsija-cengic-vila",
+            new ScheduleData
+            {
+                Title = "Tram [2]: Baščaršija - Čengić Vila",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:42", "09:05", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("12:42", "15:05", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-cengic-vila-bascarsija",
+            new ScheduleData
+            {
+                Title = "Tram [2]: Čengić Vila - Baščaršija",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("07:08", "09:31", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("13:08", "15:31", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-bascarsija-ilidza",
+            new ScheduleData
+            {
+                Title = "Tram [3]: Baščaršija - Ilidža",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("05:00", "23:00", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("05:20", "22:40", 20, "Subota"))
+                    .Concat(MakeRows("06:00", "22:00", 25, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-ilidza-bascarsija",
+            new ScheduleData
+            {
+                Title = "Tram [3]: Ilidža - Baščaršija",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("05:00", "23:00", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("05:20", "22:40", 20, "Subota"))
+                    .Concat(MakeRows("06:00", "22:00", 25, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-zeljeznicka-stanica-ilidza",
+            new ScheduleData
+            {
+                Title = "Tram [4]: Željeznička stanica - Ilidža",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("05:30", "22:30", 20, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:00", "22:00", 30, "Subota, Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-ilidza-zeljeznicka-stanica",
+            new ScheduleData
+            {
+                Title = "Tram [4]: Ilidža - Željeznička stanica",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("05:30", "22:30", 20, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:00", "22:00", 30, "Subota, Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-bascarsija-nedzarici",
+            new ScheduleData
+            {
+                Title = "Tram [5]: Baščaršija - Nedžarići",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("05:10", "23:00", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota")
+                    .Concat(MakeRows("05:45", "23:05", 20, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-nedzarici-bascarsija",
+            new ScheduleData
+            {
+                Title = "Tram [5]: Nedžarići - Baščaršija",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("00:00", "04:40", 35, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
+                    .Concat(MakeRows("05:10", "23:00", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota"))
+                    .Concat(MakeRows("05:45", "23:44", 17, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-skenderija-ilidza",
+            new ScheduleData
+            {
+                Title = "Tram [6]: Skenderija - Ilidža",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "22:30", 20, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:30", "22:00", 30, "Subota, Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-ilidza-skenderija",
+            new ScheduleData
+            {
+                Title = "Tram [6]: Ilidža - Skenderija",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "22:30", 20, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:30", "22:00", 30, "Subota, Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-skenderija-nedzarici",
+            new ScheduleData
+            {
+                Title = "Tram [7]: Skenderija - Nedžarići",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("07:30", "09:15", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("14:00", "17:15", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "tram-nedzarici-skenderija",
+            new ScheduleData
+            {
+                Title = "Tram [7]: Nedžarići - Skenderija",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("07:00", "08:45", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("14:00", "16:45", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "bus-bascarsija-hrasnica",
+            new ScheduleData
+            {
+                Title = "Bus: Baščaršija - Hrasnica",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "22:00", 30, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
+            }
+        },
+
+        {
+            "bus-vijecnica-dobrinja",
+            new ScheduleData
+            {
+                Title = "Bus: Vijećnica - Dobrinja",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:15", "22:15", 30, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
+            }
+        },
+
+        {
+            "bus-dom-armije-breza",
+            new ScheduleData
+            {
+                Title = "Bus: Dom Armije - Breza",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:30", "21:30", 60, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota")
+            }
+        },
+
+        {
+            "trolley-otoka-trg-austrije",
+            new ScheduleData
+            {
+                Title = "Trolley [101]: Otoka - Trg Austrije",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:33", "22:42", 29, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:33", "15:29", 29, "Subota"))
+                    .Concat(MakeRows("07:30", "15:13", 40, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-trg-austrije-otoka",
+            new ScheduleData
+            {
+                Title = "Trolley [101]: Trg Austrije - Otoka",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "23:14", 37, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:00", "15:44", 39, "Subota"))
+                    .Concat(MakeRows("06:40", "15:42", 45, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-otoka-jezero",
+            new ScheduleData
+            {
+                Title = "Trolley [102]: Otoka - Jezero",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "23:20", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:00", "23:00", 30, "Subota"))
+                    .Concat(MakeRows("06:20", "23:00", 35, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-jezero-otoka",
+            new ScheduleData
+            {
+                Title = "Trolley [102]: Jezero - Otoka",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "23:20", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:00", "23:00", 30, "Subota"))
+                    .Concat(MakeRows("06:20", "23:00", 35, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-dobrinja-trg-austrije",
+            new ScheduleData
+            {
+                Title = "Trolley [103]: Dobrinja - Trg Austrije",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("05:45", "23:05", 12, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("05:45", "23:05", 15, "Subota"))
+                    .Concat(MakeRows("06:00", "23:05", 18, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-trg-austrije-dobrinja",
+            new ScheduleData
+            {
+                Title = "Trolley [103]: Trg Austrije - Dobrinja",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("05:40", "23:45", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("05:40", "23:45", 17, "Subota"))
+                    .Concat(MakeRows("06:00", "23:45", 20, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-alipasino-polje-trg-austrije",
+            new ScheduleData
+            {
+                Title = "Trolley [104]: Alipašino Polje - Trg Austrije",
+                Subtitle = "Red vožnje",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:00", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "06:59", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "07:56", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "13:45", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "14:43", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "15:40", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "16:34", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" }
+                }
+            }
+        },
+
+        {
+            "trolley-trg-austrije-alipasino-polje",
+            new ScheduleData
+            {
+                Title = "Trolley [104]: Trg Austrije - Alipašino Polje",
+                Subtitle = "Red vožnje",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:28", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "07:26", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "08:24", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "14:10", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "15:12", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "16:06", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
+                    new[] { "17:01", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" }
+                }
+            }
+        },
+
+        {
+            "trolley-trg-austrije-vogosca",
+            new ScheduleData
+            {
+                Title = "Trolley [105]: Trg Austrije - Vogošća",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "23:10", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:00", "23:05", 18, "Subota"))
+                    .Concat(MakeRows("06:20", "23:10", 22, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-vogosca-trg-austrije",
+            new ScheduleData
+            {
+                Title = "Trolley [105]: Vogošća - Trg Austrije",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "23:55", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:10", "23:50", 17, "Subota"))
+                    .Concat(MakeRows("06:20", "23:50", 20, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-dobrinja-jezero",
+            new ScheduleData
+            {
+                Title = "Trolley [107]: Dobrinja - Jezero",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("00:45", "03:45", 90, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
+                    .Concat(MakeRows("06:00", "22:15", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
+                    .Concat(MakeRows("06:02", "22:10", 34, "Subota"))
+                    .Concat(MakeRows("06:05", "22:10", 33, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-jezero-dobrinja",
+            new ScheduleData
+            {
+                Title = "Trolley [107]: Jezero - Dobrinja",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("00:00", "04:30", 90, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
+                    .Concat(MakeRows("06:20", "23:00", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
+                    .Concat(MakeRows("06:20", "22:50", 36, "Subota"))
+                    .Concat(MakeRows("06:20", "22:50", 36, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-otoka-dobrinja",
+            new ScheduleData
+            {
+                Title = "Trolley [108]: Otoka - Dobrinja",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("06:00", "21:55", 70, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("07:10", "22:30", 80, "Subota"))
+                    .Concat(MakeRows("07:30", "22:30", 80, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        },
+
+        {
+            "trolley-dobrinja-otoka",
+            new ScheduleData
+            {
+                Title = "Trolley [108]: Dobrinja - Otoka",
+                Subtitle = "Red vožnje",
+                Rows = MakeRows("05:20", "22:30", 70, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
+                    .Concat(MakeRows("06:35", "22:55", 80, "Subota"))
+                    .Concat(MakeRows("07:02", "21:20", 80, "Nedjelja"))
+                    .OrderBy(row => row[0])
+                    .ToList()
+            }
+        }
+    };
+
+    var exists = schedules.ContainsKey(key);
+    var selectedSchedule = exists ? schedules[key] : null;
+}
+
+<link rel="stylesheet" href="~/css/information.css" />
+
+<main class="schedule-page">
+
+    @if (!exists)
+    {
+        <section class="schedule-not-found">
+            <h1>Schedule not found</h1>
+            <p>There is no hardcoded schedule for this line yet.</p>
+            <p>Key koji se traži: <strong>@key</strong></p>
+        </section>
+    }
+    else
+    {
+        <section class="schedule-header">
+            <a href="/Information" class="back-link">← Back to Information</a>
+            <h1>@selectedSchedule.Title</h1>
+            <p>@selectedSchedule.Subtitle</p>
+        </section>
+
+        <section class="schedule-table-wrapper">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Vrijeme</th>
+                        <th>Dani vožnje</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var row in selectedSchedule.Rows)
+                    {
+                        <tr>
+                            <td>@row[0]</td>
+                            <td>@row[1]</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+    }
+
+</main>
+
+@functions {
+    public class ScheduleData
+    {
+        public string Title { get; set; } = "";
+        public string Subtitle { get; set; } = "";
+        public List<string[]> Rows { get; set; } = new List<string[]>();
+    }
+
+    public static List<string[]> MakeRows(string start, string end, int minutes, string days)
+    {
+        var rows = new List<string[]>();
+
+        var startTime = TimeSpan.Parse(start);
+        var endTime = TimeSpan.Parse(end);
+
+        for (var time = startTime; time <= endTime; time = time.Add(TimeSpan.FromMinutes(minutes)))
+        {
+            rows.Add(new[] { time.ToString(@"hh\:mm"), days });
+        }
+
+        return rows;
+    }
+}
