@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/gosarajevovol3.styles.css" asp-append-version="true"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/193845e462.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="display:flex; flex-direction:column; min-height:100vh; margin:0;">
 <header>
         <nav class="navbar navbar-expand-sm navbar-light navbar-toggleable-sm mb-0"
              style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: white;">
@@ -52,11 +53,110 @@
         </div>
     </nav>
 </header>
-<div class="container-fluid p-0">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
+    <div class="container-fluid p-0" style="flex:1;">
+        <main role="main">
+            @RenderBody()
+        </main>
 </div>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <footer class="gs-footer">
+        <div class="gs-footer__left">
+            <img src="~/images/GoSarajevoLogo.png" alt="GoSarajevo" class="gs-footer__logo" />
+            <span style="font-family:'Poppins',sans-serif; color:#ffffff; font-size:1.8rem; margin-left:8px;"><span style="color:#c0392b; font-weight:700;">Go</span><span style="font-weight:700;">Sarajevo</span></span>
+        </div>
+
+        <div class="gs-footer__center">
+            <p class="gs-footer__contact-title">Contact us!</p>
+            <p class="gs-footer__contact-email">info@gosarajevo.ba</p>
+        </div>
+
+        <div class="gs-footer__right">
+            <span class="gs-footer__quote">Some cities are visited, Sarajevo is felt.</span>
+        </div>
+    </footer>
+
+    <style>
+        .gs-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #1b3a5c;
+        padding: 14px 40px;
+        width: 100%;
+        box-sizing: border-box;
+        flex-shrink: 0;
+        }
+
+        .gs-footer__left {
+        display: flex;
+        align-items: center;
+        }
+
+        .gs-footer__logo {
+        height: 48px;
+        width: auto;
+        display: block;
+        }
+
+        .gs-footer__center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+        .gs-footer__contact-title {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #ffffff;
+        margin: 0;
+        line-height: 1.4;
+        }
+
+        .gs-footer__contact-email {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        color: #ffffff;
+        margin: 0;
+        line-height: 1.4;
+        }
+
+        .gs-footer__right {
+        display: flex;
+        align-items: center;
+        }
+
+        .gs-footer__quote {
+        font-family: 'Qwigley', cursive;
+        font-size: 2.8rem;
+        color: #ffffff;
+        display: inline-block;
+        transform: rotate(-3deg);
+        transform-origin: center center;
+        white-space: nowrap;
+        }
+
+        @@media (max-width: 640px) {
+        .gs-footer {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 24px;
+        text-align: center;
+        }
+
+        .gs-footer__quote {
+        white-space: normal;
+        text-align: center;
+        }
+        }
+    </style>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
