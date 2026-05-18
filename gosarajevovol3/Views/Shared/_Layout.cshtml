@@ -11,11 +11,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/193845e462.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/information.css" asp-append-version="true" />
 </head>
 <body>
 <header>
-        <nav class="navbar navbar-expand-sm navbar-light navbar-toggleable-sm mb-0"
-             style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: white;">
+        <nav id="mainNavbar"
+             class="navbar navbar-expand-sm navbar-light navbar-toggleable-sm mb-0">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                 <img src="~/images/GoSarajevoLogo.png" alt="Logo" style="height: 2.75rem; width: auto;">
@@ -36,9 +37,29 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-area="" asp-controller="ThingsToDo" asp-action="Index">Things To Do</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Information" asp-action="Index">Information</a>
-                    </li>
+                        <li class="nav-item dropdown information-nav-item position-static">
+                            <div class="information-split-nav">
+                                <a class="nav-link information-text-link"
+                                   asp-area=""
+                                   asp-controller="Information"
+                                   asp-action="Index">
+                                    Information
+                                </a>
+
+                                <button class="information-arrow dropdown-toggle"
+                                        type="button"
+                                        id="informationMegaDropdown"
+                                        data-bs-toggle="dropdown"
+                                        data-bs-auto-close="outside"
+                                        aria-expanded="false"
+                                        aria-label="Open Information dropdown">
+                                </button>
+
+                                <div class="dropdown-menu information-mega-menu" aria-labelledby="informationMegaDropdown">
+                                    <partial name="_InformationDropdown" />
+                                </div>
+                            </div>
+                        </li>
                     <li class="nav-item">
                             <a class="nav-link smart-button" asp-area="" asp-controller="Smart Planner" asp-action="Index">Smart Planner</a>
                     </li>
@@ -60,6 +81,22 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.getElementById("mainNavbar");
+        const informationDropdown = document.getElementById("informationMegaDropdown");
+
+        if (!navbar || !informationDropdown) return;
+
+        informationDropdown.addEventListener("show.bs.dropdown", function () {
+        navbar.classList.add("navbar-dropdown-open");
+        });
+
+        informationDropdown.addEventListener("hide.bs.dropdown", function () {
+        navbar.classList.remove("navbar-dropdown-open");
+        });
+        });
+    </script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

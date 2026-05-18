@@ -1,0 +1,40 @@
+﻿<section class="info-top-section information-dropdown-component">
+    <div class="info-box transport-box">
+        <h3>Modes Of Transport</h3>
+
+        <div class="transport-links-grid">
+            <a asp-controller="Information" asp-action="Index" asp-route-section="tram">Tram</a>
+            <a asp-controller="Information" asp-action="Index" asp-route-section="taxi">Taxi</a>
+
+            <a asp-controller="Information" asp-action="Index" asp-route-section="bus">Bus</a>
+            <a asp-controller="Information" asp-action="Index" asp-route-section="rent">Rent-a-car</a>
+
+            <a asp-controller="Information" asp-action="Index" asp-route-section="trolley">Trolley</a>
+            <a asp-controller="Information" asp-action="Index" asp-route-section="other">Other</a>
+        </div>
+    </div>
+
+    <div class="info-box travel-box">
+        <h3>Travel Information</h3>
+
+        <a asp-controller="Information" asp-action="Index" asp-route-section="emergency">Emergency Contacts</a>
+        <a asp-controller="Information" asp-action="Index" asp-route-section="healthcare">Healthcare Information</a>
+        <a asp-controller="Information" asp-action="Index" asp-route-section="useful">Useful Information</a>
+    </div>
+
+    <div class="info-actions">
+        <a asp-controller="Information"
+           asp-action="Index"
+           asp-route-section="tourist"
+           class="outline-btn blue-btn">
+            Tourist Info Center
+        </a>
+
+        <a asp-controller="Information"
+           asp-action="Index"
+           asp-route-section="publicapp"
+           class="outline-btn red-btn">
+            Public Transport App
+        </a>
+    </div>
+</section>

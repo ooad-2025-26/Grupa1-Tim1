@@ -6,58 +6,11 @@
 
 <main class="information-page">
 
-    <section class="info-top-section">
-        <div class="info-box transport-box">
-            <h3>Modes Of Transport</h3>
-
-            <div class="transport-links-grid">
-                <a href="#" onclick="showSection(event, 'tram-section')">Tram</a>
-                <a href="#" onclick="showInfoSection(event, 'taxi-section')">Taxi</a>
-
-                <a href="#" onclick="showSection(event, 'bus-section')">Bus</a>
-                <a href="#" onclick="showInfoSection(event, 'rent-section')">Rent-a-car</a>
-
-                <a href="#" onclick="showSection(event, 'trolley-section')">Trolley</a>
-                <a href="#" onclick="showInfoSection(event, 'other-section')">Other</a>
-            </div>
-        </div>
-
-        <div class="info-box travel-box">
-            <h3>Travel Information</h3>
-
-            <a href="#" onclick="showInfoSection(event, 'emergency-section')">Emergency Contacts</a>
-            <a href="#" onclick="showInfoSection(event, 'healthcare-section')">Healthcare Information</a>
-            <a href="#" onclick="showInfoSection(event, 'useful-section')">Useful Information</a>
-        </div>
-
-        <div class="info-actions">
-            <a href="#" onclick="showInfoSection(event, 'tourist-info-section')" class="outline-btn blue-btn">
-                Tourist Info Center
-            </a>
-
-            <a href="#" onclick="showInfoSection(event, 'public-app-section')" class="outline-btn red-btn">
-                Public Transport App
-            </a>
-        </div>
-    </section>
-
-    <section class="info-feature-slider">
-        <button class="slider-arrow left-arrow">&#10094;</button>
-
-        <div class="slider-text">
-            <p>date</p>
-            <p>time</p>
-            <p>location</p>
-        </div>
-
-        <div class="slider-image"></div>
-
-        <button class="slider-arrow right-arrow">&#10095;</button>
+    <section id="modes-heading" class="modes-heading hidden-section">
+        <h1>Modes of Transportation</h1>
     </section>
 
     <section id="tram-section" class="transport-display tram-display hidden-section">
-        <h1>Modes of Transportation</h1>
-
         <div class="transport-pill red-pill">Tram</div>
 
 
@@ -121,7 +74,6 @@
     </section>
 
     <section id="bus-section" class="transport-display bus-display hidden-section">
-        <h1>Modes of Transportation</h1>
 
         <div class="transport-pill blue-pill">Bus</div>
 
@@ -142,7 +94,6 @@
 
 
     <section id="trolley-section" class="transport-display trolley-display hidden-section">
-        <h1>Modes of Transportation</h1>
 
         <div class="transport-pill blue-pill">Trolley</div>
 
@@ -206,67 +157,68 @@
     </section>
 
     <section id="taxi-section" class="transport-detail-section dynamic-info-section hidden-section">
-        <h1>Modes of Transportation</h1>
-
         <div class="transport-pill transport-pill-red">Taxi</div>
 
         <div class="taxi-card-grid">
+
             <div class="taxi-card">
                 <h3>Sarajevo Taxi</h3>
                 <p>
-                    <a href="tel:1515">1515</a>
+                    📞 <a href="tel:1515">1515</a>
                 </p>
                 <p>
-                    <a href="https://wa.me/38761151515" target="_blank">Viber/WhatsApp: +387 61 15 15 15</a>
-                </p>
-            </div>
-
-            <div class="taxi-card">
-                <h3>Crveni Taxi</h3>
-                <p>
-                    <a href="tel:+38733760600">033 760 600</a>
-                </p>
-            </div>
-
-            <div class="taxi-card">
-                <h3>Žuti Taxi</h3>
-                <p>
-                    <a href="tel:+38733663555">033 663 555</a>
-                </p>
-            </div>
-
-            <div class="taxi-card">
-                <h3>Samir i Emir Taxi</h3>
-                <p>
-                    <a href="tel:+387331516">033 15 16</a>
-                </p>
-            </div>
-
-            <div class="taxi-card">
-                <h3>Paja Taxi</h3>
-                <p>
-                    <a href="tel:+387331522">033 15 22</a>
-                </p>
-            </div>
-
-            <div class="taxi-card">
-                <h3>Kale Taxi</h3>
-                <p>
-                    <a href="tel:+38733570900">033 570 900</a>
-                </p>
-            </div>
-
-            <div class="taxi-card">
-                <h3>Taxi 8</h3>
-                <p>
-                    <a href="tel:+38762828928">062 828 928</a>
-                </p>
-            </div>
+                    📱 <a href="https://wa.me/38761151515" target="_blank" rel="noopener noreferrer">
+                    Viber/WhatsApp: +387 61 15 15 15
+                </a>
+            </p>
         </div>
-    </section>
+
+        <div class="taxi-card">
+            <h3>Crveni Taxi</h3>
+            <p>
+                📞 <a href="tel:+38733760600">033 760 600</a>
+            </p>
+        </div>
+
+        <div class="taxi-card">
+            <h3>Žuti Taxi</h3>
+            <p>
+                📞 <a href="tel:+38733663555">033 663 555</a>
+            </p>
+        </div>
+
+        <div class="taxi-card">
+            <h3>Samir i Emir Taxi</h3>
+            <p>
+                📞 <a href="tel:+387331516">033 15 16</a>
+            </p>
+        </div>
+
+        <div class="taxi-card">
+            <h3>Paja Taxi</h3>
+            <p>
+                📞 <a href="tel:+387331522">033 15 22</a>
+            </p>
+        </div>
+
+        <div class="taxi-card">
+            <h3>Kale Taxi</h3>
+            <p>
+                📞 <a href="tel:+38733570900">033 570 900</a>
+            </p>
+        </div>
+
+        <div class="taxi-card">
+            <h3>Taxi 8</h3>
+            <p>
+                📞 <a href="tel:+38762828928">062 828 928</a>
+            </p>
+        </div>
+
+    </div>
+</section>
 
     <section id="rent-section" class="transport-detail-section rent-section dynamic-info-section hidden-section">
-        <h1>Modes of Transportation</h1>
 
         <div class="transport-pill blue-pill">Rent-a-car</div>
 
@@ -337,7 +289,6 @@
     </section>
 
     <section id="other-section" class="transport-display other-display hidden-section">
-        <h1>Modes of Transportation</h1>
 
         <div class="transport-pill blue-pill">Other</div>
 
@@ -396,31 +347,33 @@
         <h1>Tourist Info Center</h1>
 
         <div class="tourist-center-cards">
+            <div class="tourist-center-card tourist-center-simple-card">
 
-            <div class="tourist-center-card">
                 <div class="tourist-card-title">
-                    <span>Go Sarajevo</span>
+                    <span>Tourist Info Center</span>
                 </div>
+
+                <p>📍 Sarači br. 58, 71000 Sarajevo</p>
 
                 <p>
-                    Official tourist information, maps, recommendations and visitor guidance.
+                    📞 <a href="tel:+38733580999">+387 33 580 999</a>
                 </p>
 
-                <div class="tourist-contact-row">
-                    <span>Email</span>
-                    <a href="mailto:info@gosarajevo.ba">info@gosarajevo.ba</a>
-                </div>
+                <p>
+                    ✉️ <a href="mailto:tourinfo@bih.net.ba">tourinfo@bih.net.ba</a>
+                </p>
 
-                <div class="tourist-contact-row">
-                    <span>Website</span>
-                    <a href="https://www.gosarajevo.ba" target="_blank" rel="noopener noreferrer">
-                        www.gosarajevo.ba
-                    </a>
-                </div>
-            </div>
+                <p>
+                    🌐 <a href="https://www.sarajevo-tourism.com" target="_blank" rel="noopener noreferrer">
+                    www.sarajevo-tourism.com
+                </a>
+            </p>
+
+            <p>🕘 Mon - Fri: 09:00 - 20:00; Sat - Sun: 10:00 - 18:00</p>
 
         </div>
-    </section>
+    </div>
+</section>
 
     <section id="healthcare-section" class="healthcare-section dynamic-info-section hidden-section">
         <h1>Insurance and Health Care</h1>
@@ -766,7 +719,6 @@
         </div>
     </section>
 
-    
     <section id="emergency-section" class="emergency-section dynamic-info-section hidden-section">
         <h1>Emergency Contacts</h1>
 
@@ -806,43 +758,113 @@
 </main>
 
 <script>
+    const transportSections = ["tram", "bus", "trolley", "taxi", "rent", "other"];
+
+    const sectionMap = {
+        tram: "tram-section",
+        bus: "bus-section",
+        trolley: "trolley-section",
+        taxi: "taxi-section",
+        rent: "rent-section",
+        other: "other-section",
+        emergency: "emergency-section",
+        healthcare: "healthcare-section",
+        useful: "useful-section",
+        tourist: "tourist-info-section",
+        publicapp: "public-app-section"
+    };
+
+    function getAllDynamicSections() {
+        return document.querySelectorAll(".transport-display, .dynamic-info-section");
+    }
+
     function hideAllDynamicSections() {
-        document.querySelectorAll(".transport-display").forEach(section => {
+        getAllDynamicSections().forEach(section => {
             section.classList.add("hidden-section");
         });
 
-        document.querySelectorAll(".dynamic-info-section").forEach(section => {
-            section.classList.add("hidden-section");
+        const modesHeading = document.getElementById("modes-heading");
+        if (modesHeading) {
+            modesHeading.classList.add("hidden-section");
+        }
+    }
+
+    function showModesHeading() {
+        const modesHeading = document.getElementById("modes-heading");
+
+        if (modesHeading) {
+            modesHeading.classList.remove("hidden-section");
+        }
+    }
+
+    function showAllDynamicSections() {
+        showModesHeading();
+
+        getAllDynamicSections().forEach(section => {
+            section.classList.remove("hidden-section");
         });
     }
 
-    function showSection(event, sectionId) {
-        event.preventDefault();
+    function showSelectedSection(sectionKey, sectionId) {
         hideAllDynamicSections();
+
+        const isTransportSection = transportSections.includes(sectionKey);
+
+        if (isTransportSection) {
+            showModesHeading();
+        }
 
         const selectedSection = document.getElementById(sectionId);
 
         if (selectedSection) {
             selectedSection.classList.remove("hidden-section");
-            selectedSection.scrollIntoView({
+
+            const scrollTarget = isTransportSection
+                ? document.getElementById("modes-heading")
+                : selectedSection;
+
+            scrollTarget.scrollIntoView({
                 behavior: "smooth",
                 block: "start"
             });
+        }
+    }
+
+    function showSection(event, sectionId) {
+        if (event) event.preventDefault();
+
+        const sectionKey = Object.keys(sectionMap).find(key => sectionMap[key] === sectionId);
+
+        if (sectionKey) {
+            showSelectedSection(sectionKey, sectionId);
         }
     }
 
     function showInfoSection(event, sectionId) {
-        event.preventDefault();
-        hideAllDynamicSections();
+        if (event) event.preventDefault();
 
-        const selectedSection = document.getElementById(sectionId);
+        const sectionKey = Object.keys(sectionMap).find(key => sectionMap[key] === sectionId);
 
-        if (selectedSection) {
-            selectedSection.classList.remove("hidden-section");
-            selectedSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+        if (sectionKey) {
+            showSelectedSection(sectionKey, sectionId);
         }
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const params = new URLSearchParams(window.location.search);
+        const section = params.get("section");
+
+        if (!section) {
+            showAllDynamicSections();
+            return;
+        }
+
+        const sectionId = sectionMap[section];
+
+        if (sectionId) {
+            showSelectedSection(section, sectionId);
+        } else {
+            showAllDynamicSections();
+        }
+    });
 </script>

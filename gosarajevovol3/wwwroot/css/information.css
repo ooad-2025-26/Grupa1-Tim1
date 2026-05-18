@@ -190,6 +190,10 @@
     background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), url("/images/bus.png");
 }
 
+.trolley-display {
+    background-image: linear-gradient(rgba(255,255,255,0.68), rgba(255,255,255,0.68)), url("/images/trolley.png");
+}
+
 
 .transport-display h1,
 .transport-main-title {
@@ -310,18 +314,21 @@
         letter-spacing: 2px;
     }
 
+
     .taxi-card p {
-        margin: 10px 0;
-        font-family: inherit;
-        font-size: 18px;
-        font-weight: 500;
-        color: #1b1b1b;
-        line-height: 1.5;
-        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
-    .taxi-card a {
-        color: #111111;
+        .taxi-card p a {
+            display: inline-block;
+        }
+    .taxi-card a,
+    .taxi-card a:visited,
+    .taxi-card a:active,
+    .taxi-card a:focus {
+        color: #111111 !important;
         text-decoration: underline;
         font-family: inherit;
         font-weight: 800;
@@ -329,9 +336,8 @@
     }
 
         .taxi-card a:hover {
-            color: #003b5c;
+            color: #003b5c !important;
         }
-
 /* RENT A CAR SECTION */
 
 .rent-section {
@@ -527,7 +533,7 @@
     margin-bottom: 18px;
     font-size: 28px;
     font-weight: 900;
-    color: #003b5c;
+    color: #000000;
     letter-spacing: 2px;
 }
 
@@ -836,7 +842,7 @@
 .useful-subtitle {
     font-size: 38px;
     font-weight: 900;
-    color: #003b5c;
+    color: #000000;
     margin: 55px 5% 28px;
     letter-spacing: 3px;
 }
@@ -860,7 +866,7 @@
     .general-useful-card h3 {
         font-size: 27px;
         font-weight: 900;
-        color: #003b5c;
+        color: #000000;
         margin-bottom: 16px;
         letter-spacing: 2px;
     }
@@ -1218,5 +1224,253 @@
     .healthcare-number,
     .useful-badge {
         font-size: 18px;
+    }
+}
+
+.modes-heading {
+    padding: 55px 3% 0;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+}
+
+    .modes-heading h1 {
+        font-size: 48px;
+        line-height: 1.05;
+        margin: 0 0 18px 0;
+        font-weight: 900;
+        letter-spacing: 4px;
+        color: #111111;
+    }
+
+@media (max-width: 900px) {
+    .modes-heading h1 {
+        font-size: 36px;
+        letter-spacing: 3px;
+    }
+}
+
+.tourist-center-simple-card {
+    max-width: 620px;
+}
+
+.tourist-type {
+    font-size: 16px;
+    color: #111111;
+    margin-bottom: 22px;
+    letter-spacing: 0;
+}
+
+.tourist-detail-row {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 17px;
+    color: #111111;
+    letter-spacing: 0;
+}
+
+    .tourist-detail-row i {
+        color: #e83e8c;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .tourist-detail-row a {
+        color: #111111;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+        .tourist-detail-row a:hover {
+            color: #003b5c;
+            text-decoration: underline;
+        }
+
+
+.tourist-center-simple-card a,
+.tourist-center-simple-card a:visited,
+.tourist-center-simple-card a:active,
+.tourist-center-simple-card a:focus {
+    color: #111111 !important;
+    text-decoration: underline;
+    font-family: inherit;
+    font-weight: 800;
+    word-break: break-word;
+}
+
+    .tourist-center-simple-card a:hover {
+        color: #003b5c !important;
+    }
+
+/* FINAL POSITION FOR MODES TITLE + PILL */
+
+.modes-heading {
+    padding: 14px 3% 0;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+}
+
+    .modes-heading h1 {
+        font-size: 38px;
+        line-height: 1;
+        margin: 0 0 18px 0;
+        font-weight: 900;
+        letter-spacing: 1px;
+        color: #003b5c;
+    }
+
+.transport-display {
+    padding: 0 3% 70px;
+    min-height: 430px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    scroll-margin-top: 120px;
+}
+
+.transport-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 105px;
+    height: 44px;
+    padding: 0 30px;
+    border-radius: 999px;
+    font-size: 17px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: -18px 0 22px 0;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+.routes-list {
+    margin-top: 0;
+}
+
+/* CENTER ROUTES INSIDE TRAM / BUS / TROLLEY IMAGE */
+
+.tram-display,
+.bus-display,
+.trolley-display {
+    min-height: 330px;
+}
+
+    .tram-display .routes-list,
+    .bus-display .routes-list,
+    .trolley-display .routes-list {
+        min-height: 210px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-content: center;
+        align-items: center;
+        gap: 16px 90px;
+        margin-top: 0;
+    }
+
+
+/* FINAL FIX - SEPARATE TRAM / BUS / TROLLEY IMAGES */
+
+.modes-heading {
+    padding: 14px 3% 0;
+    background-color: #ffffff;
+    scroll-margin-top: 120px;
+}
+
+    .modes-heading h1 {
+        font-size: 38px;
+        line-height: 1;
+        margin: 0 0 18px 0;
+        font-weight: 900;
+        letter-spacing: 1px;
+        color: #003b5c;
+    }
+
+/* Svaka slika/sekcija odvojena bijelim razmakom */
+.transport-display {
+    padding: 0 3% 70px;
+    min-height: 330px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    scroll-margin-top: 120px;
+    margin: 32px 0 55px 0;
+}
+
+/* Prva transport sekcija odmah ispod naslova */
+#modes-heading + .transport-display {
+    margin-top: 0;
+}
+
+/* Pill stoji lijevo i malo preko gornje ivice slike */
+.transport-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 105px;
+    height: 44px;
+    padding: 0 30px;
+    border-radius: 999px;
+    font-size: 17px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: -18px 0 22px 0;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Rute centrirane unutar slike */
+.tram-display .routes-list,
+.bus-display .routes-list,
+.trolley-display .routes-list {
+    min-height: 210px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-content: center;
+    align-items: center;
+    gap: 16px 90px;
+    margin-top: 0;
+}
+
+/* Da elementi budu iznad background slike */
+.transport-display > * {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 900px) {
+    .modes-heading h1 {
+        font-size: 32px;
+    }
+
+    .transport-display {
+        padding: 0 5% 55px;
+        margin: 28px 0 45px 0;
+    }
+
+    #modes-heading + .transport-display {
+        margin-top: 0;
+    }
+
+    .transport-pill {
+        min-width: 95px;
+        height: 42px;
+        font-size: 16px;
+        padding: 0 24px;
+        margin: -16px 0 20px 0;
+    }
+
+    .tram-display .routes-list,
+    .bus-display .routes-list,
+    .trolley-display .routes-list {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        gap: 14px;
+        padding-top: 25px;
     }
 }
