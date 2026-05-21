@@ -1,0 +1,76 @@
+html.lock-scroll,
+body.lock-scroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+    width: 100% !important;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000;
+    z-index: 999;
+    top: 0;
+    margin-bottom: 0 !important; 
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-container.slide-up {
+    transform: translateY(-100vh);
+}
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+.explore-overlay {
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+}
+.explore-text {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.8;
+    font-family: 'Poppins', sans-serif;
+}
+.explore-arrow {
+    font-size: 20px;
+    animation: bounce 2s infinite;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.main-container {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.40)), url('../images/pozadina.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    padding: 160px 40px;
+    margin-top: 0px;
+    color: #003049 !important;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+

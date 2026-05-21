@@ -1,5 +1,6 @@
 using gosarajevovol3.Data;
 using gosarajevovol3.Models;
+using gosarajevovol3.Services.Scrapers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,8 @@ builder.Services.AddIdentity<User, IdentityRole<int>>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+builder.Services.AddHostedService<NPSService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

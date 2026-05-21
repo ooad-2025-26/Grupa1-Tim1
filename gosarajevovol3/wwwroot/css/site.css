@@ -20,6 +20,7 @@ html {
 body {
   margin-bottom: 60px;
   font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
 }
 
 
@@ -97,7 +98,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 1000 !important;
     background: transparent !important;
 }
 .navbar-toggler {
