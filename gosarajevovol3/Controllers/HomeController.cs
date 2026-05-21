@@ -15,6 +15,15 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        var videos = new List<string>
+        {
+            "/Videos/videoHome1.mp4",
+            "/Videos/videoHome2.mp4",
+            "/Videos/videoHome3.mp4"
+        };
+        var random =  new Random();
+        int index = random.Next(videos.Count);
+        ViewBag.SelectedVideo = videos[index];
         return View();
     }
 

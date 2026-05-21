@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using static Azure.Core.HttpHeader;
 
 namespace gosarajevol3.Controllers
 {
-    public class InformationController : Controller
+    public class InformationController : Controllergit checkout --theirs gosarajevovol3.sln
+git checkout --theirs gosarajevovol3/wwwroot/css/site.css
+git add.
+git commit -m "Merge home-npsScraper into develop"git checkout --theirs gosarajevovol3.sln
     {
         public IActionResult Index()
         {
