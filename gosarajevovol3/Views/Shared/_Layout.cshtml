@@ -1,13 +1,13 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="icon" type="image/png" href="/images/GoSarajevoLogo.png?v=3" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/gosarajevovol3.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/gosarajevovol3.styles.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Qwigley&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,71 +15,63 @@
     <script src="https://kit.fontawesome.com/193845e462.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/information.css" asp-append-version="true" />
 </head>
-<body style="display:flex; flex-direction:column; min-height:100vh; margin:0; background-color: #ffffff; !important;">
-<header>
-        <nav id="mainNavbar"
-             class="navbar navbar-expand-sm navbar-light navbar-toggleable-sm mb-0">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/images/GoSarajevoLogo.png" alt="Logo" style="height: 2.75rem; width: auto;">
-                <span class = "logo-text text-darkred">Go</span><span class = "logo-text text-darkblue">Sarajevo</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex">
-                <ul class="navbar-nav nav-fill w-100 gap-5">
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Events</a>
-                    </li>
-                    <li class="nav-item">
+<body style="display:flex; flex-direction:column; min-height:100vh; margin:0; background-color: #ffffff;">
+    <header>
+        <nav id="mainNavbar" class="navbar navbar-expand-sm navbar-light navbar-toggleable-sm mb-0">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/GoSarajevoLogo.png" alt="Logo" style="height: 2.75rem; width: auto;">
+                    <span class="logo-text text-darkred">Go</span><span class="logo-text text-darkblue">Sarajevo</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex">
+                    <ul class="navbar-nav nav-fill w-100 gap-5">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Events</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Visit" asp-action="Index">Visit</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-area="" asp-controller="ThingsToDo" asp-action="Index">Things To Do</a>
-                    </li>
-                        <li class="nav-item dropdown information-nav-item position-static">
-                            <div class="information-split-nav">
-                                <a class="nav-link information-text-link"
-                                   asp-area=""
-                                   asp-controller="Information"
-                                   asp-action="Index">
-                                    Information
-                                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="ThingsToDo" asp-action="Index">Things To Do</a>
+                        </li>
 
-                                <button class="information-arrow dropdown-toggle"
-                                        type="button"
-                                        id="informationMegaDropdown"
-                                        data-bs-toggle="dropdown"
-                                        data-bs-auto-close="outside"
-                                        aria-expanded="false"
-                                        aria-label="Open Information dropdown">
-                                </button>
-
-                                <div class="dropdown-menu information-mega-menu" aria-labelledby="informationMegaDropdown">
-                                    <partial name="_InformationDropdown" />
-                                </div>
+                        <!-- Information - hover dropdown, bez strelice -->
+                        <li class="nav-item information-nav-item position-static" id="informationNavItem">
+                            <a class="nav-link"
+                               asp-area=""
+                               asp-controller="Information"
+                               asp-action="Index"
+                               id="informationNavLink">
+                                Information
+                            </a>
+                            <div class="information-mega-menu" id="informationMegaMenu">
+                                <partial name="_InformationDropdown" />
                             </div>
                         </li>
-                    <li class="nav-item">
-                            <a class="nav-link smart-button" asp-area="" asp-controller="Smart Planner" asp-action="Index">Smart Planner</a>
-                    </li>
-                    <li class="nav-item">
+
+                        <li class="nav-item">
+                            <a class="nav-link smart-button" asp-area="" asp-controller="SmartPlanner" asp-action="Index">Smart Planner</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link log-ikonica" asp-area="" asp-controller="Account" asp-action="Index">
-                            <i class="fa-solid fa-user fa-lg"></i>
-                        </a>
-                    </li>
-                </ul>
+                                <i class="fa-solid fa-user fa-lg"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
+
     <div class="container-fluid p-0" style="flex:1;">
         <main role="main">
             @RenderBody()
         </main>
-</div>
+    </div>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -89,14 +81,14 @@
     <footer class="gs-footer">
         <div class="gs-footer__left">
             <img src="~/images/GoSarajevoLogo.png" alt="GoSarajevo" class="gs-footer__logo" />
-            <span style="font-family:'Poppins',sans-serif; color:#ffffff; font-size:1.8rem; margin-left:8px;"><span style="color:#c0392b; font-weight:700;">Go</span><span style="font-weight:700;">Sarajevo</span></span>
+            <span style="font-family:'Poppins',sans-serif; color:#ffffff; font-size:1.8rem; margin-left:8px;">
+                <span style="color:#c0392b; font-weight:700;">Go</span><span style="font-weight:700;">Sarajevo</span>
+            </span>
         </div>
-
         <div class="gs-footer__center">
             <p class="gs-footer__contact-title">Contact us!</p>
             <p class="gs-footer__contact-email">info@gosarajevo.ba</p>
         </div>
-
         <div class="gs-footer__right">
             <span class="gs-footer__quote">Some cities are visited, Sarajevo is felt.</span>
         </div>
@@ -179,25 +171,40 @@
         }
     </style>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        const navbar = document.getElementById("mainNavbar");
-        const informationDropdown = document.getElementById("informationMegaDropdown");
+        (function () {
+        var navItem = document.getElementById("informationNavItem");
+        var menu = document.getElementById("informationMegaMenu");
+        var navbar = document.getElementById("mainNavbar");
 
-        if (!navbar || !informationDropdown) return;
+        if (!navItem || !menu || !navbar) return;
 
-        informationDropdown.addEventListener("show.bs.dropdown", function () {
+        var closeTimer = null;
+
+        function openMenu() {
+        if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+        menu.classList.add("is-open");
         navbar.classList.add("navbar-dropdown-open");
-        });
+        }
 
-        informationDropdown.addEventListener("hide.bs.dropdown", function () {
+        function closeMenu() {
+        closeTimer = setTimeout(function () {
+        menu.classList.remove("is-open");
         navbar.classList.remove("navbar-dropdown-open");
-        });
-        });
+        }, 120);
+        }
+
+        navItem.addEventListener("mouseenter", openMenu);
+        navItem.addEventListener("mouseleave", closeMenu);
+        menu.addEventListener("mouseenter", openMenu);
+        menu.addEventListener("mouseleave", closeMenu);
+        })();
     </script>
-@await RenderSectionAsync("Scripts", required: false)
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

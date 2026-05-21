@@ -7,428 +7,829 @@
 
     var schedules = new Dictionary<string, ScheduleData>
     {
+        // ==================== TRAM ====================
         {
             "tram-bascarsija-zeljeznicka-stanica",
             new ScheduleData
             {
                 Title = "Tram [1]: Baščaršija - Željeznička stanica",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "22:12", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:20", "22:32", 36, "Subota"))
-                    .Concat(MakeRows("07:20", "21:44", 36, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "22:12", 18, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:20", "22:32", 36, "Saturday"))
+                    .Concat(MakeRows("07:20", "21:44", 36, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-zeljeznicka-stanica-bascarsija",
             new ScheduleData
             {
                 Title = "Tram [1]: Željeznička stanica - Baščaršija",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "22:30", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:00", "22:12", 36, "Subota"))
-                    .Concat(MakeRows("07:00", "22:00", 36, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "22:30", 18, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:00", "22:12", 36, "Saturday"))
+                    .Concat(MakeRows("07:00", "22:00", 36, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-bascarsija-cengic-vila",
             new ScheduleData
             {
                 Title = "Tram [2]: Baščaršija - Čengić Vila",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:42", "09:05", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("12:42", "15:05", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:42", "09:05", 13, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("12:42", "15:05", 13, "Mon, Tue, Wed, Thu, Fri"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-cengic-vila-bascarsija",
             new ScheduleData
             {
                 Title = "Tram [2]: Čengić Vila - Baščaršija",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("07:08", "09:31", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("13:08", "15:31", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("07:08", "09:31", 13, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("13:08", "15:31", 13, "Mon, Tue, Wed, Thu, Fri"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-bascarsija-ilidza",
             new ScheduleData
             {
                 Title = "Tram [3]: Baščaršija - Ilidža",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("05:00", "23:00", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("05:20", "22:40", 20, "Subota"))
-                    .Concat(MakeRows("06:00", "22:00", 25, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("05:00", "23:00", 15, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("05:20", "22:40", 20, "Saturday"))
+                    .Concat(MakeRows("06:00", "22:00", 25, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-ilidza-bascarsija",
             new ScheduleData
             {
                 Title = "Tram [3]: Ilidža - Baščaršija",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("05:00", "23:00", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("05:20", "22:40", 20, "Subota"))
-                    .Concat(MakeRows("06:00", "22:00", 25, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("05:00", "23:00", 15, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("05:20", "22:40", 20, "Saturday"))
+                    .Concat(MakeRows("06:00", "22:00", 25, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-zeljeznicka-stanica-ilidza",
             new ScheduleData
             {
                 Title = "Tram [4]: Željeznička stanica - Ilidža",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("05:30", "22:30", 20, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:00", "22:00", 30, "Subota, Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("05:30", "22:30", 20, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:00", "22:00", 30, "Saturday, Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-ilidza-zeljeznicka-stanica",
             new ScheduleData
             {
                 Title = "Tram [4]: Ilidža - Željeznička stanica",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("05:30", "22:30", 20, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:00", "22:00", 30, "Subota, Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("05:30", "22:30", 20, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:00", "22:00", 30, "Saturday, Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-bascarsija-nedzarici",
             new ScheduleData
             {
                 Title = "Tram [5]: Baščaršija - Nedžarići",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("05:10", "23:00", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota")
-                    .Concat(MakeRows("05:45", "23:05", 20, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("05:10", "23:00", 15, "Mon, Tue, Wed, Thu, Fri, Sat")
+                    .Concat(MakeRows("05:45", "23:05", 20, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-nedzarici-bascarsija",
             new ScheduleData
             {
                 Title = "Tram [5]: Nedžarići - Baščaršija",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("00:00", "04:40", 35, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
-                    .Concat(MakeRows("05:10", "23:00", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota"))
-                    .Concat(MakeRows("05:45", "23:44", 17, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("00:00", "04:40", 35, "Mon, Tue, Wed, Thu, Fri, Sat, Sun")
+                    .Concat(MakeRows("05:10", "23:00", 15, "Mon, Tue, Wed, Thu, Fri, Sat"))
+                    .Concat(MakeRows("05:45", "23:44", 17, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-skenderija-ilidza",
             new ScheduleData
             {
                 Title = "Tram [6]: Skenderija - Ilidža",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "22:30", 20, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:30", "22:00", 30, "Subota, Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "22:30", 20, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:30", "22:00", 30, "Saturday, Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-ilidza-skenderija",
             new ScheduleData
             {
                 Title = "Tram [6]: Ilidža - Skenderija",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "22:30", 20, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:30", "22:00", 30, "Subota, Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "22:30", 20, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:30", "22:00", 30, "Saturday, Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-skenderija-nedzarici",
             new ScheduleData
             {
                 Title = "Tram [7]: Skenderija - Nedžarići",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("07:30", "09:15", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("14:00", "17:15", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("07:30", "09:15", 15, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("14:00", "17:15", 15, "Mon, Tue, Wed, Thu, Fri"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "tram-nedzarici-skenderija",
             new ScheduleData
             {
                 Title = "Tram [7]: Nedžarići - Skenderija",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("07:00", "08:45", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("14:00", "16:45", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("07:00", "08:45", 15, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("14:00", "16:45", 15, "Mon, Tue, Wed, Thu, Fri"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
 
+        // ==================== BUS - ORIGINAL 3 ====================
         {
             "bus-bascarsija-hrasnica",
             new ScheduleData
             {
-                Title = "Bus: Baščaršija - Hrasnica",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "22:00", 30, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
+                Title = "Bus [B1]: Baščaršija - Hrasnica",
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "22:00", 30, "Mon, Tue, Wed, Thu, Fri, Sat, Sun")
             }
         },
-
         {
             "bus-vijecnica-dobrinja",
             new ScheduleData
             {
-                Title = "Bus: Vijećnica - Dobrinja",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:15", "22:15", 30, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
+                Title = "Bus [B2]: Vijećnica - Dobrinja",
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:15", "22:15", 30, "Mon, Tue, Wed, Thu, Fri, Sat, Sun")
             }
         },
-
         {
             "bus-dom-armije-breza",
             new ScheduleData
             {
-                Title = "Bus: Dom Armije - Breza",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:30", "21:30", 60, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota")
+                Title = "Bus [B3]: Dom Armije - Breza",
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:30", "21:30", 60, "Mon, Tue, Wed, Thu, Fri, Sat")
             }
         },
 
+        // ==================== BUS - NEW 7 ====================
+        {
+            "bus-bascarsija-vratnik",
+            new ScheduleData
+            {
+                Title = "Bus [51]: Baščaršija - Vratnik",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:00 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "10:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:00 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "12:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:00 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "02:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "04:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:00 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "07:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:00 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "09:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+        {
+            "bus-vratnik-bascarsija",
+            new ScheduleData
+            {
+                Title = "Bus [51]: Vratnik - Baščaršija",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:15 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:15 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:15 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:15 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "10:15 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:15 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "12:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:15 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "02:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "04:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:15 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "07:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:15 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "09:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+        {
+            "bus-bascarsija-faletici",
+            new ScheduleData
+            {
+                Title = "Bus [52]: Baščaršija - Faletići",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:10 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:50 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:00 AM", "Sunday" },
+                    new[] { "07:35 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:45 AM", "Sunday" },
+                    new[] { "08:15 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:35 AM", "Sunday" },
+                    new[] { "08:55 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:25 AM", "Sunday" },
+                    new[] { "09:40 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:15 AM", "Sunday" },
+                    new[] { "10:25 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:05 AM", "Sunday" },
+                    new[] { "11:15 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:55 AM", "Sunday" },
+                    new[] { "12:05 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "12:45 PM", "Sunday" },
+                    new[] { "12:55 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:35 PM", "Sunday" },
+                    new[] { "01:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "02:25 PM", "Sunday" },
+                    new[] { "02:35 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:15 PM", "Sunday" },
+                    new[] { "03:25 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "04:05 PM", "Sunday" },
+                    new[] { "04:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "04:55 PM", "Sunday" },
+                    new[] { "05:05 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:45 PM", "Sunday" },
+                    new[] { "05:55 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:35 PM", "Sunday" },
+                    new[] { "06:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:25 PM", "Sunday" },
+                    new[] { "07:40 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:15 PM", "Sunday" },
+                    new[] { "08:35 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:00 PM", "Sunday" },
+                    new[] { "09:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:40 PM", "Sunday" },
+                    new[] { "10:05 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:20 PM", "Sunday" },
+                    new[] { "11:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+        {
+            "bus-faletici-bascarsija",
+            new ScheduleData
+            {
+                Title = "Bus [52]: Faletići - Baščaršija",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:25 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:30 AM", "Sunday" },
+                    new[] { "07:15 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:20 AM", "Sunday" },
+                    new[] { "07:55 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:10 AM", "Sunday" },
+                    new[] { "08:35 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:00 AM", "Sunday" },
+                    new[] { "09:15 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:50 AM", "Sunday" },
+                    new[] { "10:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:40 AM", "Sunday" },
+                    new[] { "10:50 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:30 AM", "Sunday" },
+                    new[] { "11:40 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "12:20 PM", "Sunday" },
+                    new[] { "12:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:10 PM", "Sunday" },
+                    new[] { "01:20 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "02:00 PM", "Sunday" },
+                    new[] { "02:10 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "02:50 PM", "Sunday" },
+                    new[] { "03:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:40 PM", "Sunday" },
+                    new[] { "03:50 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "04:30 PM", "Sunday" },
+                    new[] { "04:40 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:20 PM", "Sunday" },
+                    new[] { "05:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:10 PM", "Sunday" },
+                    new[] { "06:20 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:00 PM", "Sunday" },
+                    new[] { "07:10 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:50 PM", "Sunday" },
+                    new[] { "08:05 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:40 PM", "Sunday" },
+                    new[] { "08:55 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:20 PM", "Sunday" },
+                    new[] { "09:40 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:00 PM", "Sunday" },
+                    new[] { "10:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:35 PM", "Sunday" },
+                    new[] { "11:15 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+        {
+            "bus-bascarsija-sedrenik",
+            new ScheduleData
+            {
+                Title = "Bus [55]: Baščaršija - Sedrenik",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "05:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:00 AM", "Sunday" },
+                    new[] { "07:35 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:00 AM", "Sunday" },
+                    new[] { "09:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:00 AM", "Sunday" },
+                    new[] { "11:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "12:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:00 PM", "Sunday" },
+                    new[] { "01:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "02:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:00 PM", "Sunday" },
+                    new[] { "03:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "04:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:00 PM", "Sunday" },
+                    new[] { "05:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:00 PM", "Sunday" },
+                    new[] { "07:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+        {
+            "bus-sedrenik-bascarsija",
+            new ScheduleData
+            {
+                Title = "Bus [55]: Sedrenik - Baščaršija",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:15 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:30 AM", "Sunday" },
+                    new[] { "08:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:30 AM", "Sunday" },
+                    new[] { "10:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:30 AM", "Sunday" },
+                    new[] { "12:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:30 PM", "Sunday" },
+                    new[] { "02:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:30 PM", "Sunday" },
+                    new[] { "04:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:30 PM", "Sunday" },
+                    new[] { "06:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:30 PM", "Sunday" },
+                    new[] { "08:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+        {
+            "bus-bascarsija-mihrivode",
+            new ScheduleData
+            {
+                Title = "Bus [58]: Baščaršija - Mihrivode",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:00 AM", "Sunday" },
+                    new[] { "08:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:30 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "10:00 AM", "Sunday" },
+                    new[] { "10:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:30 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "12:00 PM", "Sunday" },
+                    new[] { "12:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:30 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "02:00 PM", "Sunday" },
+                    new[] { "02:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "04:00 PM", "Sunday" },
+                    new[] { "04:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:00 PM", "Sunday" },
+                    new[] { "06:30 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "07:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:00 PM", "Sunday" },
+                    new[] { "08:30 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "09:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+        {
+            "bus-mihrivode-bascarsija",
+            new ScheduleData
+            {
+                Title = "Bus [58]: Mihrivode - Baščaršija",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:45 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:45 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:15 AM", "Sunday" },
+                    new[] { "08:45 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:45 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "10:15 AM", "Sunday" },
+                    new[] { "10:45 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:45 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "12:15 PM", "Sunday" },
+                    new[] { "12:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:45 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "02:15 PM", "Sunday" },
+                    new[] { "02:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "04:15 PM", "Sunday" },
+                    new[] { "04:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:15 PM", "Sunday" },
+                    new[] { "06:45 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "07:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:15 PM", "Sunday" },
+                    new[] { "08:45 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "09:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:45 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+        {
+            "bus-grbavica-hrasno-brdo",
+            new ScheduleData
+            {
+                Title = "Bus [70]: Grbavica - Hrasno Brdo",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "05:30 PM", "Mon, Tue, Wed, Thu, Fri" }
+                }
+            }
+        },
+        {
+            "bus-hrasno-brdo-grbavica",
+            new ScheduleData
+            {
+                Title = "Bus [70]: Hrasno Brdo - Grbavica",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "07:00 AM", "Mon, Tue, Wed, Thu, Fri" }
+                }
+            }
+        },
+        {
+            "bus-stup-rjecica",
+            new ScheduleData
+            {
+                Title = "Bus [71]: Stup - Rječica",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:50 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:10 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:30 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "10:00 AM", "Sunday" },
+                    new[] { "10:10 AM", "Saturday" },
+                    new[] { "10:30 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "12:00 PM", "Sunday" },
+                    new[] { "12:30 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "01:00 PM", "Saturday" },
+                    new[] { "02:15 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "03:00 PM", "Sunday" },
+                    new[] { "03:35 PM", "Saturday" },
+                    new[] { "03:35 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "04:55 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "05:00 PM", "Sunday" },
+                    new[] { "05:45 PM", "Saturday" },
+                    new[] { "06:30 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "07:30 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "08:30 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "10:00 PM", "Mon, Tue, Wed, Thu, Fri" }
+                }
+            }
+        },
+        {
+            "bus-rjecica-stup",
+            new ScheduleData
+            {
+                Title = "Bus [71]: Rječica - Stup",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:20 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:25 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:45 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:00 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "10:30 AM", "Sunday" },
+                    new[] { "10:40 AM", "Saturday" },
+                    new[] { "11:00 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "12:30 PM", "Sunday" },
+                    new[] { "01:00 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "01:35 PM", "Saturday" },
+                    new[] { "02:45 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "03:30 PM", "Sunday" },
+                    new[] { "04:05 PM", "Saturday" },
+                    new[] { "04:10 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "05:30 PM", "Sunday" },
+                    new[] { "05:30 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "06:15 PM", "Saturday" },
+                    new[] { "07:00 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "08:00 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "09:00 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "10:20 PM", "Mon, Tue, Wed, Thu, Fri" }
+                }
+            }
+        },
+        {
+            "bus-vijecnica-hladivode",
+            new ScheduleData
+            {
+                Title = "Bus [73]: Vijećnica - Hladivode",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "05:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "07:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "09:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "11:30 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "12:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "01:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "02:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "03:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "04:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "05:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "06:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "07:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "08:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "09:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "10:30 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+        {
+            "bus-hladivode-vijecnica",
+            new ScheduleData
+            {
+                Title = "Bus [73]: Hladivode - Vijećnica",
+                Subtitle = "Timetable",
+                Rows = new List<string[]>
+                {
+                    new[] { "06:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "08:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "10:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:00 AM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "12:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "01:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "02:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "03:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "04:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "05:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "06:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "07:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "08:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "09:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat, Sun" },
+                    new[] { "10:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" },
+                    new[] { "11:00 PM", "Mon, Tue, Wed, Thu, Fri, Sat" }
+                }
+            }
+        },
+
+        // ==================== TROLLEY ====================
         {
             "trolley-otoka-trg-austrije",
             new ScheduleData
             {
                 Title = "Trolley [101]: Otoka - Trg Austrije",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:33", "22:42", 29, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:33", "15:29", 29, "Subota"))
-                    .Concat(MakeRows("07:30", "15:13", 40, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:33", "22:42", 29, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:33", "15:29", 29, "Saturday"))
+                    .Concat(MakeRows("07:30", "15:13", 40, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-trg-austrije-otoka",
             new ScheduleData
             {
                 Title = "Trolley [101]: Trg Austrije - Otoka",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "23:14", 37, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:00", "15:44", 39, "Subota"))
-                    .Concat(MakeRows("06:40", "15:42", 45, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "23:14", 37, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:00", "15:44", 39, "Saturday"))
+                    .Concat(MakeRows("06:40", "15:42", 45, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-otoka-jezero",
             new ScheduleData
             {
                 Title = "Trolley [102]: Otoka - Jezero",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "23:20", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:00", "23:00", 30, "Subota"))
-                    .Concat(MakeRows("06:20", "23:00", 35, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "23:20", 18, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:00", "23:00", 30, "Saturday"))
+                    .Concat(MakeRows("06:20", "23:00", 35, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-jezero-otoka",
             new ScheduleData
             {
                 Title = "Trolley [102]: Jezero - Otoka",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "23:20", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:00", "23:00", 30, "Subota"))
-                    .Concat(MakeRows("06:20", "23:00", 35, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "23:20", 18, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:00", "23:00", 30, "Saturday"))
+                    .Concat(MakeRows("06:20", "23:00", 35, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-dobrinja-trg-austrije",
             new ScheduleData
             {
                 Title = "Trolley [103]: Dobrinja - Trg Austrije",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("05:45", "23:05", 12, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("05:45", "23:05", 15, "Subota"))
-                    .Concat(MakeRows("06:00", "23:05", 18, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("05:45", "23:05", 12, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("05:45", "23:05", 15, "Saturday"))
+                    .Concat(MakeRows("06:00", "23:05", 18, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-trg-austrije-dobrinja",
             new ScheduleData
             {
                 Title = "Trolley [103]: Trg Austrije - Dobrinja",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("05:40", "23:45", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("05:40", "23:45", 17, "Subota"))
-                    .Concat(MakeRows("06:00", "23:45", 20, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("05:40", "23:45", 13, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("05:40", "23:45", 17, "Saturday"))
+                    .Concat(MakeRows("06:00", "23:45", 20, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-alipasino-polje-trg-austrije",
             new ScheduleData
             {
                 Title = "Trolley [104]: Alipašino Polje - Trg Austrije",
-                Subtitle = "Red vožnje",
+                Subtitle = "Timetable",
                 Rows = new List<string[]>
                 {
-                    new[] { "06:00", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "06:59", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "07:56", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "13:45", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "14:43", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "15:40", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "16:34", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" }
+                    new[] { "06:00 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "06:59 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "07:56 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "01:45 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "02:43 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "03:40 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "04:34 PM", "Mon, Tue, Wed, Thu, Fri" }
                 }
             }
         },
-
         {
             "trolley-trg-austrije-alipasino-polje",
             new ScheduleData
             {
                 Title = "Trolley [104]: Trg Austrije - Alipašino Polje",
-                Subtitle = "Red vožnje",
+                Subtitle = "Timetable",
                 Rows = new List<string[]>
                 {
-                    new[] { "06:28", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "07:26", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "08:24", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "14:10", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "15:12", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "16:06", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" },
-                    new[] { "17:01", "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak" }
+                    new[] { "06:28 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "07:26 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "08:24 AM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "02:10 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "03:12 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "04:06 PM", "Mon, Tue, Wed, Thu, Fri" },
+                    new[] { "05:01 PM", "Mon, Tue, Wed, Thu, Fri" }
                 }
             }
         },
-
         {
             "trolley-trg-austrije-vogosca",
             new ScheduleData
             {
                 Title = "Trolley [105]: Trg Austrije - Vogošća",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "23:10", 13, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:00", "23:05", 18, "Subota"))
-                    .Concat(MakeRows("06:20", "23:10", 22, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "23:10", 13, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:00", "23:05", 18, "Saturday"))
+                    .Concat(MakeRows("06:20", "23:10", 22, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-vogosca-trg-austrije",
             new ScheduleData
             {
                 Title = "Trolley [105]: Vogošća - Trg Austrije",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "23:55", 15, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:10", "23:50", 17, "Subota"))
-                    .Concat(MakeRows("06:20", "23:50", 20, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "23:55", 15, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:10", "23:50", 17, "Saturday"))
+                    .Concat(MakeRows("06:20", "23:50", 20, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-dobrinja-jezero",
             new ScheduleData
             {
                 Title = "Trolley [107]: Dobrinja - Jezero",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("00:45", "03:45", 90, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
-                    .Concat(MakeRows("06:00", "22:15", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
-                    .Concat(MakeRows("06:02", "22:10", 34, "Subota"))
-                    .Concat(MakeRows("06:05", "22:10", 33, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("00:45", "03:45", 90, "Mon, Tue, Wed, Thu, Fri, Sat, Sun")
+                    .Concat(MakeRows("06:00", "22:15", 18, "Mon, Tue, Wed, Thu, Fri"))
+                    .Concat(MakeRows("06:02", "22:10", 34, "Saturday"))
+                    .Concat(MakeRows("06:05", "22:10", 33, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-jezero-dobrinja",
             new ScheduleData
             {
                 Title = "Trolley [107]: Jezero - Dobrinja",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("00:00", "04:30", 90, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak, Subota, Nedjelja")
-                    .Concat(MakeRows("06:20", "23:00", 18, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak"))
-                    .Concat(MakeRows("06:20", "22:50", 36, "Subota"))
-                    .Concat(MakeRows("06:20", "22:50", 36, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("00:00", "04:30", 90, "Mon, Tue, Wed, Thu, Fri, Sat, Sun")
+                    .Concat(MakeRows("06:20", "23:00", 18, "Mon, Tue, Wed, Thu, Fri"))
+                    .Concat(MakeRows("06:20", "22:50", 36, "Saturday"))
+                    .Concat(MakeRows("06:20", "22:50", 36, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-otoka-dobrinja",
             new ScheduleData
             {
                 Title = "Trolley [108]: Otoka - Dobrinja",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("06:00", "21:55", 70, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("07:10", "22:30", 80, "Subota"))
-                    .Concat(MakeRows("07:30", "22:30", 80, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("06:00", "21:55", 70, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("07:10", "22:30", 80, "Saturday"))
+                    .Concat(MakeRows("07:30", "22:30", 80, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         },
-
         {
             "trolley-dobrinja-otoka",
             new ScheduleData
             {
                 Title = "Trolley [108]: Dobrinja - Otoka",
-                Subtitle = "Red vožnje",
-                Rows = MakeRows("05:20", "22:30", 70, "Ponedjeljak, Utorak, Srijeda, Četvrtak, Petak")
-                    .Concat(MakeRows("06:35", "22:55", 80, "Subota"))
-                    .Concat(MakeRows("07:02", "21:20", 80, "Nedjelja"))
-                    .OrderBy(row => row[0])
-                    .ToList()
+                Subtitle = "Timetable",
+                Rows = MakeRows("05:20", "22:30", 70, "Mon, Tue, Wed, Thu, Fri")
+                    .Concat(MakeRows("06:35", "22:55", 80, "Saturday"))
+                    .Concat(MakeRows("07:02", "21:20", 80, "Sunday"))
+                    .OrderBy(r => r[0]).ToList()
             }
         }
     };
@@ -437,7 +838,7 @@
     var selectedSchedule = exists ? schedules[key] : null;
 }
 
-<link rel="stylesheet" href="~/css/information.css" />
+<link rel="stylesheet" href="~/css/information.css" asp-append-version="true" />
 
 <main class="schedule-page">
 
@@ -445,15 +846,14 @@
     {
         <section class="schedule-not-found">
             <h1>Schedule not found</h1>
-            <p>There is no hardcoded schedule for this line yet.</p>
-            <p>Key koji se traži: <strong>@key</strong></p>
+            <p>There is no schedule available for this line.</p>
         </section>
     }
     else
     {
         <section class="schedule-header">
             <a href="/Information" class="back-link">← Back to Information</a>
-            <h1>@selectedSchedule.Title</h1>
+            <h1>@selectedSchedule!.Title</h1>
             <p>@selectedSchedule.Subtitle</p>
         </section>
 
@@ -461,11 +861,10 @@
             <table class="schedule-table">
                 <thead>
                     <tr>
-                        <th>Vrijeme</th>
-                        <th>Dani vožnje</th>
+                        <th>Time</th>
+                        <th>Days of operation</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @foreach (var row in selectedSchedule.Rows)
                     {
@@ -492,13 +891,19 @@
     public static List<string[]> MakeRows(string start, string end, int minutes, string days)
     {
         var rows = new List<string[]>();
-
         var startTime = TimeSpan.Parse(start);
         var endTime = TimeSpan.Parse(end);
 
         for (var time = startTime; time <= endTime; time = time.Add(TimeSpan.FromMinutes(minutes)))
         {
-            rows.Add(new[] { time.ToString(@"hh\:mm"), days });
+            var totalMinutes = (int)time.TotalMinutes % (24 * 60);
+            var hours24 = totalMinutes / 60;
+            var mins = totalMinutes % 60;
+            var ampm = hours24 < 12 ? "AM" : "PM";
+            var hours12 = hours24 % 12;
+            if (hours12 == 0) hours12 = 12;
+            var formatted = $"{hours12:D2}:{mins:D2} {ampm}";
+            rows.Add(new[] { formatted, days });
         }
 
         return rows;

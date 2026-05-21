@@ -1,5 +1,6 @@
 html {
   font-size: 14px;
+  scroll-behavior: smooth;
 }
 
 @media (min-width: 768px) {
@@ -112,4 +113,55 @@ body {
     margin-top: 10px;
     border-radius: 5px;
   }
+}
+
+/* Information navbar - hover dropdown */
+.information-nav-item {
+    position: static !important;
+}
+
+.information-mega-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw;
+    background-color: #ffffff;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    border-top: none;
+    z-index: 999;
+    padding: 0;
+}
+
+    .information-mega-menu.is-open {
+        display: block;
+    }
+
+.information-dropdown-component {
+    margin: 0;
+    padding: 25px 6%;
+    background-color: #ffffff;
+}
+
+    .information-dropdown-component .info-box {
+        min-height: 120px;
+    }
+
+#mainNavbar.navbar-dropdown-open {
+    background-color: #ffffff !important;
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .information-mega-menu {
+        position: static !important;
+        width: 100%;
+        box-shadow: none;
+        border-top: none;
+    }
+
+    .information-dropdown-component {
+        padding: 18px;
+    }
 }
