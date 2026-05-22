@@ -60,17 +60,51 @@ body.lock-scroll {
     60% { transform: translateY(-5px); }
 }
 
+
 .main-container {
     background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.40)), url('../images/pozadina.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     width: 100vw;
-    height: 100vh;
-    padding: 160px 40px;
+    min-height: 100vh;
+    padding: 100px 40px 80px 40px;
     margin-top: 0px;
     color: #003049 !important;
     font-family: 'Poppins', sans-serif;
     text-align: center;
 }
+
+  
+    .main-container h2,
+    .main-container .why-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #003049;
+        margin-bottom: 60px; 
+        letter-spacing: -0.5px;
+    }
+
+   
+    .main-container p {
+        font-size: 1.05rem;
+        line-height: 1.9;
+        color: #003049;
+        max-width: 780px;
+        margin: 0 auto 40px auto; 
+        font-weight: 400;
+    }
+
+    
+    .main-container a,
+    .main-container .highlight {
+        color: #8B0000;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+        .main-container a:hover,
+        .main-container .highlight:hover {
+            text-decoration: underline;
+        }
 
