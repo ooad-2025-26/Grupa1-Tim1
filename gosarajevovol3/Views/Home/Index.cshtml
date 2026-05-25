@@ -175,32 +175,40 @@
     document.addEventListener("DOMContentLoaded", function () {
         const exploreBtn = document.querySelector('.explore-overlay');
         const videoContainer = document.querySelector('.video-container');
+        const mainContainer = document.querySelector('.main-container');
+
+        // Scroll na vrh pri učitavanju
+        window.scrollTo(0, 0);
 
         function lock(e) { e.preventDefault(); }
         function lockKeys(e) {
             const keys = ['Space', 'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End'];
             if (keys.includes(e.code)) e.preventDefault();
         }
-        if (window.scrollY > 50) {
-            if (videoContainer) {
-                videoContainer.style.display = 'none'; 
-            }
-        } else {
-            window.addEventListener('wheel', lock, { passive: false });
-            window.addEventListener('touchmove', lock, { passive: false });
-            window.addEventListener('keydown', lockKeys, { passive: false });
-        }
+
+        window.addEventListener('wheel', lock, { passive: false });
+        window.addEventListener('touchmove', lock, { passive: false });
+        window.addEventListener('keydown', lockKeys, { passive: false });
+
         exploreBtn.addEventListener('click', function () {
             window.removeEventListener('wheel', lock);
             window.removeEventListener('touchmove', lock);
             window.removeEventListener('keydown', lockKeys);
 
-            videoContainer.classList.add('slide-up-smooth');
+            // Animiraj video gore i sadržaj istovremeno
+            videoContainer.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+            videoContainer.style.transform = 'translateY(-100vh)';
+
+            mainContainer.style.transition = 'transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)';
+            mainContainer.style.transform = 'translateY(-100vh)';
 
             setTimeout(() => {
                 videoContainer.style.display = 'none';
+                mainContainer.style.transform = 'none';
+                mainContainer.style.transition = 'none';
+                mainContainer.style.marginTop = '0';
                 window.scrollTo(0, 0);
-            }, 600);
+            }, 700);
         });
     });
 </script>
