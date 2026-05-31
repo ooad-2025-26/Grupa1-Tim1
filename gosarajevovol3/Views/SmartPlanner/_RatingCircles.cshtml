@@ -1,0 +1,18 @@
+@{
+    var fieldName = ViewData["FieldName"]?.ToString() ?? "";
+    var currentValue = ViewData["Value"] is int v ? v : 3;
+}
+
+<div class="sp-circles-row" data-field="@fieldName">
+    @for (int i = 1; i <= 5; i++)
+    {
+        <div class="sp-circle-group">
+            <div class="sp-circle @(currentValue == i ? "sp-circle--filled" : "")"
+                 data-value="@i"
+                 onclick="selectCircle('@fieldName', @i)">
+            </div>
+            <span class="sp-circle-label">@i</span>
+        </div>
+    }
+    <input type="hidden" name="@fieldName" id="input_@fieldName" value="@currentValue" />
+</div>

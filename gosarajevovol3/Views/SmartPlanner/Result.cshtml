@@ -1,0 +1,116 @@
+﻿@model gosarajevovol3.ViewModels.SmartPlannerResultViewModel
+
+@{
+    ViewData["Title"] = "Your Plan";
+}
+
+<link rel="stylesheet" href="~/css/smartplanner-result.css" asp-append-version="true" />
+
+<div class="sp-result-header">
+    <h2 class="sp-result-title">We recommend you visit....</h2>
+    <p class="sp-result-dates">@Model.ArrivalDate.ToString("dd/MM/yyyy") — @Model.DepartureDate.ToString("dd/MM/yyyy")</p>
+</div>
+
+@foreach (var day in Model.PlanByDay)
+{
+    <div class="sp-day-block">
+        <div class="sp-day-label-wrapper">
+            <span class="sp-day-label">Day @day.Key:</span>
+        </div>
+        <div class="sp-day-cards-wrapper">
+            <div class="sp-day-cards">
+                @foreach (var location in day.Value)
+                {
+                    <div class="sp-card">
+                        @if (!string.IsNullOrEmpty(location.ImageUrl))
+                        {
+                            <img src="@location.ImageUrl" alt="@location.Name" class="sp-card-img" />
+                        }
+                        else
+                        {
+                            <div class="sp-card-img-placeholder"></div>
+                        }
+                        <div class="sp-card-body">
+                            <p class="sp-card-name">@location.Name</p>
+                            <p class="sp-card-desc">@location.Description</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="sp-day-map" id="map-day-@day.Key"></div>
+
+    </div>
+}
+
+<div class="sp-new-plan-wrapper">
+    <a asp-action="Index" class="sp-new-plan-btn">+ Create New Plan</a>
+</div>
+
+@section Scripts {
+    @{
+        var mapData = Model.PlanByDay.ToDictionary(
+            kv => kv.Key,
+            kv => kv.Value
+                .Where(l => l.Latitude != 0 && l.Longitude != 0)
+                .Select(l => new { name = l.Name, lat = l.Latitude, lng = l.Longitude })
+                .ToList());
+    }
+
+    <script>
+        const planData = @Json.Serialize(mapData);
+
+        async function initMaps() {
+            const { Map } = await google.maps.importLibrary("maps");
+            const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+
+            for (const [day, locations] of Object.entries(planData)) {
+                const el = document.getElementById("map-day-" + day);
+                if (!el || locations.length === 0) continue;
+
+                const map = new Map(el, {
+                    mapId: "DEMO_MAP_ID",
+                    zoom: 13,
+                    center: { lat: locations[0].lat, lng: locations[0].lng },
+                    mapTypeControl: false,
+                    streetViewControl: false
+                });
+
+                const bounds = new google.maps.LatLngBounds();
+
+                locations.forEach((loc, i) => {
+                    const pin = new PinElement({
+                        glyph: String(i + 1),
+                        background: "#1d4e6b",
+                        borderColor: "#1d4e6b",
+                        glyphColor: "#ffffff"
+                    });
+
+                    new AdvancedMarkerElement({
+                        map,
+                        position: { lat: loc.lat, lng: loc.lng },
+                        title: loc.name,
+                        content: pin.element
+                    });
+
+                    bounds.extend({ lat: loc.lat, lng: loc.lng });
+                });
+
+                if (locations.length > 1) map.fitBounds(bounds, 40);
+
+                new google.maps.Polyline({
+                    path: locations.map(l => ({ lat: l.lat, lng: l.lng })),
+                    map,
+                    strokeColor: "#c0392b",
+                    strokeOpacity: 0.85,
+                    strokeWeight: 3
+                });
+            }
+        }
+    </script>
+
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.GoogleMapsApiKey&libraries=marker&v=weekly&callback=initMaps">
+    </script>
+}

@@ -1,0 +1,187 @@
+﻿@model gosarajevovol3.ViewModels.SmartPlannerInputViewModel
+
+@{
+    ViewData["Title"] = "Smart Planner";
+}
+
+<link rel="stylesheet" href="~/css/smartplanner.css" asp-append-version="true" />
+
+<div class="sp-section-header sp-header-pink">
+    <h2 class="sp-section-title">When are you visiting Sarajevo?</h2>
+</div>
+
+<div class="sp-date-wrapper">
+    <form asp-action="GenerirajPlan" method="post">
+        @Html.AntiForgeryToken()
+        <div class="sp-date-row">
+            <div class="sp-date-group">
+                <input asp-for="ArrivalDate" type="date" class="sp-date-input" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                <label class="sp-date-label">Date of arrival</label>
+            </div>
+            <span class="sp-date-dash">-</span>
+            <div class="sp-date-group">
+                <input asp-for="DepartureDate" type="date" class="sp-date-input" />
+                <label class="sp-date-label">Date of departure</label>
+            </div>
+        </div>
+        <span asp-validation-for="DepartureDate" class="sp-validation-msg"></span>
+        <div class="sp-section-header sp-header-blue">
+            <h2 class="sp-section-title">State your preferences!</h2>
+        </div>
+        <div class="sp-preferences-wrapper">
+            <div class="sp-question-block">
+                <p class="sp-question-text">I enjoy visiting historical sites and monuments.</p>
+                <div class="sp-circles-row" data-field="HistoryQ1">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.HistoryQ1 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('HistoryQ1', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="HistoryQ1" id="input_HistoryQ1" value="@Model.HistoryQ1" />
+                </div>
+            </div>
+            <hr class="sp-divider" />
+            <div class="sp-question-block">
+                <p class="sp-question-text">I'm interested in religious and cultural heritage.</p>
+                <div class="sp-circles-row" data-field="HistoryQ2">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.HistoryQ2 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('HistoryQ2', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="HistoryQ2" id="input_HistoryQ2" value="@Model.HistoryQ2" />
+                </div>
+            </div>
+            <hr class="sp-divider" />
+            <div class="sp-question-block">
+                <p class="sp-question-text">I enjoy spending time in nature and parks.</p>
+                <div class="sp-circles-row" data-field="NatureQ1">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.NatureQ1 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('NatureQ1', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="NatureQ1" id="input_NatureQ1" value="@Model.NatureQ1" />
+                </div>
+            </div>
+            <hr class="sp-divider" />
+            <div class="sp-question-block">
+                <p class="sp-question-text">I prefer outdoor activities over indoor ones.</p>
+                <div class="sp-circles-row" data-field="NatureQ2">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.NatureQ2 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('NatureQ2', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="NatureQ2" id="input_NatureQ2" value="@Model.NatureQ2" />
+                </div>
+            </div>
+            <hr class="sp-divider" />
+            <div class="sp-question-block">
+                <p class="sp-question-text">I enjoy art, theatre and cultural experiences.</p>
+                <div class="sp-circles-row" data-field="CultureQ1">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.CultureQ1 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('CultureQ1', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="CultureQ1" id="input_CultureQ1" value="@Model.CultureQ1" />
+                </div>
+            </div>
+            <hr class="sp-divider" />
+            <div class="sp-question-block">
+                <p class="sp-question-text">I like visiting museums and galleries.</p>
+                <div class="sp-circles-row" data-field="CultureQ2">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.CultureQ2 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('CultureQ2', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="CultureQ2" id="input_CultureQ2" value="@Model.CultureQ2" />
+                </div>
+            </div>
+            <hr class="sp-divider" />
+            <div class="sp-question-block">
+                <p class="sp-question-text">I enjoy trying local and traditional food.</p>
+                <div class="sp-circles-row" data-field="FoodQ1">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.FoodQ1 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('FoodQ1', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="FoodQ1" id="input_FoodQ1" value="@Model.FoodQ1" />
+                </div>
+            </div>
+            <hr class="sp-divider" />
+            <div class="sp-question-block">
+                <p class="sp-question-text">Dining out is an important part of my travel experience.</p>
+                <div class="sp-circles-row" data-field="FoodQ2">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.FoodQ2 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('FoodQ2', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="FoodQ2" id="input_FoodQ2" value="@Model.FoodQ2" />
+                </div>
+            </div>
+            <hr class="sp-divider" />
+            <div class="sp-question-block">
+                <p class="sp-question-text">I enjoy going out at night, bars and clubs.</p>
+                <div class="sp-circles-row" data-field="NightlifeQ1">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.NightlifeQ1 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('NightlifeQ1', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="NightlifeQ1" id="input_NightlifeQ1" value="@Model.NightlifeQ1" />
+                </div>
+            </div>
+            <hr class="sp-divider" />
+            <div class="sp-question-block">
+                <p class="sp-question-text">I enjoy live music, concerts and entertainment venues.</p>
+                <div class="sp-circles-row" data-field="NightlifeQ2">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="sp-circle-group">
+                            <div class="sp-circle @(Model.NightlifeQ2 == i ? "sp-circle--filled" : "")" data-value="@i" onclick="selectCircle('NightlifeQ2', @i)"></div>
+                            <span class="sp-circle-label">@(i == 1 ? "Strongly disagree" : i == 2 ? "Disagree" : i == 3 ? "Neutral" : i == 4 ? "Agree" : "Strongly agree")</span>
+                        </div>
+                    }
+                    <input type="hidden" name="NightlifeQ2" id="input_NightlifeQ2" value="@Model.NightlifeQ2" />
+                </div>
+            </div>
+        </div>
+        <div class="sp-submit-wrapper">
+            <button type="submit" class="sp-submit-btn">Generate My Plan</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        function selectCircle(fieldName, value) {
+            const row = document.querySelector(`.sp-circles-row[data-field="${fieldName}"]`);
+            row.querySelectorAll('.sp-circle').forEach(c => c.classList.remove('sp-circle--filled'));
+            row.querySelector(`.sp-circle[data-value="${value}"]`).classList.add('sp-circle--filled');
+            document.getElementById(`input_${fieldName}`).value = value;
+        }
+    </script>
+}
