@@ -1,6 +1,7 @@
 
 using gosarajevovol3.Data;
 using gosarajevovol3.Models;
+using GTranslate.Translators;
 
 namespace gosarajevovol3.Services.Scrapers;
 
@@ -65,13 +66,45 @@ public class NPSService : BackgroundService
                 Event? noviEvent = await _scraper.ScrapePlayDetails(url);
                 if (noviEvent != null)
                 {
+                    await TranslateInEnAsync(noviEvent);
+
                     context.Events.Add(noviEvent);
+                    await context.SaveChangesAsync();
                 }
-
-                await Task.Delay(1500);
+                await Task.Delay(2500);
             }
-
-            await context.SaveChangesAsync();
+        }
+    }
+    
+    private async Task TranslateInEnAsync(Event ev)
+    {
+        var translator = new GoogleTranslator();
+        try
+        {
+            if (!string.IsNullOrEmpty(ev.EventName))
+            {
+                var nameTrans = await translator.TranslateAsync(ev.EventName, "en", "bs");
+                ev.EventNameEn = nameTrans.Translation;
+                await Task.Delay(800);
+            }
+            if (!string.IsNullOrEmpty(ev.EventDescription))
+            {
+                var descTrans = await translator.TranslateAsync(ev.EventDescription, "en", "bs");
+                ev.EventDescriptionEn = descTrans.Translation;
+                await Task.Delay(800);
+            }
+            if (!string.IsNullOrEmpty(ev.LocationAddress))
+            {
+                var locTrans = await translator.TranslateAsync(ev.LocationAddress, "en", "bs");
+                ev.LocationAddressEn = locTrans.Translation;
+            }
+        }
+        catch (Exception ex)
+        {
+            ev.EventNameEn = ev.EventName;
+            ev.EventDescriptionEn = ev.EventDescription;
+            ev.LocationAddressEn = ev.LocationAddress;
+            Console.WriteLine($"[NPS Scraper] Google limit dostignut: {ex.Message}");
         }
     }
 }

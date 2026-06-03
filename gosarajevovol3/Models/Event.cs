@@ -13,8 +13,13 @@ public class Event
     [StringLength(200)]
     public string EventName { get; set; } = string.Empty;
     
+    [StringLength(200)]
+    public string? EventNameEn { get; set; }
+    
     [Required]
     public string EventDescription { get; set; } = string.Empty;
+    
+    public string? EventDescriptionEn { get; set; }
     
     [Required]
     public DateTime StartDate { get; set; }
@@ -35,4 +40,7 @@ public class Event
     [Required]
     [StringLength(250)]
     public string LocationAddress { get; set; } = string.Empty; 
+    
+    [StringLength(250)]
+    public string? LocationAddressEn { get; set; }
 }

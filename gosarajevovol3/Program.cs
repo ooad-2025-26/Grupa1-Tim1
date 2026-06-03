@@ -25,6 +25,7 @@ builder.Services.AddControllersWithViews();
 
 
 builder.Services.AddHostedService<NPSService>();
+builder.Services.AddHostedService<KupiKartuService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
