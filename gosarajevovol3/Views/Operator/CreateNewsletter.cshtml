@@ -1,0 +1,67 @@
+@{
+    Layout = null;
+    ViewData["Title"] = "Compose Newsletter";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f4f7fa; font-family: 'Poppins', sans-serif; }
+        .form-container { max-width: 750px; margin: 50px auto; background: #fff; padding: 40px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .btn-send { background-color: #0c3156; color: white; border-radius: 10px; padding: 12px; font-weight: 600; border: none; }
+        .btn-send:hover { background-color: #05223f; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-container">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold m-0" style="color: #0c3156;">
+                <i class="fa-solid fa-pen-to-square me-2" style="color: #7b1e2b;"></i>Compose Newsletter
+            </h3>
+            <a href="/Operator/Index" class="btn btn-outline-secondary btn-sm" style="border-radius: 8px;">Cancel</a>
+        </div>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger border-0 shadow-sm mb-4" style="border-radius: 12px;">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i> <strong>Sending failed: </strong>
+                <div asp-validation-summary="All" class="small mt-1"></div>
+            </div>
+        }
+
+        <form asp-action="SendNewsletter" asp-controller="Operator" method="post">
+            @Html.AntiForgeryToken()
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold text-muted">Email Subject</label>
+                <input type="text" name="subject" class="form-control p-2" style="border-radius: 8px;" placeholder="e.g., Check out this week's events in Sarajevo!!️" required />
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold text-muted">Message Content</label>
+                <textarea name="messageContent" class="form-control p-2" rows="10" style="border-radius: 8px;" placeholder="Dear visitors, here is an overview of the latest attractions and updates..." required></textarea>
+                <div class="form-text text-muted small mt-1">
+                    <i class="fa-solid fa-code me-1"></i> Tip: You can also use basic HTML tags like <code>&lt;b&gt;bold&lt;/b&gt;</code> or <code>&lt;h3&gt;heading&lt;/h3&gt;</code>.
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-send w-100 shadow-sm">
+                <i class="fa-solid fa-paper-plane me-2"></i> Send Newsletter
+            </button>
+        </form>
+    </div>
+</div>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

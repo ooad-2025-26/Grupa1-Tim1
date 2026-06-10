@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using gosarajevovol3.Data;
 
@@ -11,9 +12,11 @@ using gosarajevovol3.Data;
 namespace gosarajevovol3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260610200224_DodatakUseri1")]
+    partial class DodatakUseri1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -551,15 +554,15 @@ namespace gosarajevovol3.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "31a28d92-de97-404a-b118-37e73711ae63",
+                            ConcurrencyStamp = "50cddd94-d709-47b9-8456-26e39d958857",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENMtxL9v2ubPFwG5xZH9GF3hS0czOZp9bZJWt6i2L5VLeGSfKbabMNE823wkCKQ12A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJLmwAwottkkKPBviiMX1AJYj6CRCbPgKISbCcKPxf34ZksctIN5TRyfKzcuuVOLvw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b68262d8-ca40-4569-9b8b-ac5b67372ac9",
+                            SecurityStamp = "8741caa8-5c70-48ad-bc7b-d33cb000de31",
                             TwoFactorEnabled = false,
                             UserName = "admin@gmail.com"
                         });
@@ -576,15 +579,15 @@ namespace gosarajevovol3.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7e2120e5-79c0-4dcc-bda6-2cf4ad920504",
+                            ConcurrencyStamp = "b8416f68-a9d3-4ead-8b4c-f1014d12020b",
                             Email = "operator@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "OPERATOR@GMAIL.COM",
                             NormalizedUserName = "OPERATOR@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJ/byETwt4fbcowu2Hn8aDl6aPb53EavYFDnNNvWr7f1jfrti4n+Klx2pmck+rmL2g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPsTF1/t8C5j66ktayUG1Enm6uyCXV3V2M10G9RMeFitiHqhQQ7k/1KL6ba+yvOZLQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "194d9180-4f29-4d0e-b9a0-37c9865c8070",
+                            SecurityStamp = "47dfa8ad-e12c-46ce-a49c-2f13f2215a23",
                             TwoFactorEnabled = false,
                             UserName = "operator@gmail.com"
                         });
@@ -601,15 +604,15 @@ namespace gosarajevovol3.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "560658ca-8845-401d-b1f0-c411efeddf47",
+                            ConcurrencyStamp = "b494f02e-78ef-42a0-8aa9-9f0f02a1ff7c",
                             Email = "korisnik@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "KORISNIK@GMAIL.COM",
                             NormalizedUserName = "KORISNIK@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPauaDxACCbbr6h8Sag2gR1ZR1qqImpenFl1H7A5ZitxtwjrRDazoV0+xTc7omvlmQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEbZwACdR8woc6t+v/v4ZND8FWYhirhoAV7Kn4TPO2kkCbtF58zQ0yN73s2/D6Wmfg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9618f3b9-88a0-462e-a6c7-64ec3206ec62",
+                            SecurityStamp = "4708116c-ccf7-488e-bf76-8ffa96f317b8",
                             TwoFactorEnabled = false,
                             UserName = "korisnik@gmail.com"
                         },
@@ -617,17 +620,17 @@ namespace gosarajevovol3.Migrations
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "abe31c70-6d39-48b2-b281-3c958480bb6d",
+                            ConcurrencyStamp = "2ce5cec8-23da-4fcf-9fb8-8c1c3c65d1a3",
                             Email = "duderija.amina2@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DUDERIJA.AMINA2@GMAIL.COM",
                             NormalizedUserName = "DUDERIJA.AMINA2@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOWRmXsmDiKlMmHps/mlBsV9wGj4njGPSrhPVi+Q/X1iRsXcdMUfjeDvJ4i5P3oC/A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBDWPWnUUKfXIuEop4HZT48Q+4thK0OybYwxwZHmBWmcnCD0Cl3ApZm84SyxAhgKUA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e8e7e7ca-5ec7-4593-84b8-ce3f489608fc",
+                            SecurityStamp = "5c590ead-2734-47b0-8714-67a43b676f33",
                             TwoFactorEnabled = false,
-                            UserName = "duderija.amina2@gmail.com"
+                            UserName = "duderija.amina@@gmail.com"
                         });
                 });
 

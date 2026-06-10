@@ -50,5 +50,56 @@ public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, i
             .HasValue<RegisteredUser>("RegisteredUser")
             .HasValue<Admin>("Admin")
             .HasValue<Operator>("Operator");
+        var hasher = new PasswordHasher<User>();
+        var admin = new Admin
+        {
+            Id = 1,
+            UserName = "admin@gmail.com",
+            NormalizedUserName = "ADMIN@GMAIL.COM",
+            Email = "admin@gmail.com",
+            NormalizedEmail = "ADMIN@GMAIL.COM",
+            EmailConfirmed = true,
+            SecurityStamp = Guid.NewGuid().ToString(),
+            ConcurrencyStamp = Guid.NewGuid().ToString()
+        };
+        admin.PasswordHash = hasher.HashPassword(admin, "Admin123!");
+        var operater = new Operator
+        {
+            Id = 2,
+            UserName = "operator@gmail.com",
+            NormalizedUserName = "OPERATOR@GMAIL.COM",
+            Email = "operator@gmail.com",
+            NormalizedEmail = "OPERATOR@GMAIL.COM",
+            EmailConfirmed = true,
+            SecurityStamp = Guid.NewGuid().ToString()
+        };
+        operater.PasswordHash = hasher.HashPassword(operater, "Operator123!");
+
+        var testUser = new RegisteredUser
+        {
+            Id = 3,
+            UserName = "korisnik@gmail.com",
+            NormalizedUserName = "KORISNIK@GMAIL.COM",
+            Email = "korisnik@gmail.com",
+            NormalizedEmail = "KORISNIK@GMAIL.COM",
+            EmailConfirmed = true,
+            SecurityStamp = Guid.NewGuid().ToString()
+        };
+        testUser.PasswordHash = hasher.HashPassword(testUser, "Korisnik123!");
+        var testUser1 = new RegisteredUser
+        {
+            Id = 4,
+            UserName = "duderija.amina2@gmail.com",
+            NormalizedUserName = "DUDERIJA.AMINA2@GMAIL.COM",
+            Email = "duderija.amina2@gmail.com",
+            NormalizedEmail = "DUDERIJA.AMINA2@GMAIL.COM",
+            EmailConfirmed = true,
+            SecurityStamp = Guid.NewGuid().ToString()
+        };
+        testUser1.PasswordHash = hasher.HashPassword(testUser1, "Amina123!");
+        modelBuilder.Entity<Admin>().HasData(admin);
+        modelBuilder.Entity<Operator>().HasData(operater);
+        modelBuilder.Entity<RegisteredUser>().HasData(testUser);
+        modelBuilder.Entity<RegisteredUser>().HasData(testUser1);
     }
 }

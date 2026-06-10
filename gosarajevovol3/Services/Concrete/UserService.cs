@@ -46,7 +46,12 @@ public class UserService : IUserService
     
     public async Task<SignInResult> LoginAsync(string email, string password, bool rememberMe)
     {
-        return await _signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure: false);
+        var user = await _userManager.FindByEmailAsync(email);
+        if (user == null)
+        {
+            return SignInResult.Failed;
+        }
+        return await _signInManager.PasswordSignInAsync(user.UserName!, password, rememberMe, lockoutOnFailure: false);
     }
     
     public async Task LogoutAsync()

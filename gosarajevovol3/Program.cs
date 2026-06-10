@@ -1,5 +1,7 @@
 using gosarajevovol3.Data;
 using gosarajevovol3.Models;
+using gosarajevovol3.Services.Abstract;
+using gosarajevovol3.Services.Concrete;
 using gosarajevovol3.Services.Scrapers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +28,16 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddHostedService<NPSService>();
 builder.Services.AddHostedService<KupiKartuService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(15); 
+    options.SlidingExpiration = false; 
+    
+    options.LoginPath = "/Account/Login";
+    options.LogoutPath = "/Account/Logout";
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

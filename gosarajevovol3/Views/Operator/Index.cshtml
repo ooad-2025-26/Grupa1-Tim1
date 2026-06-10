@@ -1,0 +1,88 @@
+@model List<gosarajevovol3.Models.RegisteredUser>
+
+@{
+    ViewData["Title"] = "Operator Panel";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - GoSarajevo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f4f7fa; font-family: 'Poppins', sans-serif; color: #333; }
+        .operator-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .brand-text { font-size: 1.8rem; font-weight: 800; color: #0c3156; }
+        .bordo { color: #7b1e2b; }
+        .stat-card { border: none; border-radius: 16px; padding: 24px; background: #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; align-items: center; justify-content: space-between; border-left: 5px solid #0c3156; max-width: 400px; }
+        .stat-number { font-size: 2.2rem; font-weight: 700; color: #0c3156; }
+        .db-card { background: #ffffff; border-radius: 16px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-top: 30px; }
+    </style>
+</head>
+<body>
+
+<div class="operator-container">
+    
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <span class="brand-text">Go<span class="bordo">Sarajevo</span> <small class="text-muted" style="font-size: 1rem;">Operator</small></span>
+        </div>
+        <a href="/Account/Logout" class="btn btn-outline-danger px-4" style="border-radius: 10px;">
+            <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+        </a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success border-0 shadow-sm mb-4" style="border-radius: 12px;">
+            <i class="fa-solid fa-circle-check me-2"></i> @TempData["SuccessMessage"]
+        </div>
+    }
+    <div class="stat-card mb-4">
+        <div>
+            <div class="stat-number">@ViewBag.TotalSubscribers</div>
+            <div class="text-muted fw-semibold">Total Registered Users</div>
+        </div>
+        <i class="fa-solid fa-mail-bulk fa-3x text-secondary opacity-25"></i>
+    </div>
+    <div class="card db-card">
+        <div class="db-header d-flex justify-content-between align-items-center p-4 border-bottom">
+            <h4 class="m-0 fw-bold" style="color: #0c3156;"><i class="fa-solid fa-users me-2 text-secondary"></i>Recipient List</h4>
+            <a href="/Operator/CreateNewsletter" class="btn btn-primary fw-semibold" style="border-radius: 10px; background-color: #0c3156; border: none;">
+                <i class="fa-solid fa-paper-plane me-2"></i>Compose Newsletter
+            </a>
+        </div>
+        <div class="p-4">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>User ID</th>
+                            <th>Username / Email Address</th>
+                            <th>Delivery Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>#USR-@user.Id</td>
+                                <td class="fw-semibold">@user.Email</td>
+                                <td><span class="badge bg-success"><i class="fa-solid fa-check me-1"></i></span></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

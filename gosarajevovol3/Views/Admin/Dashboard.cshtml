@@ -1,0 +1,236 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/GoSarajevoLogo.png?v=3" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <title>@ViewData["Title"] - GoSarajevo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+        .admin-container {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .dashboard-header {
+            margin-bottom: 30px;
+        }
+        .brand-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #0c3156;
+        }
+        .go-text { color: #0c3156; }
+        .sarajevo-text { color: #7b1e2b; }
+        .logo { height: 45px; width: auto; }
+        
+        .stat-card {
+            border: none;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+        
+        .card-users { background-color: #eef5fc; border-left: 5px solid #0d6efd; }
+        .card-attractions { background-color: #eefbf3; border-left: 5px solid #198754; }
+        .card-events { background-color: #fff9ee; border-left: 5px solid #ffc107; }
+        .card-reviews { background-color: #fceeef; border-left: 5px solid #dc3545; }
+        
+        .stat-number { font-size: 2.2rem; font-weight: 700; line-height: 1; margin-bottom: 5px; }
+        .stat-title { color: #5c6b73; font-weight: 600; font-size: 0.95rem; }
+        .stat-icon { font-size: 2.5rem; opacity: 0.8; }
+        
+        .db-card { background: #ffffff; border-radius: 16px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-top: 30px; }
+        .db-header { background-color: #ffffff; border-bottom: 1px solid #edf2f7; padding: 20px 24px; border-top-left-radius: 16px; border-top-right-radius: 16px; }
+        .table-container { padding: 24px; }
+        .btn-action { padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="admin-container">
+    
+    <div class="d-flex justify-content-between align-items-center dashboard-header">
+        <div>
+            <div class="d-flex align-items-center gap-2">
+            </div>
+            <h1 class="h3 fw-bold mt-2" style="color: #0c3156;">Welcome, Admin!</h1>
+        </div>
+        
+        <a asp-controller="Account" asp-action="Logout" class="btn btn-outline-danger px-4 d-flex align-items-center" style="border-radius: 10px; height: 42px;">
+            <i class="fa-solid fa-right-from-bracket me-2"></i>Logout
+        </a>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card card-users">
+                <div>
+                    <div class="stat-number text-primary">@ViewBag.TotalUsers</div>
+                    <div class="stat-title">Registered Users</div>
+                </div>
+                <div class="stat-icon text-primary"><i class="fa-solid fa-users"></i></div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card card-attractions">
+                <div>
+                    <div class="stat-number text-success">@ViewBag.TotalAttractions</div>
+                    <div class="stat-title">Attractions</div>
+                </div>
+                <div class="stat-icon text-success"><i class="fa-solid fa-camera"></i></div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card card-events">
+                <div>
+                    <div class="stat-number text-warning">@ViewBag.TotalEvents</div>
+                    <div class="stat-title">Active Events</div>
+                </div>
+                <div class="stat-icon text-warning"><i class="fa-solid fa-calendar-days"></i></div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="stat-card card-reviews">
+                <div>
+                    <div class="stat-number text-danger">@ViewBag.TotalReviews</div>
+                    <div class="stat-title">User Reviews</div>
+                </div>
+                <div class="stat-icon text-danger"><i class="fa-solid fa-star"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card db-card">
+        <div class="db-header d-flex justify-content-between align-items-center">
+            <h4 class="m-0 fw-bold" style="color: #0c3156;"><i class="fa-solid fa-database me-2 text-secondary"></i> Database Administration</h4>
+            <div class="d-flex gap-2">
+                <a href="/Admin/CreateAttraction" class="btn btn-success fw-semibold btn-sm p-2" style="border-radius: 10px;">
+                    <i class="fa-solid fa-plus me-1"></i>  Attraction
+                </a>
+                <a href="/Admin/CreateHospitality" class="btn btn-info text-white fw-semibold btn-sm p-2" style="border-radius: 10px; background-color: #0c3156; border: none;">
+                    <i class="fa-solid fa-plus me-1"></i>  Hospitality
+                </a>
+            </div>
+        </div>
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name / Author</th>
+                            <th>Type / Detail</th>
+                            <th>Category</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Attractions != null)
+                        {
+                            foreach (var attr in ViewBag.Attractions)
+                            {
+                                <tr>
+                                    <td>#A-@attr.Id</td>
+                                    <td class="fw-semibold">@attr.AttractionName</td>
+                                    <td class="text-muted">@attr.LocationAddress</td>
+                                    <td><span class="badge bg-success">@attr.AttractionType</span></td>
+                                    <td class="text-end">
+                                        <a href="/Admin/EditAttraction/@attr.Id" class="btn btn-sm btn-outline-primary btn-action me-1" style="margin-bottom: 8px"><i class="fa-solid fa-pen"></i> Edit</a>
+                                        <a href="/Admin/DeleteAttraction/@attr.Id" class="btn btn-sm btn-outline-danger btn-action"><i class="fa-solid fa-trash"></i> Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                        @if (ViewBag.Hospitality != null)
+                        {
+                            foreach (var hosp in ViewBag.Hospitality)
+                            {
+                                <tr>
+                                    <td>#H-@hosp.Id</td>
+                                    <td class="fw-semibold">@hosp.HospitalityName</td>
+                                    <td class="text-muted">@hosp.LocationAddress</td>
+                                    <td><span class="badge bg-primary">@hosp.HospitalityType</span></td>
+                                    <td class="text-end">
+                                        <a href="/Admin/EditHospitality/@hosp.Id" class="btn btn-sm btn-outline-primary btn-action me-1"><i class="fa-solid fa-pen"></i> Edit</a>
+                                        <a href="/Admin/DeleteHospitality/@hosp.Id" class="btn btn-sm btn-outline-danger btn-action"><i class="fa-solid fa-trash"></i> Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                        @if (ViewBag.Events != null)
+                        {
+                            foreach (var ev in ViewBag.Events)
+                            {
+                                <tr class="table-light text-muted">
+                                    <td>#E-@ev.Id</td>
+                                    <td class="fw-semibold text-secondary">@ev.EventName</td>
+                                    <td>@ev.StartDate.ToString("dd.MM.yyyy") - @ev.EndDate.ToString("dd.MM.yyyy")</td>
+                                    <td><span class="badge bg-warning text-dark">Event (@ev.Type)</span></td>
+                                    <td class="text-end text-muted small">
+                                        <span class="badge bg-light text-dark border"><i class="fa-solid fa-lock me-1"></i> Read-Only</span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                        @if (ViewBag.Reviews != null)
+                        {
+                            foreach (var rev in ViewBag.Reviews)
+                            {
+                                <tr class="table-light text-muted">
+                                    <td>#R-@rev.Id</td>
+                                    <td class="fw-semibold text-secondary">By: @(rev.RegisteredUser?.Email ?? "User")</td>
+                                    <td>
+                                        @for(int i = 1; i <= 5; i++) {
+                                            <i class="fa-solid fa-star @(i <= rev.Rating ? "text-warning" : "text-muted")" style="font-size: 0.8rem;"></i>
+                                        }
+                                        <span class="small d-block text-truncate" style="max-width: 200px;">"@rev.Comment"</span>
+                                    </td>
+                                    <td><span class="badge bg-danger">Review</span></td>
+                                    <td class="text-end text-muted small">
+                                        <span class="badge bg-light text-dark border"><i class="fa-solid fa-lock me-1"></i> Read-Only</span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function preventBack() { 
+        window.history.forward(); 
+    }
+    setTimeout("preventBack()", 0);
+    window.onbeforeunload = function () { return null; };
+</script>
+
+</body>
+</html>
