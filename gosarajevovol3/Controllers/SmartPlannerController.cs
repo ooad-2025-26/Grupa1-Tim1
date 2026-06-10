@@ -51,6 +51,10 @@ public class SmartPlannerController : Controller
                         h.HospitalityType == HospitalityType.Museums)
             .ToListAsync();
 
+        var events = await _context.Events
+            .Include(e => e.Coordinates)
+            .ToListAsync();
+
         var result = new SmartPlannerResultViewModel
         {
             ArrivalDate = input.ArrivalDate,
@@ -58,13 +62,12 @@ public class SmartPlannerController : Controller
             NumberOfDays = input.NumberOfDays
         };
 
-        result.PlanByDay = GeneratePlan(input, attractions, hospitality);
+        result.PlanByDay = GeneratePlan(input, attractions, hospitality, events);
 
         ViewBag.GoogleMapsApiKey = _configuration["GoogleMaps:ApiKey"];
 
         return View("Result", result);
     }
-
 
     private class Candidate
     {
@@ -74,7 +77,9 @@ public class SmartPlannerController : Controller
         public double Lng { get; set; }
         public bool IsAttraction { get; set; }
         public bool IsBar { get; set; }
+        public bool IsEvent { get; set; }
         public int SourceId { get; set; }
+        public DateTime? EventStart { get; set; }
     }
 
     private int GetDailyTypeLimit(string attractionType, SmartPlannerInputViewModel input)
@@ -92,11 +97,13 @@ public class SmartPlannerController : Controller
     private Dictionary<int, List<PlannerLocationViewModel>> GeneratePlan(
         SmartPlannerInputViewModel input,
         List<Attraction> attractions,
-        List<Hospitality> hospitality)
+        List<Hospitality> hospitality,
+        List<Event> events)
     {
         var plan = new Dictionary<int, List<PlannerLocationViewModel>>();
         var usedAttractionIds = new HashSet<int>();
         var usedHospitalityIds = new HashSet<int>();
+        var usedEventIds = new HashSet<int>();
 
         int GetAttractionScore(Attraction a) => a.AttractionType switch
         {
@@ -116,6 +123,16 @@ public class SmartPlannerController : Controller
             _ => 0
         };
 
+        int GetEventScore(Event e) => e.Type switch
+        {
+            EventType.Concert => input.NightlifeScore,
+            EventType.Theater => input.CultureScore,
+            EventType.Movie => input.CultureScore,
+            EventType.Festival => Math.Max(input.CultureScore, input.NightlifeScore),
+            EventType.Other => 2,
+            _ => 2
+        };
+
         Candidate ToAttractionCandidate(Attraction a) => new Candidate
         {
             Score = GetAttractionScore(a),
@@ -123,6 +140,7 @@ public class SmartPlannerController : Controller
             Lng = a.Coordinates.Longitude,
             IsAttraction = true,
             IsBar = false,
+            IsEvent = false,
             SourceId = a.Id,
             Vm = new PlannerLocationViewModel
             {
@@ -143,6 +161,7 @@ public class SmartPlannerController : Controller
             Lng = h.Coordinates.Longitude,
             IsAttraction = false,
             IsBar = h.HospitalityType == HospitalityType.Bars,
+            IsEvent = false,
             SourceId = h.Id,
             Vm = new PlannerLocationViewModel
             {
@@ -156,8 +175,37 @@ public class SmartPlannerController : Controller
             }
         };
 
+        Candidate ToEventCandidate(Event e) => new Candidate
+        {
+            Score = GetEventScore(e),
+            Lat = e.Coordinates.Latitude,
+            Lng = e.Coordinates.Longitude,
+            IsAttraction = false,
+            IsBar = e.Type == EventType.Concert,
+            IsEvent = true,
+            SourceId = e.Id,
+            EventStart = e.StartDate,
+            Vm = new PlannerLocationViewModel
+            {
+                Name = string.IsNullOrEmpty(e.EventNameEn)
+    ? e.EventName
+    : e.EventNameEn,
+
+                Description = string.IsNullOrEmpty(e.EventDescriptionEn)
+    ? e.EventDescription
+    : e.EventDescriptionEn,
+                ImageUrl = e.PhotoUrl,
+                Category = "Event",
+                Type = e.Type.ToString(),
+                Latitude = e.Coordinates.Latitude,
+                Longitude = e.Coordinates.Longitude
+            }
+        };
+
         for (int day = 1; day <= input.NumberOfDays; day++)
         {
+            var currentDate = input.ArrivalDate.Date.AddDays(day - 1);
+
             int hospitalitySlots = CalculateHospitalitySlots(input);
             int attractionSlots = LocationsPerDay - hospitalitySlots;
 
@@ -169,38 +217,59 @@ public class SmartPlannerController : Controller
                 .ToList();
 
             var barPool = hospitality
-                .Where(h => !usedHospitalityIds.Contains(h.Id) && h.HospitalityType == HospitalityType.Bars)
+                .Where(h => !usedHospitalityIds.Contains(h.Id) &&
+                            h.HospitalityType == HospitalityType.Bars)
                 .Select(ToHospitalityCandidate)
                 .OrderByDescending(c => c.Score)
                 .ThenBy(_ => Guid.NewGuid())
                 .ToList();
 
             var hospPool = hospitality
-                .Where(h => !usedHospitalityIds.Contains(h.Id) && h.HospitalityType != HospitalityType.Bars)
+                .Where(h => !usedHospitalityIds.Contains(h.Id) &&
+                            h.HospitalityType != HospitalityType.Bars)
                 .Select(ToHospitalityCandidate)
                 .OrderByDescending(c => c.Score)
                 .ThenBy(_ => Guid.NewGuid())
                 .ToList();
 
+            var eventPool = events
+                .Where(e => !usedEventIds.Contains(e.Id) &&
+                            e.StartDate.Date <= currentDate &&
+                            e.EndDate.Date >= currentDate &&
+                            GetEventScore(e) >= 3)
+                .Select(ToEventCandidate)
+                .OrderByDescending(c => c.Score)
+                .ThenBy(c => c.EventStart)
+                .ToList();
+
             var dayLocations = new List<PlannerLocationViewModel>();
-            double? lastLat = null, lastLng = null;
+            double? lastLat = null;
+            double? lastLng = null;
             var typeCountToday = new Dictionary<string, int>();
 
-            bool IsOverTypeLimit(Candidate c) =>
-                typeCountToday.GetValueOrDefault(c.Vm.Type, 0) >= GetDailyTypeLimit(c.Vm.Type, input);
+            bool IsOverTypeLimit(Candidate c)
+            {
+                return typeCountToday.GetValueOrDefault(c.Vm.Type, 0) >=
+                       GetDailyTypeLimit(c.Vm.Type, input);
+            }
 
             Candidate? PickNext(List<Candidate> pool, bool respectTypeLimit = true)
             {
-                if (pool.Count == 0) return null;
+                if (pool.Count == 0)
+                    return null;
 
                 var available = respectTypeLimit
                     ? pool.Where(c => !IsOverTypeLimit(c)).ToList()
-                    : pool;
+                    : pool.ToList();
 
-                if (available.Count == 0) return null;
-                if (lastLat == null) return available[0];
+                if (available.Count == 0)
+                    return null;
+
+                if (lastLat == null || lastLng == null)
+                    return available[0];
 
                 var tier = available.Take(CandidateTierSize).ToList();
+
                 return tier
                     .OrderBy(c => Haversine(lastLat.Value, lastLng.Value, c.Lat, c.Lng))
                     .First();
@@ -209,28 +278,48 @@ public class SmartPlannerController : Controller
             void Commit(Candidate c)
             {
                 dayLocations.Add(c.Vm);
+
                 lastLat = c.Lat;
                 lastLng = c.Lng;
-                if (c.IsAttraction) usedAttractionIds.Add(c.SourceId);
-                else usedHospitalityIds.Add(c.SourceId);
-                attrPool.RemoveAll(x => x.SourceId == c.SourceId);
-                hospPool.RemoveAll(x => x.SourceId == c.SourceId);
-                barPool.RemoveAll(x => x.SourceId == c.SourceId);
+
+                if (c.IsEvent)
+                    usedEventIds.Add(c.SourceId);
+                else if (c.IsAttraction)
+                    usedAttractionIds.Add(c.SourceId);
+                else
+                    usedHospitalityIds.Add(c.SourceId);
+
+                attrPool.RemoveAll(x => x.SourceId == c.SourceId && x.IsAttraction);
+                hospPool.RemoveAll(x => x.SourceId == c.SourceId && !x.IsAttraction && !x.IsEvent);
+                barPool.RemoveAll(x => x.SourceId == c.SourceId && !x.IsAttraction && !x.IsEvent);
+                eventPool.RemoveAll(x => x.SourceId == c.SourceId && x.IsEvent);
 
                 var t = c.Vm.Type;
                 typeCountToday[t] = typeCountToday.GetValueOrDefault(t, 0) + 1;
             }
 
+            Candidate? todaysEvent = PickNext(eventPool, respectTypeLimit: false);
+
+            bool addBarToday = input.NightlifeScore >= 2 && barPool.Count > 0;
+
+            if (todaysEvent != null && todaysEvent.IsBar && input.NightlifeScore < 5)
+                addBarToday = false;
+
+            int reservedEventSlot = todaysEvent != null ? 1 : 0;
+            int reservedBarSlot = addBarToday ? 1 : 0;
+
             var anchor = PickNext(attrPool) ?? PickNext(hospPool);
-            if (anchor != null) Commit(anchor);
+            if (anchor != null)
+                Commit(anchor);
 
             int attrFilled = anchor != null && anchor.IsAttraction ? 1 : 0;
             int hospFilled = anchor != null && !anchor.IsAttraction ? 1 : 0;
 
-            bool addBarToday = input.NightlifeScore >= 2 && barPool.Count > 0;
             int regularHospSlots = addBarToday ? hospitalitySlots - 1 : hospitalitySlots;
+            if (regularHospSlots < 0)
+                regularHospSlots = 0;
 
-            while (dayLocations.Count < LocationsPerDay - (addBarToday ? 1 : 0))
+            while (dayLocations.Count < LocationsPerDay - reservedEventSlot - reservedBarSlot)
             {
                 bool needAttraction = attrFilled < attractionSlots && attrPool.Count > 0;
                 bool needHospitality = hospFilled < regularHospSlots && hospPool.Count > 0;
@@ -241,58 +330,111 @@ public class SmartPlannerController : Controller
                 {
                     var bestA = PickNext(attrPool);
                     var bestH = PickNext(hospPool);
-                    double dA = bestA != null && lastLat != null
-                        ? Haversine(lastLat.Value, lastLng.Value, bestA.Lat, bestA.Lng) : double.MaxValue;
-                    double dH = bestH != null && lastLat != null
-                        ? Haversine(lastLat.Value, lastLng.Value, bestH.Lat, bestH.Lng) : double.MaxValue;
+
+                    double dA = bestA != null && lastLat != null && lastLng != null
+                        ? Haversine(lastLat.Value, lastLng.Value, bestA.Lat, bestA.Lng)
+                        : double.MaxValue;
+
+                    double dH = bestH != null && lastLat != null && lastLng != null
+                        ? Haversine(lastLat.Value, lastLng.Value, bestH.Lat, bestH.Lng)
+                        : double.MaxValue;
+
                     next = dA <= dH ? bestA : bestH;
                 }
-                else if (needAttraction) next = PickNext(attrPool);
-                else if (needHospitality) next = PickNext(hospPool);
+                else if (needAttraction)
+                {
+                    next = PickNext(attrPool);
+                }
+                else if (needHospitality)
+                {
+                    next = PickNext(hospPool);
+                }
                 else
                 {
                     next = PickNext(attrPool, respectTypeLimit: false)
                         ?? PickNext(hospPool, respectTypeLimit: false);
                 }
 
-                if (next == null) break;
+                if (next == null)
+                    break;
 
                 Commit(next);
-                if (next.IsAttraction) attrFilled++; else hospFilled++;
+
+                if (next.IsAttraction)
+                    attrFilled++;
+                else
+                    hospFilled++;
             }
 
             if (addBarToday)
             {
                 var bar = PickNext(barPool, respectTypeLimit: false);
-                if (bar != null) Commit(bar);
+                if (bar != null)
+                    Commit(bar);
             }
 
+            if (todaysEvent != null && !usedEventIds.Contains(todaysEvent.SourceId))
+            {
+                int hour = todaysEvent.EventStart?.Hour ?? 20;
+
+                if (hour == 0)
+                    hour = 20;
+
+                int position;
+
+                if (hour < 12)
+                    position = 0;
+                else if (hour < 17)
+                    position = Math.Min(2, dayLocations.Count);
+                else
+                    position = Math.Min(4, dayLocations.Count);
+
+                if (dayLocations.Count >= LocationsPerDay)
+                {
+                    if (position < dayLocations.Count)
+                        dayLocations.RemoveAt(position);
+                    else
+                        dayLocations.RemoveAt(dayLocations.Count - 1);
+                }
+
+                dayLocations.Insert(position, todaysEvent.Vm);
+                usedEventIds.Add(todaysEvent.SourceId);
+            }
             plan[day] = dayLocations;
         }
-
-        return plan;
+            return plan;
     }
 
     private int CalculateHospitalitySlots(SmartPlannerInputViewModel input)
     {
         int totalScore = input.HistoryScore + input.NatureScore +
                          input.CultureScore + input.FoodScore + input.NightlifeScore;
+
         int hospitalityScore = input.FoodScore + input.NightlifeScore;
-        if (totalScore == 0) return 1;
+
+        if (totalScore == 0)
+            return 1;
+
         double ratio = (double)hospitalityScore / totalScore;
         int slots = (int)Math.Round(ratio * LocationsPerDay);
+
         return Math.Clamp(slots, 1, 3);
     }
 
     private static double Haversine(double lat1, double lon1, double lat2, double lon2)
     {
         const double R = 6371000.0;
+
         double dLat = (lat2 - lat1) * Math.PI / 180.0;
         double dLon = (lon2 - lon1) * Math.PI / 180.0;
+
         double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
-                   Math.Cos(lat1 * Math.PI / 180.0) * Math.Cos(lat2 * Math.PI / 180.0) *
+                   Math.Cos(lat1 * Math.PI / 180.0) *
+                   Math.Cos(lat2 * Math.PI / 180.0) *
                    Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+
         double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+
         return R * c;
     }
 }
