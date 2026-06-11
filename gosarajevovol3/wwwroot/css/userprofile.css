@@ -25,7 +25,6 @@
     color: #1b1b1b;
 }
 
-/* ---------- REVIEWS ---------- */
 .review-list {
     display: flex;
     flex-direction: column;
@@ -39,8 +38,8 @@
 }
 
 .review-thumb {
-    width: 90px;
-    height: 80px;
+    width: 120px;
+    height: 110px;
     flex-shrink: 0;
     border-radius: 4px;
     background: linear-gradient(to bottom, #bfe3f5 0%, #bfe3f5 55%, #6abf4b 55%, #4f9e34 100%);
@@ -192,7 +191,6 @@ img.review-thumb {
     }
 }
 
-/* ---------- EDIT/DELETE recenzija na profilu ---------- */
 .review-edit-actions {
     display: none;
     gap: 10px;
@@ -237,7 +235,6 @@ img.review-thumb {
         background: #b9141a;
     }
 
-/* da dugme "Edit your reviews" radi kao button */
 .btn-edit-reviews {
     border: none;
     cursor: pointer;

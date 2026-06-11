@@ -151,7 +151,6 @@ public class AccountController : Controller
 
         var user = await _userManager.FindByEmailAsync(model.Email);
 
-        // PROBLEM 1: greska ako mail nije povezan s accountom
         if (user == null)
         {
             ModelState.AddModelError("", "No account found with that email address.");
@@ -160,7 +159,6 @@ public class AccountController : Controller
 
         var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-        // PROBLEM 2: enkodiraj token da prezivi URL/mail
         var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
 
         var resetLink = Url.Action("ResetPassword", "Account",
@@ -222,7 +220,6 @@ public class AccountController : Controller
         if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(email))
             return RedirectToAction("Login");
 
-        // token ostaje enkodiran (URL-safe) kroz formu; dekodira se tek u POST-u
         var model = new ResetPasswordViewModel { Token = token, Email = email };
         return View(model);
     }
@@ -237,7 +234,6 @@ public class AccountController : Controller
         if (user == null)
             return RedirectToAction("ResetPasswordConfirmation");
 
-        // dekodiraj token nazad u original
         string decodedToken;
         try
         {

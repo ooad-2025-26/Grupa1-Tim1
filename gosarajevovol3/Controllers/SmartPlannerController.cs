@@ -51,7 +51,7 @@ public class SmartPlannerController : Controller
 
         if (!input.DatesAreValid)
         {
-            ModelState.AddModelError("DepartureDate", "Datum odlaska mora biti nakon datuma dolaska.");
+            ModelState.AddModelError("DepartureDate", "Departure date must be after the arrival date.");
             return View("Index", input);
         }
 
