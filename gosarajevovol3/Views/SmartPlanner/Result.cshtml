@@ -79,6 +79,26 @@
 
                 const bounds = new google.maps.LatLngBounds();
 
+                const startLat = @(Model.StartLat.HasValue ? Model.StartLat.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) : "null");
+                const startLng = @(Model.StartLng.HasValue ? Model.StartLng.Value.ToString(System.Globalization.CultureInfo.InvariantCulture) : "null");
+
+                // unutar for loopa, prije forEach markera:
+                if (startLat && startLng) {
+                    const startPin = new PinElement({
+                        glyph: "★",
+                        background: "#e74c3c",
+                        borderColor: "#c0392b",
+                        glyphColor: "#ffffff"
+                    });
+                    new AdvancedMarkerElement({
+                        map,
+                        position: { lat: startLat, lng: startLng },
+                        title: "Your location",
+                        content: startPin.element
+                    });
+                    bounds.extend({ lat: startLat, lng: startLng });
+                }
+
                 locations.forEach((loc, i) => {
                     const pin = new PinElement({
                         glyph: String(i + 1),
@@ -99,8 +119,14 @@
 
                 if (locations.length > 1) map.fitBounds(bounds, 40);
 
+                const polylinePath = [];
+                if (startLat && startLng) {
+                    polylinePath.push({ lat: startLat, lng: startLng });
+                }
+                locations.forEach(l => polylinePath.push({ lat: l.lat, lng: l.lng }));
+
                 new google.maps.Polyline({
-                    path: locations.map(l => ({ lat: l.lat, lng: l.lng })),
+                    path: polylinePath,
                     map,
                     strokeColor: "#c0392b",
                     strokeOpacity: 0.85,
@@ -111,6 +137,6 @@
     </script>
 
     <script async
-            src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.GoogleMapsApiKey&libraries=marker&v=weekly&callback=initMaps">
+            src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.GoogleMapsApiKey&libraries=marker,places&v=weekly&callback=initMaps">
     </script>
 }

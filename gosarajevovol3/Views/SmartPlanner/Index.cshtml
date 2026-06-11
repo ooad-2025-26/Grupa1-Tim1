@@ -169,6 +169,18 @@
                 </div>
             </div>
         </div>
+        <div class="sp-question-block" style="margin-top: 2rem;">
+            <p class="sp-question-text">Where are you staying? <span style="font-size:0.85rem; color:#888;">(optional)</span></p>
+            <input id="start-address-input"
+                   name="StartAddress"
+                   type="text"
+                   class="sp-date-input"
+                   placeholder="e.g. Holiday Inn Sarajevo"
+                   autocomplete="off"
+                   style="width:100%; max-width:480px;" />
+            <input type="hidden" name="StartLat" id="start-lat" />
+            <input type="hidden" name="StartLng" id="start-lng" />
+        </div>
         <div class="sp-submit-wrapper">
             <button type="submit" class="sp-submit-btn">Generate My Plan</button>
         </div>
@@ -183,5 +195,29 @@
             row.querySelector(`.sp-circle[data-value="${value}"]`).classList.add('sp-circle--filled');
             document.getElementById(`input_${fieldName}`).value = value;
         }
+
+        function initAutocomplete() {
+            const input = document.getElementById("start-address-input");
+            console.log("API key:", "@ViewBag.GoogleMapsApiKey");
+            console.log("Input element:", input);
+
+            const autocomplete = new google.maps.places.Autocomplete(input, {
+                fields: ["geometry", "formatted_address"]
+            });
+
+            autocomplete.addListener("place_changed", () => {
+                const place = autocomplete.getPlace();
+                console.log("Place selected:", place);
+                if (place.geometry) {
+                    document.getElementById("start-lat").value = place.geometry.location.lat();
+                    document.getElementById("start-lng").value = place.geometry.location.lng();
+                    console.log("Lat/Lng set:", place.geometry.location.lat(), place.geometry.location.lng());
+                }
+            });
+        }
+    </script>
+
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=@ViewBag.GoogleMapsApiKey&libraries=places&callback=initAutocomplete">
     </script>
 }

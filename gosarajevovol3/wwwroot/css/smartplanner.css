@@ -160,3 +160,33 @@
     .sp-submit-btn:hover {
         background-color: #a93226;
     }
+
+.pac-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #d0dce6;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.pac-item {
+    color: #1d4e6b;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+    .pac-item:hover {
+        background-color: #f0f5f8;
+    }
+
+.pac-item-query {
+    color: #1d4e6b;
+    font-weight: 600;
+}
+
+.pac-matched {
+    color: #1d4e6b;
+}
+
+.pac-container {
+    z-index: 9999 !important;
+}

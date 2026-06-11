@@ -31,6 +31,7 @@ public class SmartPlannerController : Controller
         if (!isRegistered)
             return View("NotRegistered");
 
+        ViewBag.GoogleMapsApiKey = _configuration["GoogleMaps:ApiKey"];
         var model = new SmartPlannerInputViewModel();
         return View(model);
     }
@@ -54,10 +55,9 @@ public class SmartPlannerController : Controller
             ModelState.AddModelError("DepartureDate", "Departure date must be after the arrival date.");
             return View("Index", input);
         }
-
         var attractions = await _context.Attractions
-            .Include(a => a.Coordinates)
-            .ToListAsync();
+                    .Include(a => a.Coordinates)
+                    .ToListAsync();
 
         var hospitality = await _context.Hospitality
             .Include(h => h.Coordinates)
@@ -74,7 +74,10 @@ public class SmartPlannerController : Controller
         {
             ArrivalDate = input.ArrivalDate,
             DepartureDate = input.DepartureDate,
-            NumberOfDays = input.NumberOfDays
+            NumberOfDays = input.NumberOfDays,
+            StartAddress = input.StartAddress,
+            StartLat = input.StartLat,
+            StartLng = input.StartLng
         };
 
         result.PlanByDay = GeneratePlan(input, attractions, hospitality, events);

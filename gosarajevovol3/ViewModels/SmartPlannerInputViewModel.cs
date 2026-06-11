@@ -36,5 +36,8 @@ namespace gosarajevovol3.ViewModels
 
         public bool DatesAreValid => DepartureDate > ArrivalDate;
         public int NumberOfDays => (DepartureDate - ArrivalDate).Days +1;
-}
+        public string? StartAddress { get; set; }
+        public double? StartLat { get; set; }
+        public double? StartLng { get; set; }
+    }
 }
