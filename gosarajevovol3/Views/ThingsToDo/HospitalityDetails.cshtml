@@ -188,6 +188,22 @@
             height: 330px;
         }
     }
+
+    .login-to-review {
+        font-size: 15px;
+        color: #555;
+        font-style: italic;
+    }
+
+        .login-to-review a {
+            color: #d71920;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+            .login-to-review a:hover {
+                text-decoration: underline;
+            }
 </style>
 
 <div class="details-page">
@@ -255,9 +271,19 @@
                 <div class="details-actions">
                     <a href="#reviews" class="reviews-button">Reviews</a>
 
-                    <a href="#" class="leave-review-button">
-                        +Leave/edit a review
-                    </a>
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <a asp-controller="Review" asp-action="Leave" asp-route-hospitalityId="@Model.Id" class="leave-review-button">
+                            +Leave/edit a review
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="login-to-review">
+                            Only registered users can leave reviews.
+                            <a asp-controller="Account" asp-action="Register">Register now</a>
+                        </span>
+                    }
                 </div>
 
                 <div id="reviews">

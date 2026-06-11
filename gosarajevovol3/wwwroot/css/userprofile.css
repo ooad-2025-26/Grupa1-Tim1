@@ -1,0 +1,248 @@
+﻿.profile-page {
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 40px;
+    margin-top: 80px; /* spusta prvu traku ispod navbara - prilagodi po potrebi */
+}
+
+/* plave trake */
+.profile-bar {
+    background-color: #84a4b8;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 14px 32px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-content {
+    padding: 24px 32px;
+}
+
+.profile-email {
+    font-size: 1rem;
+    color: #1b1b1b;
+}
+
+/* ---------- REVIEWS ---------- */
+.review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.review-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.review-thumb {
+    width: 90px;
+    height: 80px;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: linear-gradient(to bottom, #bfe3f5 0%, #bfe3f5 55%, #6abf4b 55%, #4f9e34 100%);
+}
+
+.review-body {
+    flex: 1;
+}
+
+.review-title {
+    font-weight: 700;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #1b1b1b;
+    margin: 0 0 8px 0;
+}
+
+.review-box {
+    position: relative;
+    background-color: #a9bccb;
+    border-radius: 12px;
+    padding: 14px 18px;
+}
+
+.review-username {
+    font-size: 0.9rem;
+    color: #1b1b1b;
+    margin: 0 0 2px 0;
+}
+
+.review-text {
+    font-size: 0.9rem;
+    color: #1b1b1b;
+    margin: 0;
+}
+
+.review-stars {
+    position: absolute;
+    right: 18px;
+    bottom: 14px;
+    color: #1f6f8b;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.reviews-edit-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+}
+
+.btn-edit-reviews {
+    background-color: #c0392b;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 10px 22px;
+    border-radius: 24px;
+    text-decoration: none;
+}
+
+    .btn-edit-reviews:hover {
+        background-color: #a93226;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+img.review-thumb {
+    object-fit: cover;
+}
+
+/* ---------- PLANS ---------- */
+.plans-content {
+    border-top: 2px solid #7b3fa0;
+}
+
+.plans-row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.btn-plan {
+    background-color: #6b8fa3;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 12px 32px;
+    border-radius: 24px;
+    text-decoration: none;
+}
+
+    .btn-plan:hover {
+        background-color: #5a7c8f;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+/* ---------- ACCOUNT ACTIONS ---------- */
+.profile-account-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+    padding: 0 32px;
+}
+
+.btn-account {
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 12px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-logout {
+    background-color: #1b3a5c;
+    color: #ffffff;
+}
+
+.btn-switch {
+    background-color: #eef1f5;
+    color: #1b3a5c;
+}
+
+.btn-account:hover {
+    opacity: 0.88;
+    text-decoration: none;
+}
+
+@media (max-width: 640px) {
+    .profile-bar {
+        font-size: 1.2rem;
+    }
+
+    .plans-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-plan {
+        text-align: center;
+    }
+}
+
+/* ---------- EDIT/DELETE recenzija na profilu ---------- */
+.review-edit-actions {
+    display: none;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+#reviewList.editing .review-edit-actions {
+    display: flex;
+}
+
+.btn-review-edit,
+.btn-review-delete {
+    border: none;
+    border-radius: 18px;
+    padding: 6px 18px;
+    font-weight: 600;
+    font-size: .85rem;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-review-edit {
+    background: #1b3a5c;
+    color: #fff;
+}
+
+    .btn-review-edit:hover {
+        color: #fff;
+        opacity: .88;
+        text-decoration: none;
+    }
+
+.btn-review-delete {
+    background: #d71920;
+    color: #fff;
+}
+
+    .btn-review-delete:hover {
+        background: #b9141a;
+    }
+
+/* da dugme "Edit your reviews" radi kao button */
+.btn-edit-reviews {
+    border: none;
+    cursor: pointer;
+}
+
+img.review-thumb {
+    object-fit: cover;
+}

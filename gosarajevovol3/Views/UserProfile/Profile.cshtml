@@ -1,0 +1,122 @@
+﻿@model gosarajevovol3.ViewModels.ProfileViewModel
+@{
+    ViewData["Title"] = "My Profile";
+    ViewData["HideFooter"] = true;
+}
+
+<link rel="stylesheet" href="~/css/userprofile.css" asp-append-version="true" />
+
+<div class="profile-page">
+
+    <!-- YOUR EMAIL -->
+    <div class="profile-bar">Your email:</div>
+    <div class="profile-content">
+        <span class="profile-email">@Model.Email</span>
+    </div>
+
+    <!-- YOUR REVIEWS -->
+    @if (Model.Reviews.Any())
+    {
+        <div class="profile-bar">Your reviews:</div>
+        <div class="profile-content">
+            <div class="review-list" id="reviewList">
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="review-item">
+                        @if (!string.IsNullOrEmpty(review.Hospitality?.PhotoUrl))
+                        {
+                            <img src="@review.Hospitality.PhotoUrl" class="review-thumb"
+                                 alt="@review.Hospitality.HospitalityName" />
+                        }
+                        else
+                        {
+                            <div class="review-thumb"></div>
+                        }
+
+                        <div class="review-body">
+                            <p class="review-title">@(review.Hospitality?.HospitalityName ?? "Objekt")</p>
+                            <div class="review-box">
+                                <p class="review-username">@Model.Email</p>
+                                <p class="review-text">@review.Comment</p>
+                                <div class="review-stars">
+                                    @for (int i = 0; i < 5 - review.Rating; i++)
+                                    {
+                                        <i class="fa-regular fa-star"></i>
+                                    }
+                                    @for (int i = 0; i < review.Rating; i++)
+                                    {
+                                        <i class="fa-solid fa-star"></i>
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="review-edit-actions">
+                                @if (review.HospitalityId.HasValue)
+                                {
+                                    <a asp-controller="Review" asp-action="Leave"
+                                       asp-route-hospitalityId="@review.HospitalityId"
+                                       class="btn-review-edit">Edit</a>
+                                }
+                                <form asp-controller="Review" asp-action="Delete" method="post"
+                                      onsubmit="return confirm('Are you sure you want to delete this review?');"
+                                      style="display:inline;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@review.Id" />
+                                    <button type="submit" class="btn-review-delete">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="reviews-edit-wrap">
+                <button type="button" class="btn-edit-reviews" id="toggleEditReviews">Edit your reviews</button>
+            </div>
+        </div>
+    }
+
+    <!-- YOUR PLANS -->
+    @if (Model.Plans.Any())
+    {
+        <div class="profile-bar">Your plans:</div>
+        <div class="profile-content plans-content">
+            <div class="plans-row">
+                @{
+                    int planNo = 1;
+                }
+                @foreach (var plan in Model.Plans)
+                {
+                    <a asp-controller="SmartPlanner" asp-action="Result" asp-route-id="@plan.Id" class="btn-plan">
+                        View plan @planNo
+                    </a>
+                    planNo++;
+                }
+            </div>
+        </div>
+    }
+
+    <!-- ACCOUNT ACTIONS -->
+    <div class="profile-account-actions">
+        <a asp-controller="Account" asp-action="Logout" class="btn-account btn-logout">
+            <i class="fa-solid fa-right-from-bracket"></i> Log out
+        </a>
+        <a asp-controller="Account" asp-action="SwitchAccount" class="btn-account btn-switch">
+            <i class="fa-solid fa-arrows-rotate"></i> Switch account
+        </a>
+    </div>
+
+</div>
+
+<script>
+    (function () {
+        var btn = document.getElementById('toggleEditReviews');
+        var list = document.getElementById('reviewList');
+        if (!btn || !list) return;
+
+        btn.addEventListener('click', function () {
+            var editing = list.classList.toggle('editing');
+            btn.textContent = editing ? 'Done' : 'Edit your reviews';
+        });
+    })();
+</script>

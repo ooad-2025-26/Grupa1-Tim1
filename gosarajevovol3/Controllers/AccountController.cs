@@ -241,6 +241,13 @@ public class AccountController : Controller
     }
 
     [HttpGet]
+    public async Task<IActionResult> SwitchAccount()
+    {
+        await _userService.LogoutAsync();
+        return RedirectToAction("Login", "Account");
+    }
+
+    [HttpGet]
     public IActionResult ResetPasswordConfirmation()
     {
         return View();

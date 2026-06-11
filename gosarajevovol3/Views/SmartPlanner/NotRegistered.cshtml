@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Registered users only";
+    ViewData["HideFooter"] = true;
+}
+
+<style>
+    .gate-screen {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #9bb8c6 0%, #6b8fa3 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 100px 24px 60px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .gate-icon {
+        font-size: 3.5rem;
+        color: #84a4b8;
+        margin-bottom: 20px;
+    }
+
+    .gate-title {
+        color: #1b3a5c;
+        font-size: 1.9rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+    }
+
+    .gate-text {
+        color: #1b3a5c;
+        font-size: 1.05rem;
+        margin-bottom: 32px;
+        max-width: 460px;
+    }
+
+    .gate-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .gate-btn {
+        font-weight: 700;
+        font-size: 1rem;
+        padding: 12px 32px;
+        border-radius: 26px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .gate-btn-primary {
+        background: #d71920;
+        color: #ffffff;
+    }
+
+        .gate-btn-primary:hover {
+            background: #b9141a;
+            color: #fff;
+            text-decoration: none;
+        }
+
+    .gate-btn-secondary {
+        background: #ffffff;
+        color: #1b3a5c;
+    }
+
+        .gate-btn-secondary:hover {
+            color: #1b3a5c;
+            text-decoration: none;
+            opacity: .9;
+        }
+</style>
+
+<div class="gate-screen">
+    <i class="fa-solid fa-lock gate-icon"></i>
+    <h1 class="gate-title">This feature is for registered users only</h1>
+    <p class="gate-text">
+        Create an account or log in to use the Smart Planner and build your own Sarajevo itinerary.
+    </p>
+    <div class="gate-actions">
+        <a asp-controller="Account" asp-action="Register" class="gate-btn gate-btn-primary">
+            <i class="fa-solid fa-user-plus"></i> Register here
+        </a>
+        <a asp-controller="Account" asp-action="Login" class="gate-btn gate-btn-secondary">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+        </a>
+    </div>
+</div>

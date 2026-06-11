@@ -23,6 +23,14 @@ public class SmartPlannerController : Controller
 
     public IActionResult Index()
     {
+        if (User.Identity?.IsAuthenticated != true)
+            return View("NotRegistered");
+
+        bool isRegistered = _context.RegisteredUsers
+            .Any(u => u.Email == User.Identity.Name);
+        if (!isRegistered)
+            return View("NotRegistered");
+
         var model = new SmartPlannerInputViewModel();
         return View(model);
     }
@@ -31,6 +39,13 @@ public class SmartPlannerController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> GenerirajPlan(SmartPlannerInputViewModel input)
     {
+        if (User.Identity?.IsAuthenticated != true)
+            return View("NotRegistered");
+
+        bool isRegistered = await _context.RegisteredUsers
+            .AnyAsync(u => u.Email == User.Identity.Name);
+        if (!isRegistered)
+            return View("NotRegistered");
         if (!ModelState.IsValid)
             return View("Index", input);
 
