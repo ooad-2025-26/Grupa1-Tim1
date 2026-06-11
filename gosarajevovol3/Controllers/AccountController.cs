@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SendGrid; 
-using SendGrid.Helpers.Mail; 
+using SendGrid.Helpers.Mail;
+using Microsoft.AspNetCore.WebUtilities;
+using System.Text;
 
 namespace gosarajevovol3.Controllers;
 
@@ -148,52 +150,66 @@ public class AccountController : Controller
             return View(model);
 
         var user = await _userManager.FindByEmailAsync(model.Email);
-        
-        if (user != null)
+
+        // PROBLEM 1: greska ako mail nije povezan s accountom
+        if (user == null)
         {
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            ModelState.AddModelError("", "No account found with that email address.");
+            return View(model);
+        }
 
-            var resetLink = Url.Action("ResetPassword", "Account", 
-                new { token = token, email = model.Email }, Request.Scheme);
+        var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-            var apiKey = _configuration["SendGridSettings:ApiKey"];
-            var fromEmail = _configuration["SendGridSettings:FromEmail"];
-            var fromName = _configuration["SendGridSettings:FromName"];
+        // PROBLEM 2: enkodiraj token da prezivi URL/mail
+        var encodedToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
 
-            var client = new SendGridClient(apiKey);
-            var from = new EmailAddress(fromEmail, fromName);
-            var to = new EmailAddress(model.Email);
-            
-            var subject = "GoSarajevo - Reset Your Password";
-            var htmlContent = $@"
-                <div style='font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; border: 1px solid #eee; border-radius: 10px;'>
-                    <h2 style='color: #0c3156;'>Password Reset Request</h2>
-                    <p>We received a request to reset the password for your GoSarajevo account.</p>
-                    <p>Click the button below to choose a new password:</p>
-                    <p style='text-align: center; margin: 30px 0;'>
-                        <a href='{resetLink}' style='background-color: #05335e; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;'>Reset Password</a>
-                    </p>
-                    <p style='color: #666; font-size: 0.9rem;'>If you did not request this change, you can safely ignore this email.</p>
-                </div>";
+        var resetLink = Url.Action("ResetPassword", "Account",
+            new { token = encodedToken, email = model.Email }, Request.Scheme);
 
-            var msg = new SendGridMessage()
+        var apiKey = _configuration["SendGridSettings:ApiKey"];
+        var fromEmail = _configuration["SendGridSettings:FromEmail"];
+        var fromName = _configuration["SendGridSettings:FromName"];
+
+        var client = new SendGridClient(apiKey);
+        var from = new EmailAddress(fromEmail, fromName);
+        var to = new EmailAddress(model.Email);
+
+        var subject = "GoSarajevo - Reset Your Password";
+        var htmlContent = $@"
+        <div style='font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; border: 1px solid #eee; border-radius: 10px;'>
+            <h2 style='color: #0c3156;'>Password Reset Request</h2>
+            <p>We received a request to reset the password for your GoSarajevo account.</p>
+            <p>Click the button below to choose a new password:</p>
+            <p style='text-align: center; margin: 30px 0;'>
+                <a href='{resetLink}' style='background-color: #05335e; color: white; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;'>Reset Password</a>
+            </p>
+            <p style='color: #666; font-size: 0.9rem;'>If you did not request this change, you can safely ignore this email.</p>
+        </div>";
+
+        var msg = new SendGridMessage()
+        {
+            From = from,
+            Subject = subject,
+            HtmlContent = htmlContent,
+            PlainTextContent = "Please use an HTML capable email client to reset your password."
+        };
+        msg.AddTo(to);
+
+        try
+        {
+            var response = await client.SendEmailAsync(msg);
+
+            if (!response.IsSuccessStatusCode)
             {
-                From = from,
-                Subject = subject,
-                HtmlContent = htmlContent,
-                PlainTextContent = "Please use an HTML capable email client to reset your password." 
-            };
-            msg.AddTo(to);
-
-            try
-            {
-                await client.SendEmailAsync(msg);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", $"Failed to send email: {ex.Message}");
+                var body = await response.Body.ReadAsStringAsync();
+                ModelState.AddModelError("", $"SendGrid error ({(int)response.StatusCode}): {body}");
                 return View(model);
             }
+        }
+        catch (Exception ex)
+        {
+            ModelState.AddModelError("", $"Failed to send email: {ex.Message}");
+            return View(model);
         }
 
         TempData["SuccessMessage"] = "A reset link has been sent.";
@@ -204,14 +220,12 @@ public class AccountController : Controller
     public IActionResult ResetPassword(string token, string email)
     {
         if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(email))
-        {
             return RedirectToAction("Login");
-        }
 
+        // token ostaje enkodiran (URL-safe) kroz formu; dekodira se tek u POST-u
         var model = new ResetPasswordViewModel { Token = token, Email = email };
         return View(model);
     }
-
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
@@ -221,21 +235,28 @@ public class AccountController : Controller
 
         var user = await _userManager.FindByEmailAsync(model.Email);
         if (user == null)
-        {
             return RedirectToAction("ResetPasswordConfirmation");
+
+        // dekodiraj token nazad u original
+        string decodedToken;
+        try
+        {
+            var bytes = WebEncoders.Base64UrlDecode(model.Token);
+            decodedToken = Encoding.UTF8.GetString(bytes);
+        }
+        catch
+        {
+            ModelState.AddModelError("", "Invalid or corrupted reset link.");
+            return View(model);
         }
 
-        var result = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
-        
+        var result = await _userManager.ResetPasswordAsync(user, decodedToken, model.Password);
+
         if (result.Succeeded)
-        {
             return RedirectToAction("ResetPasswordConfirmation");
-        }
 
         foreach (var error in result.Errors)
-        {
             ModelState.AddModelError("", error.Description);
-        }
 
         return View(model);
     }
@@ -268,6 +289,7 @@ public class AccountController : Controller
             NormalizedEmail = model.Email.ToUpper(),
             EmailConfirmed = true 
         };
+
         var result = await _userManager.CreateAsync(noviKorisnik, model.Password);
 
         if (result.Succeeded)
