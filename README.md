@@ -4,7 +4,16 @@
 **GoSarajevo** je pametna web aplikacija koja korisnicima pruža personalizovani vodič kroz Sarajevo. Cilj sistema je olakšati snalaženje u gradu i omogućiti brz pristup relevantnim informacijama — od atrakcija i događaja do praktičnih informacija i planiranja boravka.
 
 ---
-
+##  PRISTUPNI PODACI:
+LINK: http://aminaduderija-001-site1.jtempurl.com
+REGISTROVANI KORISNICI:
+1. korisnik@gmail.com - PASSWORD: Korisnik123!
+2. hhelac2@gmail.com - PASSWORD: carlibejbi
+OPERATER:
+operator@gmail.com - PASSWORD: Operator123!
+ADMINISTRATOR:
+admin@gmail.com - PASSWORS: Admin123!
+   
 ## 🚀 Osnovna ideja
 
 Aplikacija kombinuje:
